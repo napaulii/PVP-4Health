@@ -1,0 +1,47 @@
+5. Runtime Front-End Object (Unity MonoBehaviour)
+
+This is the object you attach to prefabs and instantiate in the scene.
+
+using UnityEngine;
+
+public class ChallengeObject : MonoBehaviour
+{
+    public ChallengeData challengeData;
+
+    public void Initialize(ChallengeData data)
+    {
+        challengeData = data;
+
+        Debug.Log("Challenge loaded: " + data.description);
+    }
+}
+
+Usage example:
+
+public class ChallengeSpawner : MonoBehaviour
+{
+    public GameObject challengePrefab;
+
+    public void SpawnChallenge(ChallengeData data)
+    {
+        GameObject obj = Instantiate(challengePrefab);
+        ChallengeObject challenge = obj.GetComponent<ChallengeObject>();
+
+        challenge.Initialize(data);
+    }
+}
+Example JSON from backend
+
+Your API could return:
+
+{
+  "id": 3,
+  "type": "Fitness",
+  "description": "Run 5km",
+  "reward": 100,
+  "fk_Categoryid": 1
+}
+
+Then deserialize with:
+
+ChallengeData data = JsonUtility.FromJson<ChallengeData>(json);
