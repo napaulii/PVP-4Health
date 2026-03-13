@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 7251d569334d6034cb0f546550a26c03
+timeCreated: 1474070203
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 71771
+  packageName: Tower 2D Sprite Pack
+  packageVersion: 1.0
+  assetPath: Assets/TowerGamePack/Demo Animation/flag.controller
+  uploadId: 137493

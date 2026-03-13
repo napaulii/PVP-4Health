@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: d2056ba599d0dea4bbc82135061ccfb8
+timeCreated: 1474038374
+licenseType: Store
+DefaultImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 71771
+  packageName: Tower 2D Sprite Pack
+  packageVersion: 1.0
+  assetPath: Assets/TowerGamePack/Scene/scn_demo.unity
+  uploadId: 137493
