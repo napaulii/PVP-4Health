@@ -4,43 +4,126 @@ using UnityEngine.UI;
 
 public class ShopScript : MonoBehaviour
 {
+    [Header("References")]
+    [SerializeField] private Sprite[] itemSprites;
+    [SerializeField] private TextMeshProUGUI coinText;
 
     private Transform container;
-    private Transform item;
+    private Transform itemTemplate;
+
+    private static readonly Item.ItemType[] ALL_ITEMS =
+    {
+        Item.ItemType.Tree1,
+        Item.ItemType.Tree2,
+        Item.ItemType.Tree3,
+        Item.ItemType.Bush1,
+        Item.ItemType.Bush2,
+        Item.ItemType.Bush3,
+        Item.ItemType.Statue1,
+        Item.ItemType.Theme1,
+    };
 
     private void Awake()
     {
+        Item.ResetAll();
+
         container = transform.Find("Container");
-        item = container.Find("Item");
-        //item.gameObject.SetActive(false);
+        itemTemplate = container.Find("Item");
+        itemTemplate.gameObject.SetActive(false);
     }
 
     private void Start()
     {
-        CreateItemButton("Item1", Item.GetCost(Item.ItemType.Name1), 0);
-        CreateItemButton("Item2", Item.GetCost(Item.ItemType.Name2), 1);
+        if (CoinManager.Instance != null)
+            CoinManager.Instance.OnCoinsChanged.AddListener(OnCoinsChanged);
+
+        UpdateCoinDisplay();
+
+        foreach (Item.ItemType type in ALL_ITEMS)
+            CreateItemButton(type);
     }
 
-    private void CreateItemButton(/*Sprite itemSprite, */string itemName, int itemCost, int positionIndex)
+    private void CreateItemButton(Item.ItemType itemType)
     {
-        Transform itemTransform = Instantiate(item, container);
-        RectTransform itemRect = itemTransform.GetComponent<RectTransform>();
+        Transform clone = Instantiate(itemTemplate, container);
+        clone.gameObject.SetActive(true);
 
-        float itemHeight = 180f;
-        itemRect.anchoredPosition = new Vector2(0, -itemHeight * positionIndex);
+        TextMeshProUGUI nameLabel = clone.Find("Name")?.GetComponent<TextMeshProUGUI>();
+        if (nameLabel != null) nameLabel.SetText(Item.GetName(itemType));
 
-        //itemTransform.Find("Name").GetComponent<TextMeshProUGUI>().SetText(itemName);
-        //itemTransform.Find("Price").GetComponent<TextMeshProUGUI>().SetText(itemCost.ToString());
+        int cost = Item.GetCost(itemType);
+        TextMeshProUGUI priceLabel = clone.Find("Price")?.GetComponent<TextMeshProUGUI>();
+        if (priceLabel != null) priceLabel.SetText(cost.ToString());
 
-        Transform nameText = itemTransform.Find("itemName");
-        Transform costText = itemTransform.Find("costText");
+        Image itemImage = clone.Find("Image")?.GetComponent<Image>();
+        if (itemImage != null)
+        {
+            int index = (int)itemType;
+            if (itemSprites != null && index < itemSprites.Length && itemSprites[index] != null)
+                itemImage.sprite = itemSprites[index];
+        }
 
-        if (nameText != null)
-            nameText.GetComponent<TextMeshProUGUI>().SetText(itemName);
+        Button buyButton = clone.Find("BuyButton")?.GetComponent<Button>();
+        if (buyButton != null)
+        {
+            SetButtonOwned(buyButton, false);
 
-        if (costText != null)
-            costText.GetComponent<TextMeshProUGUI>().SetText(itemCost.ToString());
+            Item.ItemType capturedType = itemType;
+            Button capturedBtn = buyButton;
+            buyButton.onClick.AddListener(() => OnBuyClicked(capturedType, cost, capturedBtn));
+        }
+    }
 
-        //itemTransform.Find("costText").GetComponent<Image>().sprite = itemSprite;
+    private void OnBuyClicked(Item.ItemType itemType, int cost, Button button)
+    {
+        if (Item.IsOwned(itemType)) return;
+
+        if (CoinManager.Instance == null || !CoinManager.Instance.TrySpend(cost))
+        {
+            Debug.Log("Not enough coins!");
+            return;
+        }
+
+        Item.Unlock(itemType);
+        Debug.Log($"Purchased {itemType} for {cost} coins.");
+        SetButtonOwned(button, true);
+        UpdateCoinDisplay();
+    }
+
+    private void SetButtonOwned(Button button, bool owned)
+    {
+        button.interactable = !owned;
+        TextMeshProUGUI label = button.GetComponentInChildren<TextMeshProUGUI>();
+        if (label != null) label.SetText(owned ? "Owned" : "Buy");
+    }
+
+    private void OnCoinsChanged(int newAmount)
+    {
+        UpdateCoinDisplay();
+        RefreshAllButtonStates();
+    }
+
+    private void UpdateCoinDisplay()
+    {
+        if (coinText != null && CoinManager.Instance != null)
+            coinText.SetText(CoinManager.Instance.Coins.ToString());
+    }
+
+    private void RefreshAllButtonStates()
+    {
+        int currentCoins = CoinManager.Instance != null ? CoinManager.Instance.Coins : 0;
+
+        for (int i = 1; i < container.childCount; i++)
+        {
+            Transform child = container.GetChild(i);
+            if (!child.gameObject.activeSelf) continue;
+
+            Item.ItemType type = ALL_ITEMS[i - 1];
+            Button btn = child.Find("BuyButton")?.GetComponent<Button>();
+            if (btn == null) continue;
+
+            if (!Item.IsOwned(type))
+                btn.interactable = currentCoins >= Item.GetCost(type);
+        }
     }
 }
