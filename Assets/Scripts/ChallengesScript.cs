@@ -3,48 +3,65 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-
+using SupabaseModels;
 
 public class ChallengesScript : MonoBehaviour
 {
     public static ChallengesScript Instance { get; private set; }
 
     [Header("Personal section")]
-    [SerializeField] private Transform personalContainer;   // Bracket under PersonalChallWin
-    [SerializeField] private Transform personalRowTemplate; // Button under PersonalChallWin
+    [SerializeField] private Transform personalContainer;
+    [SerializeField] private Transform personalRowTemplate;
 
     [Header("Group section")]
-    [SerializeField] private Transform groupContainer;      // Bracket under GroupChallWin
-    [SerializeField] private Transform groupRowTemplate;    // Button under GroupChallWin
+    [SerializeField] private Transform groupContainer;
+    [SerializeField] private Transform groupRowTemplate;
 
     [Header("Status label (optional)")]
     [SerializeField] private TextMeshProUGUI statusLabel;
 
     [Header("User info")]
-    [SerializeField] private int userId = 1;
-    [SerializeField] private int groupId = 1;
+    [SerializeField] private string userId = "";
+    [SerializeField] private long groupId = 1;
 
-    // Runtime tracking
-    private readonly Dictionary<int, bool> personalCompleted = new Dictionary<int, bool>();
-    private readonly Dictionary<int, bool> groupCompleted = new Dictionary<int, bool>();
+    private readonly Dictionary<long, bool> personalCompleted = new Dictionary<long, bool>();
+    private readonly Dictionary<long, bool> groupCompleted = new Dictionary<long, bool>();
+
+    // ADDED: Our new Database Controller
+    private ChallengeController _challengeController;
 
     private void Awake()
     {
         if (Instance != null && Instance != this) { Destroy(gameObject); return; }
         Instance = this;
+
+        // Initialize the controller here
+        _challengeController = new ChallengeController();
     }
 
     private void Start()
     {
         if (personalRowTemplate != null) personalRowTemplate.gameObject.SetActive(false);
         if (groupRowTemplate != null) groupRowTemplate.gameObject.SetActive(false);
+
+        // Optional: You can auto-load challenges on start if you have a logged-in user!
+        // if (!string.IsNullOrEmpty(SupabaseManager.Instance.Auth.CurrentUser?.Id)) {
+        //     userId = SupabaseManager.Instance.Auth.CurrentUser.Id;
+        //     FetchAndLoadChallenges();
+        // }
     }
 
-    // -----------------------------------------------------------------------
-    // Public API — call this after receiving data from your backend
-    // -----------------------------------------------------------------------
+    // NEW METHOD: Easily fetch and load directly from Supabase
+    public async void FetchAndLoadChallenges()
+    {
+        Debug.Log("Fetching challenges from Supabase...");
+        List<UserChallenge> userChalls = await _challengeController.GetUserChallengesAsync(userId);
+        List<GroupChallenge> groupChalls = await _challengeController.GetGroupChallengesAsync(groupId);
 
-    public void LoadChallenges(List<UserChallengeData> personal, List<GroupChallengeData> group)
+        LoadChallenges(userChalls, groupChalls);
+    }
+
+    public void LoadChallenges(List<UserChallenge> personal, List<GroupChallenge> group)
     {
         ClearRows(personalContainer, personalRowTemplate);
         ClearRows(groupContainer, groupRowTemplate);
@@ -52,54 +69,40 @@ public class ChallengesScript : MonoBehaviour
         personalCompleted.Clear();
         groupCompleted.Clear();
 
-        foreach (UserChallengeData uc in personal)
+        foreach (UserChallenge uc in personal)
         {
-            bool done = uc.status == "completed";
-            personalCompleted[uc.id] = done;
-            SpawnRow(personalContainer, personalRowTemplate,
-                     uc.challenge?.description ?? $"Challenge {uc.fk_Challengeid}",
-                     done,
-                     () => OnPersonalCheckClicked(uc));
+            bool done = uc.Status == "completed";
+            personalCompleted[uc.Id] = done;
+            string desc = uc.Challenge?.Description ?? $"Challenge {uc.ChallengeId}";
+            SpawnRow(personalContainer, personalRowTemplate, desc, done, () => OnPersonalCheckClicked(uc));
         }
 
-        foreach (GroupChallengeData gc in group)
+        foreach (GroupChallenge gc in group)
         {
-            bool done = gc.status == "completed";
-            groupCompleted[gc.id] = done;
-            SpawnRow(groupContainer, groupRowTemplate,
-                     gc.challenge?.description ?? $"Challenge {gc.fk_Challengeid}",
-                     done,
-                     () => OnGroupCheckClicked(gc));
+            bool done = gc.Status == "completed";
+            groupCompleted[gc.Id] = done;
+            string desc = gc.Challenge?.Description ?? $"Group Challenge {gc.ChallengeId}";
+            SpawnRow(groupContainer, groupRowTemplate, desc, done, () => OnGroupCheckClicked(gc));
         }
 
         RefreshStatusLabel();
     }
 
     // -----------------------------------------------------------------------
-    // Row spawning
+    // Row spawning logic (unchanged)
     // -----------------------------------------------------------------------
-
-    private void SpawnRow(Transform container, Transform template,
-                          string description, bool completed, Action onCheck)
+    private void SpawnRow(Transform container, Transform template, string description, bool completed, Action onCheck)
     {
         if (container == null || template == null) return;
-
         Transform row = Instantiate(template, container);
         row.gameObject.SetActive(true);
-
-        // Set description text — looks for a TMP on the row itself or a child named "ChallengeText"
         TextMeshProUGUI label = row.GetComponentInChildren<TextMeshProUGUI>();
         if (label != null) label.SetText(description);
-
-        // Checkmark button
         Button btn = row.GetComponentInChildren<Button>();
         if (btn != null)
         {
             SetCheckVisual(btn, completed);
-            btn.onClick.AddListener(() =>
-            {
-                onCheck?.Invoke();
-            });
+            btn.onClick.AddListener(() => { onCheck?.Invoke(); });
         }
     }
 
@@ -109,90 +112,87 @@ public class ChallengesScript : MonoBehaviour
         for (int i = container.childCount - 1; i >= 0; i--)
         {
             Transform child = container.GetChild(i);
-            if (child != template)
-                Destroy(child.gameObject);
+            if (child != template) Destroy(child.gameObject);
         }
     }
 
     // -----------------------------------------------------------------------
-    // Check interactions
+    // Check interactions - NOW USING SUPABASE CONTROLLER
     // -----------------------------------------------------------------------
-
-    private async void OnPersonalCheckClicked(UserChallengeData uc)
+    private async void OnPersonalCheckClicked(UserChallenge uc)
     {
-        if (personalCompleted.TryGetValue(uc.id, out bool done) && done) return; // already done
+        if (personalCompleted.TryGetValue(uc.Id, out bool done) && done) return;
 
-        // Mark locally
-        personalCompleted[uc.id] = true;
+        // Optimistically update UI
+        personalCompleted[uc.Id] = true;
         RefreshStatusLabel();
 
-        // Optionally reward coins
-        if (uc.challenge != null)
-            CoinManager.Instance?.AddCoins(uc.challenge.reward);
-
-        // Tell backend
-        if (FortressBuilder.Network.BackendAPI.Instance != null)
+        // 1. Give Coins (if CoinManager exists)
+        if (uc.Challenge != null && CoinManager.Instance != null)
         {
-            var response = await FortressBuilder.Network.BackendAPI.Instance
-                .CompleteUserChallenge(userId, uc.fk_Challengeid);
+            CoinManager.Instance.AddCoins(uc.Challenge.BalanceReward);
+        }
 
-            if (response != null && response.success)
-                Debug.Log($"[Challenges] Personal challenge {uc.id} confirmed by server.");
-            else
-                Debug.LogWarning($"[Challenges] Server rejected personal challenge {uc.id}.");
+        // 2. Tell Supabase using our new Controller!
+        bool success = await _challengeController.CompleteUserChallengeAsync(uc);
+
+        if (success)
+        {
+            Debug.Log($"[Challenges] Personal challenge {uc.Id} saved as completed in Supabase.");
+        }
+        else
+        {
+            Debug.LogWarning($"[Challenges] Failed to save completion to Supabase. Reverting UI.");
+            // Revert UI if DB failed
+            personalCompleted[uc.Id] = false;
+            RefreshStatusLabel();
         }
     }
 
-    private async void OnGroupCheckClicked(GroupChallengeData gc)
+    private async void OnGroupCheckClicked(GroupChallenge gc)
     {
-        if (groupCompleted.TryGetValue(gc.id, out bool done) && done) return;
+        if (groupCompleted.TryGetValue(gc.Id, out bool done) && done) return;
 
-        groupCompleted[gc.id] = true;
+        groupCompleted[gc.Id] = true;
         RefreshStatusLabel();
 
-        if (gc.challenge != null)
-            CoinManager.Instance?.AddCoins(gc.challenge.reward);
-
-        if (FortressBuilder.Network.BackendAPI.Instance != null)
+        if (gc.Challenge != null && CoinManager.Instance != null)
         {
-            var response = await FortressBuilder.Network.BackendAPI.Instance
-                .CompleteGroupChallenge(userId, groupId, gc.fk_Challengeid);
+            CoinManager.Instance.AddCoins(gc.Challenge.BalanceReward);
+        }
 
-            if (response != null && response.success)
-                Debug.Log($"[Challenges] Group challenge {gc.id} confirmed by server.");
-            else
-                Debug.LogWarning($"[Challenges] Server rejected group challenge {gc.id}.");
+        // Tell Supabase using our new Controller!
+        bool success = await _challengeController.CompleteGroupChallengeAsync(gc);
+
+        if (success)
+        {
+            Debug.Log($"[Challenges] Group challenge {gc.Id} saved as completed in Supabase.");
+        }
+        else
+        {
+            Debug.LogWarning($"[Challenges] Failed to save group challenge to Supabase.");
+            groupCompleted[gc.Id] = false;
+            RefreshStatusLabel();
         }
     }
 
     // -----------------------------------------------------------------------
-    // Helpers
+    // Helpers (unchanged)
     // -----------------------------------------------------------------------
-
-    /// <summary>Tints the checkmark button salmon (incomplete) or green (complete).</summary>
     private void SetCheckVisual(Button btn, bool completed)
     {
         Image img = btn.GetComponent<Image>();
-        if (img != null)
-            img.color = completed
-                ? new Color(0.4f, 0.85f, 0.4f)   // green = done
-                : new Color(0.96f, 0.5f, 0.4f);   // salmon = to-do (matches your prototype)
+        if (img != null) img.color = completed ? new Color(0.4f, 0.85f, 0.4f) : new Color(0.96f, 0.5f, 0.4f);
     }
 
     private void RefreshStatusLabel()
     {
         if (statusLabel == null) return;
-
         int total = personalCompleted.Count + groupCompleted.Count;
         int completed = 0;
         foreach (bool v in personalCompleted.Values) if (v) completed++;
         foreach (bool v in groupCompleted.Values) if (v) completed++;
-
-        string status = completed == 0 ? "just started"
-                      : completed < total / 2 ? "in progress"
-                      : completed < total ? "almost there"
-                      : "healthy";
-
+        string status = completed == 0 ? "just started" : completed < total / 2 ? "in progress" : completed < total ? "almost there" : "healthy";
         statusLabel.SetText("Status: " + status);
     }
 }
