@@ -1,0 +1,5928 @@
+fileFormatVersion: 2
+guid: 3f6f00435b73a344884242b5d83b5bdc
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 6896086798977659367
+    second: HouseSecondTextureColoured_0
+  - first:
+      213: -5457872207242058685
+    second: HouseSecondTextureColoured_1
+  - first:
+      213: 3393526959785246432
+    second: HouseSecondTextureColoured_2
+  - first:
+      213: -3817147348119583974
+    second: HouseSecondTextureColoured_3
+  - first:
+      213: -8710259405708138103
+    second: HouseSecondTextureColoured_4
+  - first:
+      213: 9206851419732115621
+    second: HouseSecondTextureColoured_5
+  - first:
+      213: -6360837916371027226
+    second: HouseSecondTextureColoured_6
+  - first:
+      213: 1272198365894605657
+    second: HouseSecondTextureColoured_7
+  - first:
+      213: -5473386076703023282
+    second: HouseSecondTextureColoured_8
+  - first:
+      213: 2021199927326388488
+    second: HouseSecondTextureColoured_9
+  - first:
+      213: 6343947200106326033
+    second: HouseSecondTextureColoured_10
+  - first:
+      213: -4590815519327694931
+    second: HouseSecondTextureColoured_11
+  - first:
+      213: 3122875917747415435
+    second: HouseSecondTextureColoured_12
+  - first:
+      213: -8528816093587733901
+    second: HouseSecondTextureColoured_13
+  - first:
+      213: 8086321184796432367
+    second: HouseSecondTextureColoured_14
+  - first:
+      213: 7121883963254990395
+    second: HouseSecondTextureColoured_15
+  - first:
+      213: 390182901328776548
+    second: HouseSecondTextureColoured_16
+  - first:
+      213: -5952405828297711020
+    second: HouseSecondTextureColoured_17
+  - first:
+      213: -4458918403187216244
+    second: HouseSecondTextureColoured_18
+  - first:
+      213: -5862121386390686646
+    second: HouseSecondTextureColoured_19
+  - first:
+      213: -7728548110666164064
+    second: HouseSecondTextureColoured_20
+  - first:
+      213: -780267763756800198
+    second: HouseSecondTextureColoured_21
+  - first:
+      213: 8146498120627530745
+    second: HouseSecondTextureColoured_22
+  - first:
+      213: -2211684167592944398
+    second: HouseSecondTextureColoured_23
+  - first:
+      213: 6190333358274002008
+    second: HouseSecondTextureColoured_24
+  - first:
+      213: -1808456738034232238
+    second: HouseSecondTextureColoured_25
+  - first:
+      213: 2570164048347817206
+    second: HouseSecondTextureColoured_26
+  - first:
+      213: -3670895872999154445
+    second: HouseSecondTextureColoured_27
+  - first:
+      213: -1607967680995447689
+    second: HouseSecondTextureColoured_28
+  - first:
+      213: -6426682795946965271
+    second: HouseSecondTextureColoured_29
+  - first:
+      213: -2417928291596417972
+    second: HouseSecondTextureColoured_30
+  - first:
+      213: 1847642273529775887
+    second: HouseSecondTextureColoured_31
+  - first:
+      213: 4190207001186997954
+    second: HouseSecondTextureColoured_32
+  - first:
+      213: 656353120837178442
+    second: HouseSecondTextureColoured_33
+  - first:
+      213: 598371089620152651
+    second: HouseSecondTextureColoured_34
+  - first:
+      213: 411769854219197518
+    second: HouseSecondTextureColoured_35
+  - first:
+      213: -6482827145398516083
+    second: HouseSecondTextureColoured_36
+  - first:
+      213: 5527107743924745461
+    second: HouseSecondTextureColoured_37
+  - first:
+      213: 5978137932376719874
+    second: HouseSecondTextureColoured_38
+  - first:
+      213: -4176904511126322234
+    second: HouseSecondTextureColoured_39
+  - first:
+      213: -8313603137106403219
+    second: HouseSecondTextureColoured_40
+  - first:
+      213: -3383819903003435791
+    second: HouseSecondTextureColoured_41
+  - first:
+      213: -1975985652183656035
+    second: HouseSecondTextureColoured_42
+  - first:
+      213: 1933952562717805
+    second: HouseSecondTextureColoured_43
+  - first:
+      213: 3399338668847315987
+    second: HouseSecondTextureColoured_44
+  - first:
+      213: -1724617442380879249
+    second: HouseSecondTextureColoured_45
+  - first:
+      213: 7944780543247811126
+    second: HouseSecondTextureColoured_46
+  - first:
+      213: 5606420200058531928
+    second: HouseSecondTextureColoured_47
+  - first:
+      213: -7561976656095116311
+    second: HouseSecondTextureColoured_48
+  - first:
+      213: 5873879953524524833
+    second: HouseSecondTextureColoured_49
+  - first:
+      213: -8609910435391401187
+    second: HouseSecondTextureColoured_50
+  - first:
+      213: -77786576858386671
+    second: HouseSecondTextureColoured_51
+  - first:
+      213: -4659179185505370220
+    second: HouseSecondTextureColoured_52
+  - first:
+      213: -5089026568821652069
+    second: HouseSecondTextureColoured_53
+  - first:
+      213: 4178988872782346232
+    second: HouseSecondTextureColoured_54
+  - first:
+      213: -790210089506439177
+    second: HouseSecondTextureColoured_55
+  - first:
+      213: 4771389862085899022
+    second: HouseSecondTextureColoured_56
+  - first:
+      213: -7982473440351716663
+    second: HouseSecondTextureColoured_57
+  - first:
+      213: 7319359342678142767
+    second: HouseSecondTextureColoured_58
+  - first:
+      213: 817328553380452128
+    second: HouseSecondTextureColoured_59
+  - first:
+      213: -116787304008520714
+    second: HouseSecondTextureColoured_60
+  - first:
+      213: -6259716499012783789
+    second: HouseSecondTextureColoured_61
+  - first:
+      213: -9191307173459809641
+    second: HouseSecondTextureColoured_62
+  - first:
+      213: 6607774895268636773
+    second: HouseSecondTextureColoured_63
+  - first:
+      213: -2629295886144775364
+    second: HouseSecondTextureColoured_64
+  - first:
+      213: -4297099753368888384
+    second: HouseSecondTextureColoured_65
+  - first:
+      213: -1862934407431645438
+    second: HouseSecondTextureColoured_66
+  - first:
+      213: -5778723348339373467
+    second: HouseSecondTextureColoured_67
+  - first:
+      213: 73581042605299235
+    second: HouseSecondTextureColoured_68
+  - first:
+      213: -5686319426122934901
+    second: HouseSecondTextureColoured_69
+  - first:
+      213: -2354445663024526511
+    second: HouseSecondTextureColoured_70
+  - first:
+      213: 6833964188587797338
+    second: HouseSecondTextureColoured_71
+  - first:
+      213: -6009331104039144218
+    second: HouseSecondTextureColoured_72
+  - first:
+      213: 8749087134446802906
+    second: HouseSecondTextureColoured_73
+  - first:
+      213: -1241968307407105731
+    second: HouseSecondTextureColoured_74
+  - first:
+      213: 6351670693570180041
+    second: HouseSecondTextureColoured_75
+  - first:
+      213: 1065607967949963202
+    second: HouseSecondTextureColoured_76
+  - first:
+      213: 7304826889051351724
+    second: HouseSecondTextureColoured_77
+  - first:
+      213: 5134028873981173617
+    second: HouseSecondTextureColoured_78
+  - first:
+      213: -8943657372371398186
+    second: HouseSecondTextureColoured_79
+  - first:
+      213: 8293605531846142958
+    second: HouseSecondTextureColoured_80
+  - first:
+      213: -7963683325779434838
+    second: HouseSecondTextureColoured_81
+  - first:
+      213: 3712235838890104767
+    second: HouseSecondTextureColoured_82
+  - first:
+      213: -3096624878670579289
+    second: HouseSecondTextureColoured_83
+  - first:
+      213: -371308579473830202
+    second: HouseSecondTextureColoured_84
+  - first:
+      213: -8292992354277441516
+    second: HouseSecondTextureColoured_85
+  - first:
+      213: -6673460951252471671
+    second: HouseSecondTextureColoured_86
+  - first:
+      213: 7767553484912027892
+    second: HouseSecondTextureColoured_87
+  - first:
+      213: -7410081511510279497
+    second: HouseSecondTextureColoured_88
+  - first:
+      213: 4633079724009936568
+    second: HouseSecondTextureColoured_89
+  - first:
+      213: 6155657801022234210
+    second: HouseSecondTextureColoured_90
+  - first:
+      213: -4701968091373062432
+    second: HouseSecondTextureColoured_91
+  - first:
+      213: 3917568538716977246
+    second: HouseSecondTextureColoured_92
+  - first:
+      213: 6560757935348109677
+    second: HouseSecondTextureColoured_93
+  - first:
+      213: 2016743297190974663
+    second: HouseSecondTextureColoured_94
+  - first:
+      213: 7130980563327189322
+    second: HouseSecondTextureColoured_95
+  - first:
+      213: 2252534431779687122
+    second: HouseSecondTextureColoured_96
+  - first:
+      213: 642969150928073454
+    second: HouseSecondTextureColoured_97
+  - first:
+      213: 7201444217847808408
+    second: HouseSecondTextureColoured_98
+  - first:
+      213: -88248176726544096
+    second: HouseSecondTextureColoured_99
+  - first:
+      213: 4577632497941589837
+    second: HouseSecondTextureColoured_100
+  - first:
+      213: -2457503006118654271
+    second: HouseSecondTextureColoured_101
+  - first:
+      213: 5634961964433486558
+    second: HouseSecondTextureColoured_102
+  - first:
+      213: 7790909869619471809
+    second: HouseSecondTextureColoured_103
+  - first:
+      213: -6918271659219400063
+    second: HouseSecondTextureColoured_104
+  - first:
+      213: 2733001757735488484
+    second: HouseSecondTextureColoured_105
+  - first:
+      213: 3245199668088365088
+    second: HouseSecondTextureColoured_106
+  - first:
+      213: -3036174691086287239
+    second: HouseSecondTextureColoured_107
+  - first:
+      213: 3318078830323914309
+    second: HouseSecondTextureColoured_108
+  - first:
+      213: -6254545140714520124
+    second: HouseSecondTextureColoured_109
+  - first:
+      213: -1944116904430606338
+    second: HouseSecondTextureColoured_110
+  - first:
+      213: -3931603906724734477
+    second: HouseSecondTextureColoured_111
+  - first:
+      213: -206552352592555548
+    second: HouseSecondTextureColoured_112
+  - first:
+      213: 3931311016258335691
+    second: HouseSecondTextureColoured_113
+  - first:
+      213: -4966662954997690886
+    second: HouseSecondTextureColoured_114
+  - first:
+      213: -418867180242414006
+    second: HouseSecondTextureColoured_115
+  - first:
+      213: 5171921034703321825
+    second: HouseSecondTextureColoured_116
+  - first:
+      213: -4496048288509236472
+    second: HouseSecondTextureColoured_117
+  - first:
+      213: 6612902002932859261
+    second: HouseSecondTextureColoured_118
+  - first:
+      213: -8004661305012623942
+    second: HouseSecondTextureColoured_119
+  - first:
+      213: 3437179711230707798
+    second: HouseSecondTextureColoured_120
+  - first:
+      213: -4232319019775010067
+    second: HouseSecondTextureColoured_121
+  - first:
+      213: -7840339522090767940
+    second: HouseSecondTextureColoured_122
+  - first:
+      213: -5956063526845812124
+    second: HouseSecondTextureColoured_123
+  - first:
+      213: -7984235356550012404
+    second: HouseSecondTextureColoured_124
+  - first:
+      213: 8336194968187017277
+    second: HouseSecondTextureColoured_125
+  - first:
+      213: -1475534145359374962
+    second: HouseSecondTextureColoured_126
+  - first:
+      213: -4685995712604860447
+    second: HouseSecondTextureColoured_127
+  - first:
+      213: 5848858577566522110
+    second: HouseSecondTextureColoured_128
+  - first:
+      213: 7525068301688147250
+    second: HouseSecondTextureColoured_129
+  - first:
+      213: 8856174397013913441
+    second: HouseSecondTextureColoured_130
+  - first:
+      213: -8946956554171712628
+    second: HouseSecondTextureColoured_131
+  - first:
+      213: 5182537183158434904
+    second: HouseSecondTextureColoured_132
+  - first:
+      213: 6175414948175470248
+    second: HouseSecondTextureColoured_133
+  - first:
+      213: 4280995073753905851
+    second: HouseSecondTextureColoured_134
+  - first:
+      213: 470374279059627063
+    second: HouseSecondTextureColoured_135
+  - first:
+      213: -3377043397441927220
+    second: HouseSecondTextureColoured_136
+  - first:
+      213: -4454510693772700464
+    second: HouseSecondTextureColoured_137
+  - first:
+      213: -7543492283679763339
+    second: HouseSecondTextureColoured_138
+  - first:
+      213: 5861199528930063428
+    second: HouseSecondTextureColoured_139
+  - first:
+      213: -1766793611673687245
+    second: HouseSecondTextureColoured_140
+  - first:
+      213: 819382905351390334
+    second: HouseSecondTextureColoured_141
+  - first:
+      213: 6088549333827879178
+    second: HouseSecondTextureColoured_142
+  - first:
+      213: -1121222826646261544
+    second: HouseSecondTextureColoured_143
+  - first:
+      213: -3885746041696716700
+    second: HouseSecondTextureColoured_144
+  - first:
+      213: -5084426981629070053
+    second: HouseSecondTextureColoured_145
+  - first:
+      213: -4203556642196067829
+    second: HouseSecondTextureColoured_146
+  - first:
+      213: -7346397363502735983
+    second: HouseSecondTextureColoured_147
+  - first:
+      213: -7218723488330654180
+    second: HouseSecondTextureColoured_148
+  - first:
+      213: -3645558628970851473
+    second: HouseSecondTextureColoured_149
+  - first:
+      213: 2116089303279818866
+    second: HouseSecondTextureColoured_150
+  - first:
+      213: -5942578631186152605
+    second: HouseSecondTextureColoured_151
+  - first:
+      213: 5638158011221620430
+    second: HouseSecondTextureColoured_152
+  - first:
+      213: -4595947501910343070
+    second: HouseSecondTextureColoured_153
+  - first:
+      213: 5049983340191850436
+    second: HouseSecondTextureColoured_154
+  - first:
+      213: 2336304787820698178
+    second: HouseSecondTextureColoured_155
+  - first:
+      213: 991166175370925020
+    second: HouseSecondTextureColoured_156
+  - first:
+      213: 6750673752087727599
+    second: HouseSecondTextureColoured_157
+  - first:
+      213: 4281378605213143236
+    second: HouseSecondTextureColoured_158
+  - first:
+      213: -3099360508973923772
+    second: HouseSecondTextureColoured_159
+  - first:
+      213: -2417359091685123926
+    second: HouseSecondTextureColoured_160
+  - first:
+      213: -6951522915539561040
+    second: HouseSecondTextureColoured_161
+  - first:
+      213: -4768987309127671380
+    second: HouseSecondTextureColoured_162
+  - first:
+      213: 7277005118828855090
+    second: HouseSecondTextureColoured_163
+  - first:
+      213: 8960090660209255459
+    second: HouseSecondTextureColoured_164
+  - first:
+      213: 8080550096166743106
+    second: HouseSecondTextureColoured_165
+  - first:
+      213: -1609768161988425717
+    second: HouseSecondTextureColoured_166
+  - first:
+      213: -8771657832500205838
+    second: HouseSecondTextureColoured_167
+  - first:
+      213: -5248080760751970059
+    second: HouseSecondTextureColoured_168
+  - first:
+      213: 6038185061251778909
+    second: HouseSecondTextureColoured_169
+  - first:
+      213: 8774388241420736600
+    second: HouseSecondTextureColoured_170
+  - first:
+      213: 4204096990139383376
+    second: HouseSecondTextureColoured_171
+  - first:
+      213: -5862352512670441425
+    second: HouseSecondTextureColoured_172
+  - first:
+      213: -4756326222297995108
+    second: HouseSecondTextureColoured_173
+  - first:
+      213: 5219428324836128257
+    second: HouseSecondTextureColoured_174
+  - first:
+      213: 2313488801251792073
+    second: HouseSecondTextureColoured_175
+  - first:
+      213: -7934223308744465701
+    second: HouseSecondTextureColoured_176
+  - first:
+      213: -683213624178526632
+    second: HouseSecondTextureColoured_177
+  - first:
+      213: -833017856604065476
+    second: HouseSecondTextureColoured_178
+  - first:
+      213: -1065505405287187025
+    second: HouseSecondTextureColoured_179
+  - first:
+      213: -7706089452503305346
+    second: HouseSecondTextureColoured_180
+  - first:
+      213: -8079411589859882314
+    second: HouseSecondTextureColoured_181
+  - first:
+      213: -6145474553701278550
+    second: HouseSecondTextureColoured_182
+  - first:
+      213: -6109426295984799967
+    second: HouseSecondTextureColoured_183
+  - first:
+      213: 6146209485874665976
+    second: HouseSecondTextureColoured_184
+  - first:
+      213: 1854074428670064857
+    second: HouseSecondTextureColoured_185
+  - first:
+      213: 5772448962536581985
+    second: HouseSecondTextureColoured_186
+  - first:
+      213: -1547584873052617371
+    second: HouseSecondTextureColoured_187
+  - first:
+      213: 801165920132722906
+    second: HouseSecondTextureColoured_188
+  - first:
+      213: -5600731548774435918
+    second: HouseSecondTextureColoured_189
+  - first:
+      213: 949469500014386570
+    second: HouseSecondTextureColoured_190
+  - first:
+      213: 4793738460821817249
+    second: HouseSecondTextureColoured_191
+  - first:
+      213: -7569103894282619047
+    second: HouseSecondTextureColoured_192
+  - first:
+      213: 5014457651941929380
+    second: HouseSecondTextureColoured_193
+  - first:
+      213: -4717354910646740537
+    second: HouseSecondTextureColoured_194
+  - first:
+      213: -2685351033783365992
+    second: HouseSecondTextureColoured_195
+  - first:
+      213: -2670806876325545155
+    second: HouseSecondTextureColoured_196
+  - first:
+      213: 4106848463292881569
+    second: HouseSecondTextureColoured_197
+  - first:
+      213: 2279369039168996013
+    second: HouseSecondTextureColoured_198
+  - first:
+      213: 4771580533072794324
+    second: HouseSecondTextureColoured_199
+  - first:
+      213: -5191025729949102612
+    second: HouseSecondTextureColoured_200
+  - first:
+      213: -8519460345270425003
+    second: HouseSecondTextureColoured_201
+  - first:
+      213: 2936843624572455485
+    second: HouseSecondTextureColoured_202
+  - first:
+      213: -976338554694396220
+    second: HouseSecondTextureColoured_203
+  - first:
+      213: 2510178353006835302
+    second: HouseSecondTextureColoured_204
+  - first:
+      213: -7847500250828362241
+    second: HouseSecondTextureColoured_205
+  - first:
+      213: -1061704513270489419
+    second: HouseSecondTextureColoured_206
+  - first:
+      213: -6034629902315670594
+    second: HouseSecondTextureColoured_207
+  - first:
+      213: 2708607456629264189
+    second: HouseSecondTextureColoured_208
+  - first:
+      213: -8211661195922061939
+    second: HouseSecondTextureColoured_209
+  - first:
+      213: -8714020420684324195
+    second: HouseSecondTextureColoured_210
+  - first:
+      213: 6581588600706140375
+    second: HouseSecondTextureColoured_211
+  - first:
+      213: -486339866712826676
+    second: HouseSecondTextureColoured_212
+  - first:
+      213: 8377774334204670948
+    second: HouseSecondTextureColoured_213
+  - first:
+      213: -1376855864928740906
+    second: HouseSecondTextureColoured_214
+  - first:
+      213: 4165717112605912898
+    second: HouseSecondTextureColoured_215
+  - first:
+      213: -4209077373794935011
+    second: HouseSecondTextureColoured_216
+  - first:
+      213: -7996475276098539799
+    second: HouseSecondTextureColoured_217
+  - first:
+      213: -2519296392038997463
+    second: HouseSecondTextureColoured_218
+  - first:
+      213: -4858633549050607449
+    second: HouseSecondTextureColoured_219
+  - first:
+      213: 6851514478162033301
+    second: HouseSecondTextureColoured_220
+  - first:
+      213: -4871540469682206737
+    second: HouseSecondTextureColoured_221
+  - first:
+      213: -8431866732753685183
+    second: HouseSecondTextureColoured_222
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: HouseSecondTextureColoured_0
+      rect:
+        serializedVersion: 2
+        x: 20
+        y: 2923
+        width: 38
+        height: 132
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7e1f2591862d3bf50800000000000000
+      internalID: 6896086798977659367
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HouseSecondTextureColoured_1
+      rect:
+        serializedVersion: 2
+        x: 76
+        y: 2913
+        width: 28
+        height: 132
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3442cd1052eb144b0800000000000000
+      internalID: -5457872207242058685
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HouseSecondTextureColoured_2
+      rect:
+        serializedVersion: 2
+        x: 126
+        y: 2926
+        width: 38
+        height: 132
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0eef5bd4aca381f20800000000000000
+      internalID: 3393526959785246432
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HouseSecondTextureColoured_3
+      rect:
+        serializedVersion: 2
+        x: 191
+        y: 2930
+        width: 97
+        height: 123
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a13020406b4c60bc0800000000000000
+      internalID: -3817147348119583974
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HouseSecondTextureColoured_4
+      rect:
+        serializedVersion: 2
+        x: 322
+        y: 2930
+        width: 126
+        height: 124
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 989e24d2831fe1780800000000000000
+      internalID: -8710259405708138103
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HouseSecondTextureColoured_5
+      rect:
+        serializedVersion: 2
+        x: 469
+        y: 2927
+        width: 122
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5a00fe4169e45cf70800000000000000
+      internalID: 9206851419732115621
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HouseSecondTextureColoured_6
+      rect:
+        serializedVersion: 2
+        x: 608
+        y: 2934
+        width: 97
+        height: 132
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6ea7ed0cd93c9b7a0800000000000000
+      internalID: -6360837916371027226
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HouseSecondTextureColoured_7
+      rect:
+        serializedVersion: 2
+        x: 717
+        y: 2930
+        width: 97
+        height: 123
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 95bfaf26ca1c7a110800000000000000
+      internalID: 1272198365894605657
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HouseSecondTextureColoured_8
+      rect:
+        serializedVersion: 2
+        x: 828
+        y: 2891
+        width: 122
+        height: 127
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e4f1c8bcc50aa04b0800000000000000
+      internalID: -5473386076703023282
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HouseSecondTextureColoured_9
+      rect:
+        serializedVersion: 2
+        x: 966
+        y: 2897
+        width: 92
+        height: 144
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 801b55800aebc0c10800000000000000
+      internalID: 2021199927326388488
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HouseSecondTextureColoured_10
+      rect:
+        serializedVersion: 2
+        x: 1076
+        y: 2906
+        width: 79
+        height: 137
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 118eb28ed5a3a0850800000000000000
+      internalID: 6343947200106326033
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HouseSecondTextureColoured_11
+      rect:
+        serializedVersion: 2
+        x: 1176
+        y: 2910
+        width: 121
+        height: 127
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: daf4f1dbb952a40c0800000000000000
+      internalID: -4590815519327694931
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HouseSecondTextureColoured_12
+      rect:
+        serializedVersion: 2
+        x: 1314
+        y: 2904
+        width: 98
+        height: 127
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b89e4faf91fa65b20800000000000000
+      internalID: 3122875917747415435
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HouseSecondTextureColoured_13
+      rect:
+        serializedVersion: 2
+        x: 1421
+        y: 2907
+        width: 83
+        height: 122
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 372811353fe83a980800000000000000
+      internalID: -8528816093587733901
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HouseSecondTextureColoured_14
+      rect:
+        serializedVersion: 2
+        x: 1516
+        y: 2912
+        width: 123
+        height: 123
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fe7d18f3642683070800000000000000
+      internalID: 8086321184796432367
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HouseSecondTextureColoured_15
+      rect:
+        serializedVersion: 2
+        x: 1657
+        y: 2914
+        width: 98
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b366d513bb306d260800000000000000
+      internalID: 7121883963254990395
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HouseSecondTextureColoured_16
+      rect:
+        serializedVersion: 2
+        x: 1771
+        y: 2911
+        width: 122
+        height: 123
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 46d022f08453a6500800000000000000
+      internalID: 390182901328776548
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HouseSecondTextureColoured_17
+      rect:
+        serializedVersion: 2
+        x: 1947
+        y: 2898
+        width: 122
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 452a955bf6ec46da0800000000000000
+      internalID: -5952405828297711020
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HouseSecondTextureColoured_18
+      rect:
+        serializedVersion: 2
+        x: 2095
+        y: 2894
+        width: 97
+        height: 132
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c80f29f265dbe12c0800000000000000
+      internalID: -4458918403187216244
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HouseSecondTextureColoured_19
+      rect:
+        serializedVersion: 2
+        x: 2207
+        y: 2901
+        width: 122
+        height: 123
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a4476fd68af85aea0800000000000000
+      internalID: -5862121386390686646
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HouseSecondTextureColoured_20
+      rect:
+        serializedVersion: 2
+        x: 2356
+        y: 2893
+        width: 98
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0a81a32e07eaeb490800000000000000
+      internalID: -7728548110666164064
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HouseSecondTextureColoured_21
+      rect:
+        serializedVersion: 2
+        x: 2481
+        y: 2890
+        width: 98
+        height: 127
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a3766975a9eeb25f0800000000000000
+      internalID: -780267763756800198
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HouseSecondTextureColoured_22
+      rect:
+        serializedVersion: 2
+        x: 2598
+        y: 2887
+        width: 97
+        height: 123
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9fb2463f0ec2e0170800000000000000
+      internalID: 8146498120627530745
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HouseSecondTextureColoured_23
+      rect:
+        serializedVersion: 2
+        x: 2721
+        y: 2874
+        width: 27
+        height: 132
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2fc5443b7f48e41e0800000000000000
+      internalID: -2211684167592944398
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HouseSecondTextureColoured_24
+      rect:
+        serializedVersion: 2
+        x: 2770
+        y: 2861
+        width: 28
+        height: 122
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 85c3c2d346b78e550800000000000000
+      internalID: 6190333358274002008
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HouseSecondTextureColoured_25
+      rect:
+        serializedVersion: 2
+        x: 2817
+        y: 2848
+        width: 38
+        height: 132
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 254dec9ad2217e6e0800000000000000
+      internalID: -1808456738034232238
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HouseSecondTextureColoured_26
+      rect:
+        serializedVersion: 2
+        x: 2915
+        y: 2900
+        width: 49
+        height: 137
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6f4604ca59e0ba320800000000000000
+      internalID: 2570164048347817206
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HouseSecondTextureColoured_27
+      rect:
+        serializedVersion: 2
+        x: 3005
+        y: 2916
+        width: 47
+        height: 127
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3fc107a17ab5e0dc0800000000000000
+      internalID: -3670895872999154445
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HouseSecondTextureColoured_28
+      rect:
+        serializedVersion: 2
+        x: 29
+        y: 2763
+        width: 28
+        height: 138
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 77c25fbd9e95fa9e0800000000000000
+      internalID: -1607967680995447689
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HouseSecondTextureColoured_29
+      rect:
+        serializedVersion: 2
+        x: 73
+        y: 2774
+        width: 37
+        height: 123
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9e6877f0c06dfc6a0800000000000000
+      internalID: -6426682795946965271
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HouseSecondTextureColoured_30
+      rect:
+        serializedVersion: 2
+        x: 123
+        y: 2775
+        width: 37
+        height: 132
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c44470f870bc17ed0800000000000000
+      internalID: -2417928291596417972
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HouseSecondTextureColoured_31
+      rect:
+        serializedVersion: 2
+        x: 194
+        y: 2776
+        width: 97
+        height: 132
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f07ccb9cbd424a910800000000000000
+      internalID: 1847642273529775887
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HouseSecondTextureColoured_32
+      rect:
+        serializedVersion: 2
+        x: 313
+        y: 2771
+        width: 123
+        height: 132
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2c61b11211b962a30800000000000000
+      internalID: 4190207001186997954
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HouseSecondTextureColoured_33
+      rect:
+        serializedVersion: 2
+        x: 466
+        y: 2763
+        width: 123
+        height: 133
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a4418b69fa5db1900800000000000000
+      internalID: 656353120837178442
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HouseSecondTextureColoured_34
+      rect:
+        serializedVersion: 2
+        x: 609
+        y: 2777
+        width: 97
+        height: 132
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b413ca0f557dd4800800000000000000
+      internalID: 598371089620152651
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HouseSecondTextureColoured_35
+      rect:
+        serializedVersion: 2
+        x: 729
+        y: 2767
+        width: 83
+        height: 137
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e4c13f13086e6b500800000000000000
+      internalID: 411769854219197518
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HouseSecondTextureColoured_36
+      rect:
+        serializedVersion: 2
+        x: 825
+        y: 2743
+        width: 123
+        height: 133
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d86034a0f0f5806a0800000000000000
+      internalID: -6482827145398516083
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HouseSecondTextureColoured_37
+      rect:
+        serializedVersion: 2
+        x: 966
+        y: 2723
+        width: 169
+        height: 155
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5f4f1ff853b34bc40800000000000000
+      internalID: 5527107743924745461
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HouseSecondTextureColoured_38
+      rect:
+        serializedVersion: 2
+        x: 1158
+        y: 2722
+        width: 116
+        height: 162
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2024a95a6cc96f250800000000000000
+      internalID: 5978137932376719874
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HouseSecondTextureColoured_39
+      rect:
+        serializedVersion: 2
+        x: 1291
+        y: 2745
+        width: 98
+        height: 133
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6c3c6913a77a806c0800000000000000
+      internalID: -4176904511126322234
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HouseSecondTextureColoured_40
+      rect:
+        serializedVersion: 2
+        x: 1405
+        y: 2754
+        width: 97
+        height: 122
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d6023318ef520ac80800000000000000
+      internalID: -8313603137106403219
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HouseSecondTextureColoured_41
+      rect:
+        serializedVersion: 2
+        x: 1525
+        y: 2752
+        width: 122
+        height: 133
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1fc5599f9b14a01d0800000000000000
+      internalID: -3383819903003435791
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HouseSecondTextureColoured_42
+      rect:
+        serializedVersion: 2
+        x: 1667
+        y: 2752
+        width: 123
+        height: 132
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d991350c483e394e0800000000000000
+      internalID: -1975985652183656035
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HouseSecondTextureColoured_43
+      rect:
+        serializedVersion: 2
+        x: 1808
+        y: 2751
+        width: 123
+        height: 132
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d64638b6beed60000800000000000000
+      internalID: 1933952562717805
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HouseSecondTextureColoured_44
+      rect:
+        serializedVersion: 2
+        x: 1947
+        y: 2744
+        width: 122
+        height: 132
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 31cb4e34280ec2f20800000000000000
+      internalID: 3399338668847315987
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HouseSecondTextureColoured_45
+      rect:
+        serializedVersion: 2
+        x: 2093
+        y: 2738
+        width: 96
+        height: 138
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f6ae175d29de018e0800000000000000
+      internalID: -1724617442380879249
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HouseSecondTextureColoured_46
+      rect:
+        serializedVersion: 2
+        x: 2207
+        y: 2746
+        width: 122
+        height: 132
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 63288b29fc7814e60800000000000000
+      internalID: 7944780543247811126
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HouseSecondTextureColoured_47
+      rect:
+        serializedVersion: 2
+        x: 2352
+        y: 2728
+        width: 96
+        height: 138
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8503016c7710ecd40800000000000000
+      internalID: 5606420200058531928
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HouseSecondTextureColoured_48
+      rect:
+        serializedVersion: 2
+        x: 2481
+        y: 2737
+        width: 97
+        height: 137
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9e387addb467e0790800000000000000
+      internalID: -7561976656095116311
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HouseSecondTextureColoured_49
+      rect:
+        serializedVersion: 2
+        x: 2602
+        y: 2731
+        width: 98
+        height: 133
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1270e1352b6348150800000000000000
+      internalID: 5873879953524524833
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HouseSecondTextureColoured_50
+      rect:
+        serializedVersion: 2
+        x: 2718
+        y: 2719
+        width: 28
+        height: 132
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d1311968314738880800000000000000
+      internalID: -8609910435391401187
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HouseSecondTextureColoured_51
+      rect:
+        serializedVersion: 2
+        x: 2771
+        y: 2699
+        width: 38
+        height: 133
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 11fef0e3585abeef0800000000000000
+      internalID: -77786576858386671
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HouseSecondTextureColoured_52
+      rect:
+        serializedVersion: 2
+        x: 2827
+        y: 2689
+        width: 39
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 49ffe075735475fb0800000000000000
+      internalID: -4659179185505370220
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HouseSecondTextureColoured_53
+      rect:
+        serializedVersion: 2
+        x: 2913
+        y: 2720
+        width: 49
+        height: 138
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b954cd86c452069b0800000000000000
+      internalID: -5089026568821652069
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HouseSecondTextureColoured_54
+      rect:
+        serializedVersion: 2
+        x: 3002
+        y: 2774
+        width: 49
+        height: 132
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8f770821d30cef930800000000000000
+      internalID: 4178988872782346232
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HouseSecondTextureColoured_55
+      rect:
+        serializedVersion: 2
+        x: 21
+        y: 2608
+        width: 38
+        height: 133
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7fff90d3c1c9805f0800000000000000
+      internalID: -790210089506439177
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HouseSecondTextureColoured_56
+      rect:
+        serializedVersion: 2
+        x: 77
+        y: 2616
+        width: 28
+        height: 123
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e03b786bcc1673240800000000000000
+      internalID: 4771389862085899022
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HouseSecondTextureColoured_57
+      rect:
+        serializedVersion: 2
+        x: 130
+        y: 2613
+        width: 28
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9ca78dee2be883190800000000000000
+      internalID: -7982473440351716663
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HouseSecondTextureColoured_58
+      rect:
+        serializedVersion: 2
+        x: 170
+        y: 2457
+        width: 62
+        height: 290
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f2f64c3ea86939560800000000000000
+      internalID: 7319359342678142767
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HouseSecondTextureColoured_59
+      rect:
+        serializedVersion: 2
+        x: 247
+        y: 2417
+        width: 60
+        height: 290
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 02796092dfbb75b00800000000000000
+      internalID: 817328553380452128
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HouseSecondTextureColoured_60
+      rect:
+        serializedVersion: 2
+        x: 324
+        y: 2400
+        width: 60
+        height: 294
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6fbeb46d096116ef0800000000000000
+      internalID: -116787304008520714
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HouseSecondTextureColoured_61
+      rect:
+        serializedVersion: 2
+        x: 394
+        y: 2402
+        width: 61
+        height: 294
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 351f0b172050129a0800000000000000
+      internalID: -6259716499012783789
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HouseSecondTextureColoured_62
+      rect:
+        serializedVersion: 2
+        x: 474
+        y: 2454
+        width: 60
+        height: 294
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 79aad68c2dae17080800000000000000
+      internalID: -9191307173459809641
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HouseSecondTextureColoured_63
+      rect:
+        serializedVersion: 2
+        x: 566
+        y: 2421
+        width: 62
+        height: 295
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5682b3cf14883bb50800000000000000
+      internalID: 6607774895268636773
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HouseSecondTextureColoured_64
+      rect:
+        serializedVersion: 2
+        x: 645
+        y: 2431
+        width: 62
+        height: 295
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c3bd1f8725dd28bd0800000000000000
+      internalID: -2629295886144775364
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HouseSecondTextureColoured_65
+      rect:
+        serializedVersion: 2
+        x: 731
+        y: 2431
+        width: 62
+        height: 295
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0cb57049a82ad54c0800000000000000
+      internalID: -4297099753368888384
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HouseSecondTextureColoured_66
+      rect:
+        serializedVersion: 2
+        x: 820
+        y: 2431
+        width: 62
+        height: 295
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2071f25d6078526e0800000000000000
+      internalID: -1862934407431645438
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HouseSecondTextureColoured_67
+      rect:
+        serializedVersion: 2
+        x: 904
+        y: 2415
+        width: 65
+        height: 307
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 56ac9fe4bb9ddcfa0800000000000000
+      internalID: -5778723348339373467
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HouseSecondTextureColoured_68
+      rect:
+        serializedVersion: 2
+        x: 984
+        y: 2408
+        width: 61
+        height: 296
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 32611b28199650100800000000000000
+      internalID: 73581042605299235
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HouseSecondTextureColoured_69
+      rect:
+        serializedVersion: 2
+        x: 1062
+        y: 2414
+        width: 67
+        height: 305
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b851a8efb922611b0800000000000000
+      internalID: -5686319426122934901
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HouseSecondTextureColoured_70
+      rect:
+        serializedVersion: 2
+        x: 1160
+        y: 2402
+        width: 61
+        height: 293
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 15bc674d424535fd0800000000000000
+      internalID: -2354445663024526511
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HouseSecondTextureColoured_71
+      rect:
+        serializedVersion: 2
+        x: 1246
+        y: 2394
+        width: 64
+        height: 290
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a5b248cb83e17de50800000000000000
+      internalID: 6833964188587797338
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HouseSecondTextureColoured_72
+      rect:
+        serializedVersion: 2
+        x: 1331
+        y: 2549
+        width: 106
+        height: 164
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6e47a0e13319a9ca0800000000000000
+      internalID: -6009331104039144218
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HouseSecondTextureColoured_73
+      rect:
+        serializedVersion: 2
+        x: 1454
+        y: 2577
+        width: 84
+        height: 132
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ad754a5e4600b6970800000000000000
+      internalID: 8749087134446802906
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HouseSecondTextureColoured_74
+      rect:
+        serializedVersion: 2
+        x: 1578
+        y: 2547
+        width: 107
+        height: 179
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d31d4b69764a3cee0800000000000000
+      internalID: -1241968307407105731
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HouseSecondTextureColoured_75
+      rect:
+        serializedVersion: 2
+        x: 1731
+        y: 2281
+        width: 69
+        height: 425
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9c3728cd7daa52850800000000000000
+      internalID: 6351670693570180041
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HouseSecondTextureColoured_76
+      rect:
+        serializedVersion: 2
+        x: 1854
+        y: 2307
+        width: 62
+        height: 408
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2cfbb7f0dccc9ce00800000000000000
+      internalID: 1065607967949963202
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HouseSecondTextureColoured_77
+      rect:
+        serializedVersion: 2
+        x: 1953
+        y: 2298
+        width: 62
+        height: 408
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: caaa0ab5a55ff5560800000000000000
+      internalID: 7304826889051351724
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HouseSecondTextureColoured_78
+      rect:
+        serializedVersion: 2
+        x: 2061
+        y: 2315
+        width: 197
+        height: 405
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 17f1f344f0cbf3740800000000000000
+      internalID: 5134028873981173617
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HouseSecondTextureColoured_79
+      rect:
+        serializedVersion: 2
+        x: 2308
+        y: 2306
+        width: 54
+        height: 412
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6d1dffe510fb1e380800000000000000
+      internalID: -8943657372371398186
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HouseSecondTextureColoured_80
+      rect:
+        serializedVersion: 2
+        x: 2389
+        y: 2302
+        width: 54
+        height: 412
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: eeb67e03a4ec81370800000000000000
+      internalID: 8293605531846142958
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HouseSecondTextureColoured_81
+      rect:
+        serializedVersion: 2
+        x: 2479
+        y: 2294
+        width: 63
+        height: 410
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: aa2273765305b7190800000000000000
+      internalID: -7963683325779434838
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HouseSecondTextureColoured_82
+      rect:
+        serializedVersion: 2
+        x: 2566
+        y: 2306
+        width: 64
+        height: 409
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fb7d483c3d2848330800000000000000
+      internalID: 3712235838890104767
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HouseSecondTextureColoured_83
+      rect:
+        serializedVersion: 2
+        x: 2665
+        y: 2294
+        width: 70
+        height: 413
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7a9f33854149605d0800000000000000
+      internalID: -3096624878670579289
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HouseSecondTextureColoured_84
+      rect:
+        serializedVersion: 2
+        x: 2786
+        y: 2537
+        width: 28
+        height: 138
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6ce486270d8d8daf0800000000000000
+      internalID: -371308579473830202
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HouseSecondTextureColoured_85
+      rect:
+        serializedVersion: 2
+        x: 2832
+        y: 2534
+        width: 28
+        height: 138
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4104346546f59ec80800000000000000
+      internalID: -8292992354277441516
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HouseSecondTextureColoured_86
+      rect:
+        serializedVersion: 2
+        x: 2911
+        y: 2559
+        width: 49
+        height: 133
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 980f7225f9a1363a0800000000000000
+      internalID: -6673460951252471671
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HouseSecondTextureColoured_87
+      rect:
+        serializedVersion: 2
+        x: 3004
+        y: 2625
+        width: 49
+        height: 132
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4f867028db4ebcb60800000000000000
+      internalID: 7767553484912027892
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HouseSecondTextureColoured_88
+      rect:
+        serializedVersion: 2
+        x: 29
+        y: 2452
+        width: 28
+        height: 133
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7ba7db5202a1a2990800000000000000
+      internalID: -7410081511510279497
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HouseSecondTextureColoured_89
+      rect:
+        serializedVersion: 2
+        x: 73
+        y: 2462
+        width: 28
+        height: 133
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8b65dad36710c4040800000000000000
+      internalID: 4633079724009936568
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HouseSecondTextureColoured_90
+      rect:
+        serializedVersion: 2
+        x: 124
+        y: 2450
+        width: 28
+        height: 132
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 26edacce72a4d6550800000000000000
+      internalID: 6155657801022234210
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HouseSecondTextureColoured_91
+      rect:
+        serializedVersion: 2
+        x: 1329
+        y: 2356
+        width: 114
+        height: 156
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0e6bc78dee04fbeb0800000000000000
+      internalID: -4701968091373062432
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HouseSecondTextureColoured_92
+      rect:
+        serializedVersion: 2
+        x: 1472
+        y: 2330
+        width: 117
+        height: 190
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e58b87d64dffd5630800000000000000
+      internalID: 3917568538716977246
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HouseSecondTextureColoured_93
+      rect:
+        serializedVersion: 2
+        x: 2141
+        y: 2110
+        width: 55
+        height: 412
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d61dfb1f49e7c0b50800000000000000
+      internalID: 6560757935348109677
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HouseSecondTextureColoured_94
+      rect:
+        serializedVersion: 2
+        x: 2231
+        y: 2106
+        width: 64
+        height: 410
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7c4d738f759ecfb10800000000000000
+      internalID: 2016743297190974663
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HouseSecondTextureColoured_95
+      rect:
+        serializedVersion: 2
+        x: 2754
+        y: 2379
+        width: 28
+        height: 132
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a4105517a0556f260800000000000000
+      internalID: 7130980563327189322
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HouseSecondTextureColoured_96
+      rect:
+        serializedVersion: 2
+        x: 2798
+        y: 2379
+        width: 28
+        height: 132
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2da809a912c924f10800000000000000
+      internalID: 2252534431779687122
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HouseSecondTextureColoured_97
+      rect:
+        serializedVersion: 2
+        x: 2842
+        y: 2380
+        width: 28
+        height: 127
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ee23a9249094ce800800000000000000
+      internalID: 642969150928073454
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HouseSecondTextureColoured_98
+      rect:
+        serializedVersion: 2
+        x: 2909
+        y: 2419
+        width: 48
+        height: 123
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8910c9a7c5ba0f360800000000000000
+      internalID: 7201444217847808408
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HouseSecondTextureColoured_99
+      rect:
+        serializedVersion: 2
+        x: 3006
+        y: 2479
+        width: 49
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 021732630ca76cef0800000000000000
+      internalID: -88248176726544096
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HouseSecondTextureColoured_100
+      rect:
+        serializedVersion: 2
+        x: 41
+        y: 2223
+        width: 127
+        height: 161
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d4fa718e084078f30800000000000000
+      internalID: 4577632497941589837
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HouseSecondTextureColoured_101
+      rect:
+        serializedVersion: 2
+        x: 176
+        y: 2213
+        width: 124
+        height: 169
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1cec7dd490235edd0800000000000000
+      internalID: -2457503006118654271
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HouseSecondTextureColoured_102
+      rect:
+        serializedVersion: 2
+        x: 335
+        y: 1986
+        width: 64
+        height: 386
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ed235e42d08633e40800000000000000
+      internalID: 5634961964433486558
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HouseSecondTextureColoured_103
+      rect:
+        serializedVersion: 2
+        x: 473
+        y: 2137
+        width: 62
+        height: 294
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1c5e0c79f3fde1c60800000000000000
+      internalID: 7790909869619471809
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HouseSecondTextureColoured_104
+      rect:
+        serializedVersion: 2
+        x: 569
+        y: 2065
+        width: 52
+        height: 328
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 18a439c949c5dff90800000000000000
+      internalID: -6918271659219400063
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HouseSecondTextureColoured_105
+      rect:
+        serializedVersion: 2
+        x: 2729
+        y: 2224
+        width: 38
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4eb875c5e929de520800000000000000
+      internalID: 2733001757735488484
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HouseSecondTextureColoured_106
+      rect:
+        serializedVersion: 2
+        x: 2790
+        y: 2222
+        width: 28
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0206f9187e3490d20800000000000000
+      internalID: 3245199668088365088
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HouseSecondTextureColoured_107
+      rect:
+        serializedVersion: 2
+        x: 2831
+        y: 2226
+        width: 28
+        height: 123
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 97e35cd64375dd5d0800000000000000
+      internalID: -3036174691086287239
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HouseSecondTextureColoured_108
+      rect:
+        serializedVersion: 2
+        x: 2898
+        y: 2256
+        width: 55
+        height: 127
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5465332cd1f2c0e20800000000000000
+      internalID: 3318078830323914309
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HouseSecondTextureColoured_109
+      rect:
+        serializedVersion: 2
+        x: 3001
+        y: 2342
+        width: 49
+        height: 122
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4c1c01025546339a0800000000000000
+      internalID: -6254545140714520124
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HouseSecondTextureColoured_110
+      rect:
+        serializedVersion: 2
+        x: 35
+        y: 2005
+        width: 117
+        height: 186
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ef7e49dc9fb1505e0800000000000000
+      internalID: -1944116904430606338
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HouseSecondTextureColoured_111
+      rect:
+        serializedVersion: 2
+        x: 657
+        y: 1897
+        width: 206
+        height: 409
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3f9522ec3132079c0800000000000000
+      internalID: -3931603906724734477
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HouseSecondTextureColoured_112
+      rect:
+        serializedVersion: 2
+        x: 885
+        y: 1884
+        width: 87
+        height: 414
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4e1133ccabd222df0800000000000000
+      internalID: -206552352592555548
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HouseSecondTextureColoured_113
+      rect:
+        serializedVersion: 2
+        x: 994
+        y: 1865
+        width: 96
+        height: 424
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bc378a15a82de8630800000000000000
+      internalID: 3931311016258335691
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HouseSecondTextureColoured_114
+      rect:
+        serializedVersion: 2
+        x: 1109
+        y: 1878
+        width: 87
+        height: 413
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: afd45406b5ed21bb0800000000000000
+      internalID: -4966662954997690886
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HouseSecondTextureColoured_115
+      rect:
+        serializedVersion: 2
+        x: 1217
+        y: 1884
+        width: 87
+        height: 414
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a46d491d482ef2af0800000000000000
+      internalID: -418867180242414006
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HouseSecondTextureColoured_116
+      rect:
+        serializedVersion: 2
+        x: 1323
+        y: 1881
+        width: 78
+        height: 414
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1eabcdf67ca56c740800000000000000
+      internalID: 5171921034703321825
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HouseSecondTextureColoured_117
+      rect:
+        serializedVersion: 2
+        x: 1413
+        y: 1881
+        width: 79
+        height: 414
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 80b676617e3da91c0800000000000000
+      internalID: -4496048288509236472
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HouseSecondTextureColoured_118
+      rect:
+        serializedVersion: 2
+        x: 1501
+        y: 1891
+        width: 54
+        height: 412
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d714843c55fb5cb50800000000000000
+      internalID: 6612902002932859261
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HouseSecondTextureColoured_119
+      rect:
+        serializedVersion: 2
+        x: 1586
+        y: 1541
+        width: 336
+        height: 742
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ab5686f14fab9e090800000000000000
+      internalID: -8004661305012623942
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HouseSecondTextureColoured_120
+      rect:
+        serializedVersion: 2
+        x: 1912
+        y: 2097
+        width: 108
+        height: 171
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 65806158cb053bf20800000000000000
+      internalID: 3437179711230707798
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HouseSecondTextureColoured_121
+      rect:
+        serializedVersion: 2
+        x: 2320
+        y: 1845
+        width: 78
+        height: 414
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dea5e2a7648c345c0800000000000000
+      internalID: -4232319019775010067
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HouseSecondTextureColoured_122
+      rect:
+        serializedVersion: 2
+        x: 2426
+        y: 1853
+        width: 63
+        height: 410
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cb9e25b9eb4813390800000000000000
+      internalID: -7840339522090767940
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HouseSecondTextureColoured_123
+      rect:
+        serializedVersion: 2
+        x: 2521
+        y: 1849
+        width: 63
+        height: 410
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 462f1b667cfc75da0800000000000000
+      internalID: -5956063526845812124
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HouseSecondTextureColoured_124
+      rect:
+        serializedVersion: 2
+        x: 2616
+        y: 1869
+        width: 74
+        height: 409
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c02e8b9de3c423190800000000000000
+      internalID: -7984235356550012404
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HouseSecondTextureColoured_125
+      rect:
+        serializedVersion: 2
+        x: 2719
+        y: 2072
+        width: 27
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d389f21182d10b370800000000000000
+      internalID: 8336194968187017277
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HouseSecondTextureColoured_126
+      rect:
+        serializedVersion: 2
+        x: 2762
+        y: 2086
+        width: 37
+        height: 123
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e8515e33389d58be0800000000000000
+      internalID: -1475534145359374962
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HouseSecondTextureColoured_127
+      rect:
+        serializedVersion: 2
+        x: 2819
+        y: 2070
+        width: 39
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1ef0f231abff7feb0800000000000000
+      internalID: -4685995712604860447
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HouseSecondTextureColoured_128
+      rect:
+        serializedVersion: 2
+        x: 2908
+        y: 2126
+        width: 49
+        height: 122
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: efa595143e15b2150800000000000000
+      internalID: 5848858577566522110
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HouseSecondTextureColoured_129
+      rect:
+        serializedVersion: 2
+        x: 2998
+        y: 2190
+        width: 49
+        height: 132
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 23d8ca830c96e6860800000000000000
+      internalID: 7525068301688147250
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HouseSecondTextureColoured_130
+      rect:
+        serializedVersion: 2
+        x: 168
+        y: 1992
+        width: 131
+        height: 187
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 16f6cea21b377ea70800000000000000
+      internalID: 8856174397013913441
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HouseSecondTextureColoured_131
+      rect:
+        serializedVersion: 2
+        x: 1919
+        y: 1913
+        width: 102
+        height: 160
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c8bfdbfba6606d380800000000000000
+      internalID: -8946956554171712628
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HouseSecondTextureColoured_132
+      rect:
+        serializedVersion: 2
+        x: 1941
+        y: 1529
+        width: 336
+        height: 558
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 85c796d1c121ce740800000000000000
+      internalID: 5182537183158434904
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HouseSecondTextureColoured_133
+      rect:
+        serializedVersion: 2
+        x: 2907
+        y: 1964
+        width: 48
+        height: 133
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8aed2a63d2b73b550800000000000000
+      internalID: 6175414948175470248
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HouseSecondTextureColoured_134
+      rect:
+        serializedVersion: 2
+        x: 2999
+        y: 2052
+        width: 49
+        height: 123
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bba7c408656296b30800000000000000
+      internalID: 4280995073753905851
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HouseSecondTextureColoured_135
+      rect:
+        serializedVersion: 2
+        x: 33
+        y: 1417
+        width: 24
+        height: 512
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 73c54d62aea178600800000000000000
+      internalID: 470374279059627063
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HouseSecondTextureColoured_136
+      rect:
+        serializedVersion: 2
+        x: 92
+        y: 1401
+        width: 23
+        height: 558
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cc745602ce45221d0800000000000000
+      internalID: -3377043397441927220
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HouseSecondTextureColoured_137
+      rect:
+        serializedVersion: 2
+        x: 469
+        y: 1850
+        width: 136
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0d4df7100266e22c0800000000000000
+      internalID: -4454510693772700464
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HouseSecondTextureColoured_138
+      rect:
+        serializedVersion: 2
+        x: 627
+        y: 1850
+        width: 122
+        height: 168
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5741e513cb1205790800000000000000
+      internalID: -7543492283679763339
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HouseSecondTextureColoured_139
+      rect:
+        serializedVersion: 2
+        x: 2715
+        y: 1924
+        width: 38
+        height: 123
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4443097eae9275150800000000000000
+      internalID: 5861199528930063428
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HouseSecondTextureColoured_140
+      rect:
+        serializedVersion: 2
+        x: 2776
+        y: 1921
+        width: 38
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 33ba2c032961b77e0800000000000000
+      internalID: -1766793611673687245
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HouseSecondTextureColoured_141
+      rect:
+        serializedVersion: 2
+        x: 2834
+        y: 1926
+        width: 37
+        height: 123
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e744f7049680f5b00800000000000000
+      internalID: 819382905351390334
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HouseSecondTextureColoured_142
+      rect:
+        serializedVersion: 2
+        x: 2906
+        y: 1796
+        width: 48
+        height: 138
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a0180405c5fde7450800000000000000
+      internalID: 6088549333827879178
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HouseSecondTextureColoured_143
+      rect:
+        serializedVersion: 2
+        x: 2998
+        y: 1901
+        width: 49
+        height: 133
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8d0b0b797cd9070f0800000000000000
+      internalID: -1121222826646261544
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HouseSecondTextureColoured_144
+      rect:
+        serializedVersion: 2
+        x: 149
+        y: 1433
+        width: 21
+        height: 449
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4687949009e031ac0800000000000000
+      internalID: -3885746041696716700
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HouseSecondTextureColoured_145
+      rect:
+        serializedVersion: 2
+        x: 1124
+        y: 1811
+        width: 16
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b157691499c7079b0800000000000000
+      internalID: -5084426981629070053
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HouseSecondTextureColoured_146
+      rect:
+        serializedVersion: 2
+        x: 1139
+        y: 1811
+        width: 17
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b0a6bac5187f9a5c0800000000000000
+      internalID: -4203556642196067829
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HouseSecondTextureColoured_147
+      rect:
+        serializedVersion: 2
+        x: 1166
+        y: 1809
+        width: 16
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 19d9d81558a5c0a90800000000000000
+      internalID: -7346397363502735983
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HouseSecondTextureColoured_148
+      rect:
+        serializedVersion: 2
+        x: 1192
+        y: 1805
+        width: 17
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c1e584adb31f1db90800000000000000
+      internalID: -7218723488330654180
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HouseSecondTextureColoured_149
+      rect:
+        serializedVersion: 2
+        x: 1208
+        y: 1805
+        width: 17
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f631550fdbf586dc0800000000000000
+      internalID: -3645558628970851473
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HouseSecondTextureColoured_150
+      rect:
+        serializedVersion: 2
+        x: 1224
+        y: 1805
+        width: 16
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2785ff2820cdd5d10800000000000000
+      internalID: 2116089303279818866
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HouseSecondTextureColoured_151
+      rect:
+        serializedVersion: 2
+        x: 1240
+        y: 1805
+        width: 16
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 36382565838b78da0800000000000000
+      internalID: -5942578631186152605
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HouseSecondTextureColoured_152
+      rect:
+        serializedVersion: 2
+        x: 1256
+        y: 1805
+        width: 16
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ec63366c6d2ce3e40800000000000000
+      internalID: 5638158011221620430
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HouseSecondTextureColoured_153
+      rect:
+        serializedVersion: 2
+        x: 1271
+        y: 1805
+        width: 17
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2624a4ee81ae730c0800000000000000
+      internalID: -4595947501910343070
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HouseSecondTextureColoured_154
+      rect:
+        serializedVersion: 2
+        x: 1296
+        y: 1802
+        width: 16
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4cf96c98715251640800000000000000
+      internalID: 5049983340191850436
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HouseSecondTextureColoured_155
+      rect:
+        serializedVersion: 2
+        x: 1324
+        y: 1801
+        width: 16
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 24ad81583d83c6020800000000000000
+      internalID: 2336304787820698178
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HouseSecondTextureColoured_156
+      rect:
+        serializedVersion: 2
+        x: 1348
+        y: 1801
+        width: 17
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cd3dd54926451cd00800000000000000
+      internalID: 991166175370925020
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HouseSecondTextureColoured_157
+      rect:
+        serializedVersion: 2
+        x: 1376
+        y: 1801
+        width: 16
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fed0ebbc2063fad50800000000000000
+      internalID: 6750673752087727599
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HouseSecondTextureColoured_158
+      rect:
+        serializedVersion: 2
+        x: 1406
+        y: 1794
+        width: 19
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4c0dfa068238a6b30800000000000000
+      internalID: 4281378605213143236
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HouseSecondTextureColoured_159
+      rect:
+        serializedVersion: 2
+        x: 1443
+        y: 1669
+        width: 19
+        height: 154
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4424cb7c90cdcf4d0800000000000000
+      internalID: -3099360508973923772
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HouseSecondTextureColoured_160
+      rect:
+        serializedVersion: 2
+        x: 1477
+        y: 1666
+        width: 19
+        height: 158
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: aa81c8db6b0d37ed0800000000000000
+      internalID: -2417359091685123926
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HouseSecondTextureColoured_161
+      rect:
+        serializedVersion: 2
+        x: 1517
+        y: 1630
+        width: 13
+        height: 190
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0b5d6433dba378f90800000000000000
+      internalID: -6951522915539561040
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HouseSecondTextureColoured_162
+      rect:
+        serializedVersion: 2
+        x: 2771
+        y: 1772
+        width: 38
+        height: 132
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ca1691d3f4721ddb0800000000000000
+      internalID: -4768987309127671380
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HouseSecondTextureColoured_163
+      rect:
+        serializedVersion: 2
+        x: 2834
+        y: 1789
+        width: 28
+        height: 122
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 23f3e70b99d1df460800000000000000
+      internalID: 7277005118828855090
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HouseSecondTextureColoured_164
+      rect:
+        serializedVersion: 2
+        x: 2999
+        y: 1753
+        width: 48
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 324611d9bf2a85c70800000000000000
+      internalID: 8960090660209255459
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HouseSecondTextureColoured_165
+      rect:
+        serializedVersion: 2
+        x: 19
+        y: 20
+        width: 1455
+        height: 1780
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 24c64c7ff71e32070800000000000000
+      internalID: 8080550096166743106
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HouseSecondTextureColoured_166
+      rect:
+        serializedVersion: 2
+        x: 1123
+        y: 1781
+        width: 17
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b0842f5b264f8a9e0800000000000000
+      internalID: -1609768161988425717
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HouseSecondTextureColoured_167
+      rect:
+        serializedVersion: 2
+        x: 1139
+        y: 1781
+        width: 17
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2f66d82fcafc44680800000000000000
+      internalID: -8771657832500205838
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HouseSecondTextureColoured_168
+      rect:
+        serializedVersion: 2
+        x: 1168
+        y: 1778
+        width: 16
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5f821d68a521b27b0800000000000000
+      internalID: -5248080760751970059
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HouseSecondTextureColoured_169
+      rect:
+        serializedVersion: 2
+        x: 1324
+        y: 1774
+        width: 16
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d598bff4251fbc350800000000000000
+      internalID: 6038185061251778909
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HouseSecondTextureColoured_170
+      rect:
+        serializedVersion: 2
+        x: 1348
+        y: 1774
+        width: 17
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8585f3bed93e4c970800000000000000
+      internalID: 8774388241420736600
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HouseSecondTextureColoured_171
+      rect:
+        serializedVersion: 2
+        x: 1376
+        y: 1774
+        width: 16
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 05efb8230f3f75a30800000000000000
+      internalID: 4204096990139383376
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HouseSecondTextureColoured_172
+      rect:
+        serializedVersion: 2
+        x: 2344
+        y: 1606
+        width: 70
+        height: 180
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f20e826237db4aea0800000000000000
+      internalID: -5862352512670441425
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HouseSecondTextureColoured_173
+      rect:
+        serializedVersion: 2
+        x: 2443
+        y: 1627
+        width: 70
+        height: 168
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c986d0c30822efdb0800000000000000
+      internalID: -4756326222297995108
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HouseSecondTextureColoured_174
+      rect:
+        serializedVersion: 2
+        x: 2548
+        y: 1621
+        width: 38
+        height: 169
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 106387068622f6840800000000000000
+      internalID: 5219428324836128257
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HouseSecondTextureColoured_175
+      rect:
+        serializedVersion: 2
+        x: 2626
+        y: 1601
+        width: 57
+        height: 180
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9c4157eaec92b1020800000000000000
+      internalID: 2313488801251792073
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HouseSecondTextureColoured_176
+      rect:
+        serializedVersion: 2
+        x: 2126
+        y: 1520
+        width: 19
+        height: 153
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bd269a120f9f3e190800000000000000
+      internalID: -7934223308744465701
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HouseSecondTextureColoured_177
+      rect:
+        serializedVersion: 2
+        x: 2164
+        y: 1523
+        width: 19
+        height: 149
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 856b12124dcb486f0800000000000000
+      internalID: -683213624178526632
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HouseSecondTextureColoured_178
+      rect:
+        serializedVersion: 2
+        x: 2207
+        y: 1511
+        width: 38
+        height: 160
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c31be854ca68074f0800000000000000
+      internalID: -833017856604065476
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HouseSecondTextureColoured_179
+      rect:
+        serializedVersion: 2
+        x: 2274
+        y: 1509
+        width: 38
+        height: 168
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fad399baa709631f0800000000000000
+      internalID: -1065505405287187025
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HouseSecondTextureColoured_180
+      rect:
+        serializedVersion: 2
+        x: 2734
+        y: 1587
+        width: 71
+        height: 161
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e73f728b8787e0590800000000000000
+      internalID: -7706089452503305346
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HouseSecondTextureColoured_181
+      rect:
+        serializedVersion: 2
+        x: 2906
+        y: 1651
+        width: 50
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6ba4a3037f920ef80800000000000000
+      internalID: -8079411589859882314
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HouseSecondTextureColoured_182
+      rect:
+        serializedVersion: 2
+        x: 1489
+        y: 48
+        width: 1110
+        height: 1430
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: aacde6a1473e6baa0800000000000000
+      internalID: -6145474553701278550
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HouseSecondTextureColoured_183
+      rect:
+        serializedVersion: 2
+        x: 2412
+        y: 1401
+        width: 38
+        height: 180
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 12f35662725f63ba0800000000000000
+      internalID: -6109426295984799967
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HouseSecondTextureColoured_184
+      rect:
+        serializedVersion: 2
+        x: 2471
+        y: 1406
+        width: 51
+        height: 175
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8f912b0a6f8bb4550800000000000000
+      internalID: 6146209485874665976
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HouseSecondTextureColoured_185
+      rect:
+        serializedVersion: 2
+        x: 2552
+        y: 1418
+        width: 38
+        height: 171
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9d8b30c9edefab910800000000000000
+      internalID: 1854074428670064857
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HouseSecondTextureColoured_186
+      rect:
+        serializedVersion: 2
+        x: 2629
+        y: 1401
+        width: 70
+        height: 171
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 16ba0186fbbdb1050800000000000000
+      internalID: 5772448962536581985
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HouseSecondTextureColoured_187
+      rect:
+        serializedVersion: 2
+        x: 2729
+        y: 1368
+        width: 70
+        height: 180
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5654ee5e1cfd58ae0800000000000000
+      internalID: -1547584873052617371
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HouseSecondTextureColoured_188
+      rect:
+        serializedVersion: 2
+        x: 2996
+        y: 1466
+        width: 49
+        height: 137
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ad0f8abd8205e1b00800000000000000
+      internalID: 801165920132722906
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HouseSecondTextureColoured_189
+      rect:
+        serializedVersion: 2
+        x: 2620
+        y: 1199
+        width: 70
+        height: 171
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2b3f9f094543642b0800000000000000
+      internalID: -5600731548774435918
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HouseSecondTextureColoured_190
+      rect:
+        serializedVersion: 2
+        x: 2742
+        y: 1171
+        width: 72
+        height: 165
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a8ddc61da713d2d00800000000000000
+      internalID: 949469500014386570
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HouseSecondTextureColoured_191
+      rect:
+        serializedVersion: 2
+        x: 2996
+        y: 1321
+        width: 49
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1a789675bb7c68240800000000000000
+      internalID: 4793738460821817249
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HouseSecondTextureColoured_192
+      rect:
+        serializedVersion: 2
+        x: 2887
+        y: 1134
+        width: 48
+        height: 122
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 95732496c1425f690800000000000000
+      internalID: -7569103894282619047
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HouseSecondTextureColoured_193
+      rect:
+        serializedVersion: 2
+        x: 3000
+        y: 1172
+        width: 48
+        height: 132
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4a1fc3daaaee69540800000000000000
+      internalID: 5014457651941929380
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HouseSecondTextureColoured_194
+      rect:
+        serializedVersion: 2
+        x: 2629
+        y: 992
+        width: 56
+        height: 175
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7c9d47fc3b6988eb0800000000000000
+      internalID: -4717354910646740537
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HouseSecondTextureColoured_195
+      rect:
+        serializedVersion: 2
+        x: 2754
+        y: 975
+        width: 63
+        height: 171
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 89e4d1e5677bbbad0800000000000000
+      internalID: -2685351033783365992
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HouseSecondTextureColoured_196
+      rect:
+        serializedVersion: 2
+        x: 2888
+        y: 979
+        width: 49
+        height: 132
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d3bf1f8eb436fead0800000000000000
+      internalID: -2670806876325545155
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HouseSecondTextureColoured_197
+      rect:
+        serializedVersion: 2
+        x: 2996
+        y: 1029
+        width: 48
+        height: 132
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1aa5ee81be47ef830800000000000000
+      internalID: 4106848463292881569
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HouseSecondTextureColoured_198
+      rect:
+        serializedVersion: 2
+        x: 2624
+        y: 790
+        width: 57
+        height: 175
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: da201b38012f1af10800000000000000
+      internalID: 2279369039168996013
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HouseSecondTextureColoured_199
+      rect:
+        serializedVersion: 2
+        x: 2761
+        y: 775
+        width: 51
+        height: 167
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4d219f2c63f083240800000000000000
+      internalID: 4771580533072794324
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HouseSecondTextureColoured_200
+      rect:
+        serializedVersion: 2
+        x: 2897
+        y: 816
+        width: 47
+        height: 137
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ced88721a95c5f7b0800000000000000
+      internalID: -5191025729949102612
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HouseSecondTextureColoured_201
+      rect:
+        serializedVersion: 2
+        x: 2995
+        y: 890
+        width: 48
+        height: 123
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 55a212a34fbc4c980800000000000000
+      internalID: -8519460345270425003
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HouseSecondTextureColoured_202
+      rect:
+        serializedVersion: 2
+        x: 2624
+        y: 592
+        width: 69
+        height: 176
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d3a038b67b3c1c820800000000000000
+      internalID: 2936843624572455485
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HouseSecondTextureColoured_203
+      rect:
+        serializedVersion: 2
+        x: 2899
+        y: 645
+        width: 48
+        height: 137
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4c61ce2e1495372f0800000000000000
+      internalID: -976338554694396220
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HouseSecondTextureColoured_204
+      rect:
+        serializedVersion: 2
+        x: 2994
+        y: 744
+        width: 48
+        height: 127
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 666f8dd99e1f5d220800000000000000
+      internalID: 2510178353006835302
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HouseSecondTextureColoured_205
+      rect:
+        serializedVersion: 2
+        x: 2752
+        y: 570
+        width: 70
+        height: 167
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ffd26968914181390800000000000000
+      internalID: -7847500250828362241
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HouseSecondTextureColoured_206
+      rect:
+        serializedVersion: 2
+        x: 2899
+        y: 497
+        width: 48
+        height: 133
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5be551ece511441f0800000000000000
+      internalID: -1061704513270489419
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HouseSecondTextureColoured_207
+      rect:
+        serializedVersion: 2
+        x: 2998
+        y: 594
+        width: 48
+        height: 132
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: eb33681a310b04ca0800000000000000
+      internalID: -6034629902315670594
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HouseSecondTextureColoured_208
+      rect:
+        serializedVersion: 2
+        x: 2624
+        y: 385
+        width: 69
+        height: 176
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d3f8c588128e69520800000000000000
+      internalID: 2708607456629264189
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HouseSecondTextureColoured_209
+      rect:
+        serializedVersion: 2
+        x: 2757
+        y: 346
+        width: 69
+        height: 176
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d85c43946a15a0e80800000000000000
+      internalID: -8211661195922061939
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HouseSecondTextureColoured_210
+      rect:
+        serializedVersion: 2
+        x: 2902
+        y: 340
+        width: 49
+        height: 127
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d926c93a894911780800000000000000
+      internalID: -8714020420684324195
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HouseSecondTextureColoured_211
+      rect:
+        serializedVersion: 2
+        x: 3000
+        y: 448
+        width: 49
+        height: 133
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7d889da26ff765b50800000000000000
+      internalID: 6581588600706140375
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HouseSecondTextureColoured_212
+      rect:
+        serializedVersion: 2
+        x: 2617
+        y: 167
+        width: 38
+        height: 157
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ccc987cc77c2049f0800000000000000
+      internalID: -486339866712826676
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HouseSecondTextureColoured_213
+      rect:
+        serializedVersion: 2
+        x: 2712
+        y: 151
+        width: 25
+        height: 157
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4e377ae9e55d34470800000000000000
+      internalID: 8377774334204670948
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HouseSecondTextureColoured_214
+      rect:
+        serializedVersion: 2
+        x: 2906
+        y: 182
+        width: 48
+        height: 133
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6d95200c2ec64ece0800000000000000
+      internalID: -1376855864928740906
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HouseSecondTextureColoured_215
+      rect:
+        serializedVersion: 2
+        x: 3001
+        y: 307
+        width: 47
+        height: 123
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 24f24ab94a99fc930800000000000000
+      internalID: 4165717112605912898
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HouseSecondTextureColoured_216
+      rect:
+        serializedVersion: 2
+        x: 207
+        y: 14
+        width: 192
+        height: 193
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d1f91dedd6a5695c0800000000000000
+      internalID: -4209077373794935011
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HouseSecondTextureColoured_217
+      rect:
+        serializedVersion: 2
+        x: 1487
+        y: 27
+        width: 141
+        height: 193
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9eee3f08a10d60190800000000000000
+      internalID: -7996475276098539799
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HouseSecondTextureColoured_218
+      rect:
+        serializedVersion: 2
+        x: 2668
+        y: 138
+        width: 25
+        height: 165
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 922a79c7749a90dd0800000000000000
+      internalID: -2519296392038997463
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HouseSecondTextureColoured_219
+      rect:
+        serializedVersion: 2
+        x: 2761
+        y: 127
+        width: 69
+        height: 176
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7a80b0f778aa29cb0800000000000000
+      internalID: -4858633549050607449
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HouseSecondTextureColoured_220
+      rect:
+        serializedVersion: 2
+        x: 3002
+        y: 166
+        width: 48
+        height: 127
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 59a3b44fd18751f50800000000000000
+      internalID: 6851514478162033301
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HouseSecondTextureColoured_221
+      rect:
+        serializedVersion: 2
+        x: 2908
+        y: 32
+        width: 47
+        height: 133
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fe707abd0cfc46cb0800000000000000
+      internalID: -4871540469682206737
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HouseSecondTextureColoured_222
+      rect:
+        serializedVersion: 2
+        x: 3003
+        y: 26
+        width: 48
+        height: 132
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 14578c861edfbfa80800000000000000
+      internalID: -8431866732753685183
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      HouseSecondTextureColoured_0: 6896086798977659367
+      HouseSecondTextureColoured_1: -5457872207242058685
+      HouseSecondTextureColoured_10: 6343947200106326033
+      HouseSecondTextureColoured_100: 4577632497941589837
+      HouseSecondTextureColoured_101: -2457503006118654271
+      HouseSecondTextureColoured_102: 5634961964433486558
+      HouseSecondTextureColoured_103: 7790909869619471809
+      HouseSecondTextureColoured_104: -6918271659219400063
+      HouseSecondTextureColoured_105: 2733001757735488484
+      HouseSecondTextureColoured_106: 3245199668088365088
+      HouseSecondTextureColoured_107: -3036174691086287239
+      HouseSecondTextureColoured_108: 3318078830323914309
+      HouseSecondTextureColoured_109: -6254545140714520124
+      HouseSecondTextureColoured_11: -4590815519327694931
+      HouseSecondTextureColoured_110: -1944116904430606338
+      HouseSecondTextureColoured_111: -3931603906724734477
+      HouseSecondTextureColoured_112: -206552352592555548
+      HouseSecondTextureColoured_113: 3931311016258335691
+      HouseSecondTextureColoured_114: -4966662954997690886
+      HouseSecondTextureColoured_115: -418867180242414006
+      HouseSecondTextureColoured_116: 5171921034703321825
+      HouseSecondTextureColoured_117: -4496048288509236472
+      HouseSecondTextureColoured_118: 6612902002932859261
+      HouseSecondTextureColoured_119: -8004661305012623942
+      HouseSecondTextureColoured_12: 3122875917747415435
+      HouseSecondTextureColoured_120: 3437179711230707798
+      HouseSecondTextureColoured_121: -4232319019775010067
+      HouseSecondTextureColoured_122: -7840339522090767940
+      HouseSecondTextureColoured_123: -5956063526845812124
+      HouseSecondTextureColoured_124: -7984235356550012404
+      HouseSecondTextureColoured_125: 8336194968187017277
+      HouseSecondTextureColoured_126: -1475534145359374962
+      HouseSecondTextureColoured_127: -4685995712604860447
+      HouseSecondTextureColoured_128: 5848858577566522110
+      HouseSecondTextureColoured_129: 7525068301688147250
+      HouseSecondTextureColoured_13: -8528816093587733901
+      HouseSecondTextureColoured_130: 8856174397013913441
+      HouseSecondTextureColoured_131: -8946956554171712628
+      HouseSecondTextureColoured_132: 5182537183158434904
+      HouseSecondTextureColoured_133: 6175414948175470248
+      HouseSecondTextureColoured_134: 4280995073753905851
+      HouseSecondTextureColoured_135: 470374279059627063
+      HouseSecondTextureColoured_136: -3377043397441927220
+      HouseSecondTextureColoured_137: -4454510693772700464
+      HouseSecondTextureColoured_138: -7543492283679763339
+      HouseSecondTextureColoured_139: 5861199528930063428
+      HouseSecondTextureColoured_14: 8086321184796432367
+      HouseSecondTextureColoured_140: -1766793611673687245
+      HouseSecondTextureColoured_141: 819382905351390334
+      HouseSecondTextureColoured_142: 6088549333827879178
+      HouseSecondTextureColoured_143: -1121222826646261544
+      HouseSecondTextureColoured_144: -3885746041696716700
+      HouseSecondTextureColoured_145: -5084426981629070053
+      HouseSecondTextureColoured_146: -4203556642196067829
+      HouseSecondTextureColoured_147: -7346397363502735983
+      HouseSecondTextureColoured_148: -7218723488330654180
+      HouseSecondTextureColoured_149: -3645558628970851473
+      HouseSecondTextureColoured_15: 7121883963254990395
+      HouseSecondTextureColoured_150: 2116089303279818866
+      HouseSecondTextureColoured_151: -5942578631186152605
+      HouseSecondTextureColoured_152: 5638158011221620430
+      HouseSecondTextureColoured_153: -4595947501910343070
+      HouseSecondTextureColoured_154: 5049983340191850436
+      HouseSecondTextureColoured_155: 2336304787820698178
+      HouseSecondTextureColoured_156: 991166175370925020
+      HouseSecondTextureColoured_157: 6750673752087727599
+      HouseSecondTextureColoured_158: 4281378605213143236
+      HouseSecondTextureColoured_159: -3099360508973923772
+      HouseSecondTextureColoured_16: 390182901328776548
+      HouseSecondTextureColoured_160: -2417359091685123926
+      HouseSecondTextureColoured_161: -6951522915539561040
+      HouseSecondTextureColoured_162: -4768987309127671380
+      HouseSecondTextureColoured_163: 7277005118828855090
+      HouseSecondTextureColoured_164: 8960090660209255459
+      HouseSecondTextureColoured_165: 8080550096166743106
+      HouseSecondTextureColoured_166: -1609768161988425717
+      HouseSecondTextureColoured_167: -8771657832500205838
+      HouseSecondTextureColoured_168: -5248080760751970059
+      HouseSecondTextureColoured_169: 6038185061251778909
+      HouseSecondTextureColoured_17: -5952405828297711020
+      HouseSecondTextureColoured_170: 8774388241420736600
+      HouseSecondTextureColoured_171: 4204096990139383376
+      HouseSecondTextureColoured_172: -5862352512670441425
+      HouseSecondTextureColoured_173: -4756326222297995108
+      HouseSecondTextureColoured_174: 5219428324836128257
+      HouseSecondTextureColoured_175: 2313488801251792073
+      HouseSecondTextureColoured_176: -7934223308744465701
+      HouseSecondTextureColoured_177: -683213624178526632
+      HouseSecondTextureColoured_178: -833017856604065476
+      HouseSecondTextureColoured_179: -1065505405287187025
+      HouseSecondTextureColoured_18: -4458918403187216244
+      HouseSecondTextureColoured_180: -7706089452503305346
+      HouseSecondTextureColoured_181: -8079411589859882314
+      HouseSecondTextureColoured_182: -6145474553701278550
+      HouseSecondTextureColoured_183: -6109426295984799967
+      HouseSecondTextureColoured_184: 6146209485874665976
+      HouseSecondTextureColoured_185: 1854074428670064857
+      HouseSecondTextureColoured_186: 5772448962536581985
+      HouseSecondTextureColoured_187: -1547584873052617371
+      HouseSecondTextureColoured_188: 801165920132722906
+      HouseSecondTextureColoured_189: -5600731548774435918
+      HouseSecondTextureColoured_19: -5862121386390686646
+      HouseSecondTextureColoured_190: 949469500014386570
+      HouseSecondTextureColoured_191: 4793738460821817249
+      HouseSecondTextureColoured_192: -7569103894282619047
+      HouseSecondTextureColoured_193: 5014457651941929380
+      HouseSecondTextureColoured_194: -4717354910646740537
+      HouseSecondTextureColoured_195: -2685351033783365992
+      HouseSecondTextureColoured_196: -2670806876325545155
+      HouseSecondTextureColoured_197: 4106848463292881569
+      HouseSecondTextureColoured_198: 2279369039168996013
+      HouseSecondTextureColoured_199: 4771580533072794324
+      HouseSecondTextureColoured_2: 3393526959785246432
+      HouseSecondTextureColoured_20: -7728548110666164064
+      HouseSecondTextureColoured_200: -5191025729949102612
+      HouseSecondTextureColoured_201: -8519460345270425003
+      HouseSecondTextureColoured_202: 2936843624572455485
+      HouseSecondTextureColoured_203: -976338554694396220
+      HouseSecondTextureColoured_204: 2510178353006835302
+      HouseSecondTextureColoured_205: -7847500250828362241
+      HouseSecondTextureColoured_206: -1061704513270489419
+      HouseSecondTextureColoured_207: -6034629902315670594
+      HouseSecondTextureColoured_208: 2708607456629264189
+      HouseSecondTextureColoured_209: -8211661195922061939
+      HouseSecondTextureColoured_21: -780267763756800198
+      HouseSecondTextureColoured_210: -8714020420684324195
+      HouseSecondTextureColoured_211: 6581588600706140375
+      HouseSecondTextureColoured_212: -486339866712826676
+      HouseSecondTextureColoured_213: 8377774334204670948
+      HouseSecondTextureColoured_214: -1376855864928740906
+      HouseSecondTextureColoured_215: 4165717112605912898
+      HouseSecondTextureColoured_216: -4209077373794935011
+      HouseSecondTextureColoured_217: -7996475276098539799
+      HouseSecondTextureColoured_218: -2519296392038997463
+      HouseSecondTextureColoured_219: -4858633549050607449
+      HouseSecondTextureColoured_22: 8146498120627530745
+      HouseSecondTextureColoured_220: 6851514478162033301
+      HouseSecondTextureColoured_221: -4871540469682206737
+      HouseSecondTextureColoured_222: -8431866732753685183
+      HouseSecondTextureColoured_23: -2211684167592944398
+      HouseSecondTextureColoured_24: 6190333358274002008
+      HouseSecondTextureColoured_25: -1808456738034232238
+      HouseSecondTextureColoured_26: 2570164048347817206
+      HouseSecondTextureColoured_27: -3670895872999154445
+      HouseSecondTextureColoured_28: -1607967680995447689
+      HouseSecondTextureColoured_29: -6426682795946965271
+      HouseSecondTextureColoured_3: -3817147348119583974
+      HouseSecondTextureColoured_30: -2417928291596417972
+      HouseSecondTextureColoured_31: 1847642273529775887
+      HouseSecondTextureColoured_32: 4190207001186997954
+      HouseSecondTextureColoured_33: 656353120837178442
+      HouseSecondTextureColoured_34: 598371089620152651
+      HouseSecondTextureColoured_35: 411769854219197518
+      HouseSecondTextureColoured_36: -6482827145398516083
+      HouseSecondTextureColoured_37: 5527107743924745461
+      HouseSecondTextureColoured_38: 5978137932376719874
+      HouseSecondTextureColoured_39: -4176904511126322234
+      HouseSecondTextureColoured_4: -8710259405708138103
+      HouseSecondTextureColoured_40: -8313603137106403219
+      HouseSecondTextureColoured_41: -3383819903003435791
+      HouseSecondTextureColoured_42: -1975985652183656035
+      HouseSecondTextureColoured_43: 1933952562717805
+      HouseSecondTextureColoured_44: 3399338668847315987
+      HouseSecondTextureColoured_45: -1724617442380879249
+      HouseSecondTextureColoured_46: 7944780543247811126
+      HouseSecondTextureColoured_47: 5606420200058531928
+      HouseSecondTextureColoured_48: -7561976656095116311
+      HouseSecondTextureColoured_49: 5873879953524524833
+      HouseSecondTextureColoured_5: 9206851419732115621
+      HouseSecondTextureColoured_50: -8609910435391401187
+      HouseSecondTextureColoured_51: -77786576858386671
+      HouseSecondTextureColoured_52: -4659179185505370220
+      HouseSecondTextureColoured_53: -5089026568821652069
+      HouseSecondTextureColoured_54: 4178988872782346232
+      HouseSecondTextureColoured_55: -790210089506439177
+      HouseSecondTextureColoured_56: 4771389862085899022
+      HouseSecondTextureColoured_57: -7982473440351716663
+      HouseSecondTextureColoured_58: 7319359342678142767
+      HouseSecondTextureColoured_59: 817328553380452128
+      HouseSecondTextureColoured_6: -6360837916371027226
+      HouseSecondTextureColoured_60: -116787304008520714
+      HouseSecondTextureColoured_61: -6259716499012783789
+      HouseSecondTextureColoured_62: -9191307173459809641
+      HouseSecondTextureColoured_63: 6607774895268636773
+      HouseSecondTextureColoured_64: -2629295886144775364
+      HouseSecondTextureColoured_65: -4297099753368888384
+      HouseSecondTextureColoured_66: -1862934407431645438
+      HouseSecondTextureColoured_67: -5778723348339373467
+      HouseSecondTextureColoured_68: 73581042605299235
+      HouseSecondTextureColoured_69: -5686319426122934901
+      HouseSecondTextureColoured_7: 1272198365894605657
+      HouseSecondTextureColoured_70: -2354445663024526511
+      HouseSecondTextureColoured_71: 6833964188587797338
+      HouseSecondTextureColoured_72: -6009331104039144218
+      HouseSecondTextureColoured_73: 8749087134446802906
+      HouseSecondTextureColoured_74: -1241968307407105731
+      HouseSecondTextureColoured_75: 6351670693570180041
+      HouseSecondTextureColoured_76: 1065607967949963202
+      HouseSecondTextureColoured_77: 7304826889051351724
+      HouseSecondTextureColoured_78: 5134028873981173617
+      HouseSecondTextureColoured_79: -8943657372371398186
+      HouseSecondTextureColoured_8: -5473386076703023282
+      HouseSecondTextureColoured_80: 8293605531846142958
+      HouseSecondTextureColoured_81: -7963683325779434838
+      HouseSecondTextureColoured_82: 3712235838890104767
+      HouseSecondTextureColoured_83: -3096624878670579289
+      HouseSecondTextureColoured_84: -371308579473830202
+      HouseSecondTextureColoured_85: -8292992354277441516
+      HouseSecondTextureColoured_86: -6673460951252471671
+      HouseSecondTextureColoured_87: 7767553484912027892
+      HouseSecondTextureColoured_88: -7410081511510279497
+      HouseSecondTextureColoured_89: 4633079724009936568
+      HouseSecondTextureColoured_9: 2021199927326388488
+      HouseSecondTextureColoured_90: 6155657801022234210
+      HouseSecondTextureColoured_91: -4701968091373062432
+      HouseSecondTextureColoured_92: 3917568538716977246
+      HouseSecondTextureColoured_93: 6560757935348109677
+      HouseSecondTextureColoured_94: 2016743297190974663
+      HouseSecondTextureColoured_95: 7130980563327189322
+      HouseSecondTextureColoured_96: 2252534431779687122
+      HouseSecondTextureColoured_97: 642969150928073454
+      HouseSecondTextureColoured_98: 7201444217847808408
+      HouseSecondTextureColoured_99: -88248176726544096
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

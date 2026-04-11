@@ -1,0 +1,1222 @@
+fileFormatVersion: 2
+guid: f376d974cc4b08c4f91da0c98f210351
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -7106882315294799868
+    second: RoofTexture(forHouse)Coloured_0
+  - first:
+      213: 3068268490651928972
+    second: RoofTexture(forHouse)Coloured_1
+  - first:
+      213: 8822008569861536302
+    second: RoofTexture(forHouse)Coloured_2
+  - first:
+      213: -6939632684104338851
+    second: RoofTexture(forHouse)Coloured_3
+  - first:
+      213: 7326455661367975805
+    second: RoofTexture(forHouse)Coloured_4
+  - first:
+      213: -1652221438459219789
+    second: RoofTexture(forHouse)Coloured_5
+  - first:
+      213: 4497417505896242704
+    second: RoofTexture(forHouse)Coloured_6
+  - first:
+      213: 2483386655480213610
+    second: RoofTexture(forHouse)Coloured_7
+  - first:
+      213: 3290577221970798634
+    second: RoofTexture(forHouse)Coloured_8
+  - first:
+      213: 7881556077419165009
+    second: RoofTexture(forHouse)Coloured_9
+  - first:
+      213: -7304322951393711474
+    second: RoofTexture(forHouse)Coloured_10
+  - first:
+      213: 1733551614827271760
+    second: RoofTexture(forHouse)Coloured_11
+  - first:
+      213: 1870526301781443627
+    second: RoofTexture(forHouse)Coloured_12
+  - first:
+      213: -5299586952491132024
+    second: RoofTexture(forHouse)Coloured_13
+  - first:
+      213: 8426391085293467704
+    second: RoofTexture(forHouse)Coloured_14
+  - first:
+      213: 8141393962268641644
+    second: RoofTexture(forHouse)Coloured_15
+  - first:
+      213: -3504026166420361105
+    second: RoofTexture(forHouse)Coloured_16
+  - first:
+      213: 1742119611974838276
+    second: RoofTexture(forHouse)Coloured_17
+  - first:
+      213: 5299420284970720072
+    second: RoofTexture(forHouse)Coloured_18
+  - first:
+      213: -7857025512684016479
+    second: RoofTexture(forHouse)Coloured_19
+  - first:
+      213: 3225063768518205413
+    second: RoofTexture(forHouse)Coloured_20
+  - first:
+      213: -3365057258489921645
+    second: RoofTexture(forHouse)Coloured_21
+  - first:
+      213: 4833688058707557189
+    second: RoofTexture(forHouse)Coloured_22
+  - first:
+      213: 369546591724024104
+    second: RoofTexture(forHouse)Coloured_23
+  - first:
+      213: 1597335440342847207
+    second: RoofTexture(forHouse)Coloured_24
+  - first:
+      213: 4937383533528688794
+    second: RoofTexture(forHouse)Coloured_25
+  - first:
+      213: -9085392256355105593
+    second: RoofTexture(forHouse)Coloured_26
+  - first:
+      213: -2860172255152765546
+    second: RoofTexture(forHouse)Coloured_27
+  - first:
+      213: -1960771121885930552
+    second: RoofTexture(forHouse)Coloured_28
+  - first:
+      213: -3693085683434692006
+    second: RoofTexture(forHouse)Coloured_29
+  - first:
+      213: -4062730678039028375
+    second: RoofTexture(forHouse)Coloured_30
+  - first:
+      213: 8356506076557339014
+    second: RoofTexture(forHouse)Coloured_31
+  - first:
+      213: -689752211910007689
+    second: RoofTexture(forHouse)Coloured_32
+  - first:
+      213: -1730510803193283435
+    second: RoofTexture(forHouse)Coloured_33
+  - first:
+      213: -5152141404671399160
+    second: RoofTexture(forHouse)Coloured_34
+  - first:
+      213: -7631845477186693679
+    second: RoofTexture(forHouse)Coloured_35
+  - first:
+      213: -8134837593171560184
+    second: RoofTexture(forHouse)Coloured_36
+  - first:
+      213: 1859621230355697723
+    second: RoofTexture(forHouse)Coloured_37
+  - first:
+      213: -1246800293842571348
+    second: RoofTexture(forHouse)Coloured_38
+  - first:
+      213: 3486097744121870860
+    second: RoofTexture(forHouse)Coloured_39
+  - first:
+      213: -2005960415101244797
+    second: RoofTexture(forHouse)Coloured_40
+  - first:
+      213: 6611648480752014795
+    second: RoofTexture(forHouse)Coloured_41
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: RoofTexture(forHouse)Coloured_0
+      rect:
+        serializedVersion: 2
+        x: 361
+        y: 2766
+        width: 187
+        height: 206
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 408095820384f5d90800000000000000
+      internalID: -7106882315294799868
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RoofTexture(forHouse)Coloured_1
+      rect:
+        serializedVersion: 2
+        x: 590
+        y: 2771
+        width: 187
+        height: 206
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c8905d49feda49a20800000000000000
+      internalID: 3068268490651928972
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RoofTexture(forHouse)Coloured_2
+      rect:
+        serializedVersion: 2
+        x: 813
+        y: 2936
+        width: 80
+        height: 81
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e2a7c04ad021e6a70800000000000000
+      internalID: 8822008569861536302
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RoofTexture(forHouse)Coloured_3
+      rect:
+        serializedVersion: 2
+        x: 907
+        y: 2728
+        width: 174
+        height: 295
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d52354077d871bf90800000000000000
+      internalID: -6939632684104338851
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RoofTexture(forHouse)Coloured_4
+      rect:
+        serializedVersion: 2
+        x: 1102
+        y: 2728
+        width: 187
+        height: 295
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d7fdc765b9ccca560800000000000000
+      internalID: 7326455661367975805
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RoofTexture(forHouse)Coloured_5
+      rect:
+        serializedVersion: 2
+        x: 1316
+        y: 2720
+        width: 187
+        height: 295
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3b07a560b512219e0800000000000000
+      internalID: -1652221438459219789
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RoofTexture(forHouse)Coloured_6
+      rect:
+        serializedVersion: 2
+        x: 1533
+        y: 2732
+        width: 174
+        height: 295
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 01e919da4690a6e30800000000000000
+      internalID: 4497417505896242704
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RoofTexture(forHouse)Coloured_7
+      rect:
+        serializedVersion: 2
+        x: 1728
+        y: 2937
+        width: 80
+        height: 81
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a60f7df6103c67220800000000000000
+      internalID: 2483386655480213610
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RoofTexture(forHouse)Coloured_8
+      rect:
+        serializedVersion: 2
+        x: 1944
+        y: 1651
+        width: 1099
+        height: 1401
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a28af859c8a7aad20800000000000000
+      internalID: 3290577221970798634
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RoofTexture(forHouse)Coloured_9
+      rect:
+        serializedVersion: 2
+        x: 66
+        y: 2438
+        width: 79
+        height: 81
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 155f3ef7e79e06d60800000000000000
+      internalID: 7881556077419165009
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RoofTexture(forHouse)Coloured_10
+      rect:
+        serializedVersion: 2
+        x: 168
+        y: 2433
+        width: 174
+        height: 294
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e8ae175c9f4d1aa90800000000000000
+      internalID: -7304322951393711474
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RoofTexture(forHouse)Coloured_11
+      rect:
+        serializedVersion: 2
+        x: 371
+        y: 2440
+        width: 187
+        height: 295
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 05695994200de0810800000000000000
+      internalID: 1733551614827271760
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RoofTexture(forHouse)Coloured_12
+      rect:
+        serializedVersion: 2
+        x: 589
+        y: 2440
+        width: 187
+        height: 295
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b2445b0d2c175f910800000000000000
+      internalID: 1870526301781443627
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RoofTexture(forHouse)Coloured_13
+      rect:
+        serializedVersion: 2
+        x: 810
+        y: 2433
+        width: 174
+        height: 295
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 88b9870ceb51476b0800000000000000
+      internalID: -5299586952491132024
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RoofTexture(forHouse)Coloured_14
+      rect:
+        serializedVersion: 2
+        x: 1028
+        y: 2438
+        width: 79
+        height: 81
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8387f611c0e80f470800000000000000
+      internalID: 8426391085293467704
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RoofTexture(forHouse)Coloured_15
+      rect:
+        serializedVersion: 2
+        x: 1099
+        y: 2491
+        width: 187
+        height: 208
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c6948897caa0cf070800000000000000
+      internalID: 8141393962268641644
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RoofTexture(forHouse)Coloured_16
+      rect:
+        serializedVersion: 2
+        x: 1315
+        y: 2494
+        width: 189
+        height: 206
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f6037da44c23f5fc0800000000000000
+      internalID: -3504026166420361105
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RoofTexture(forHouse)Coloured_17
+      rect:
+        serializedVersion: 2
+        x: 29
+        y: 48
+        width: 1981
+        height: 2060
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 40860049e804d2810800000000000000
+      internalID: 1742119611974838276
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RoofTexture(forHouse)Coloured_18
+      rect:
+        serializedVersion: 2
+        x: 2113
+        y: 1145
+        width: 111
+        height: 406
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 84bdd21fba25b8940800000000000000
+      internalID: 5299420284970720072
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RoofTexture(forHouse)Coloured_19
+      rect:
+        serializedVersion: 2
+        x: 2244
+        y: 1145
+        width: 111
+        height: 406
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1aca94dacec36f290800000000000000
+      internalID: -7857025512684016479
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RoofTexture(forHouse)Coloured_20
+      rect:
+        serializedVersion: 2
+        x: 2427
+        y: 534
+        width: 107
+        height: 1060
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5ef928c096ab1cc20800000000000000
+      internalID: 3225063768518205413
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RoofTexture(forHouse)Coloured_21
+      rect:
+        serializedVersion: 2
+        x: 2567
+        y: 537
+        width: 106
+        height: 1050
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 39fbbd2904aec41d0800000000000000
+      internalID: -3365057258489921645
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RoofTexture(forHouse)Coloured_22
+      rect:
+        serializedVersion: 2
+        x: 2733
+        y: 1040
+        width: 142
+        height: 577
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 54bbf4eeda5b41340800000000000000
+      internalID: 4833688058707557189
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RoofTexture(forHouse)Coloured_23
+      rect:
+        serializedVersion: 2
+        x: 2905
+        y: 1032
+        width: 141
+        height: 577
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 821baafcaa4e02500800000000000000
+      internalID: 369546591724024104
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RoofTexture(forHouse)Coloured_24
+      rect:
+        serializedVersion: 2
+        x: 2116
+        y: 675
+        width: 114
+        height: 406
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7ee07c4be10ea2610800000000000000
+      internalID: 1597335440342847207
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RoofTexture(forHouse)Coloured_25
+      rect:
+        serializedVersion: 2
+        x: 2265
+        y: 679
+        width: 111
+        height: 406
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a9827d31a2c158440800000000000000
+      internalID: 4937383533528688794
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RoofTexture(forHouse)Coloured_26
+      rect:
+        serializedVersion: 2
+        x: 2726
+        y: 761
+        width: 63
+        height: 196
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7c48eda11e33ae180800000000000000
+      internalID: -9085392256355105593
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RoofTexture(forHouse)Coloured_27
+      rect:
+        serializedVersion: 2
+        x: 2812
+        y: 765
+        width: 62
+        height: 187
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 695013fdc70ae48d0800000000000000
+      internalID: -2860172255152765546
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RoofTexture(forHouse)Coloured_28
+      rect:
+        serializedVersion: 2
+        x: 2894
+        y: 765
+        width: 62
+        height: 187
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8cb1522ad01f9c4e0800000000000000
+      internalID: -1960771121885930552
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RoofTexture(forHouse)Coloured_29
+      rect:
+        serializedVersion: 2
+        x: 2975
+        y: 763
+        width: 63
+        height: 196
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a526bc143268fbcc0800000000000000
+      internalID: -3693085683434692006
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RoofTexture(forHouse)Coloured_30
+      rect:
+        serializedVersion: 2
+        x: 2734
+        y: 677
+        width: 168
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 96dd66d39f74e97c0800000000000000
+      internalID: -4062730678039028375
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RoofTexture(forHouse)Coloured_31
+      rect:
+        serializedVersion: 2
+        x: 2903
+        y: 677
+        width: 25
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 689e790800648f370800000000000000
+      internalID: 8356506076557339014
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RoofTexture(forHouse)Coloured_32
+      rect:
+        serializedVersion: 2
+        x: 2946
+        y: 673
+        width: 45
+        height: 45
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 774601a84028d66f0800000000000000
+      internalID: -689752211910007689
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RoofTexture(forHouse)Coloured_33
+      rect:
+        serializedVersion: 2
+        x: 3003
+        y: 510
+        width: 25
+        height: 209
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 59c30b7d79dfbf7e0800000000000000
+      internalID: -1730510803193283435
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RoofTexture(forHouse)Coloured_34
+      rect:
+        serializedVersion: 2
+        x: 2033
+        y: 89
+        width: 104
+        height: 122
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 80baafd80baef78b0800000000000000
+      internalID: -5152141404671399160
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RoofTexture(forHouse)Coloured_35
+      rect:
+        serializedVersion: 2
+        x: 2168
+        y: 101
+        width: 104
+        height: 121
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1d59d9749fc361690800000000000000
+      internalID: -7631845477186693679
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RoofTexture(forHouse)Coloured_36
+      rect:
+        serializedVersion: 2
+        x: 2291
+        y: 93
+        width: 104
+        height: 122
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 809f3892f404b1f80800000000000000
+      internalID: -8134837593171560184
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RoofTexture(forHouse)Coloured_37
+      rect:
+        serializedVersion: 2
+        x: 2432
+        y: 89
+        width: 104
+        height: 122
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b30502408a3bec910800000000000000
+      internalID: 1859621230355697723
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RoofTexture(forHouse)Coloured_38
+      rect:
+        serializedVersion: 2
+        x: 2627
+        y: 92
+        width: 87
+        height: 345
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: caf29a31db972bee0800000000000000
+      internalID: -1246800293842571348
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RoofTexture(forHouse)Coloured_39
+      rect:
+        serializedVersion: 2
+        x: 2737
+        y: 88
+        width: 87
+        height: 345
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c0abcaa9d6b116030800000000000000
+      internalID: 3486097744121870860
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RoofTexture(forHouse)Coloured_40
+      rect:
+        serializedVersion: 2
+        x: 2862
+        y: 96
+        width: 78
+        height: 345
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 38a256861a56924e0800000000000000
+      internalID: -2005960415101244797
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RoofTexture(forHouse)Coloured_41
+      rect:
+        serializedVersion: 2
+        x: 2960
+        y: 96
+        width: 78
+        height: 345
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bc599f2634b41cb50800000000000000
+      internalID: 6611648480752014795
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      RoofTexture(forHouse)Coloured_0: -7106882315294799868
+      RoofTexture(forHouse)Coloured_1: 3068268490651928972
+      RoofTexture(forHouse)Coloured_10: -7304322951393711474
+      RoofTexture(forHouse)Coloured_11: 1733551614827271760
+      RoofTexture(forHouse)Coloured_12: 1870526301781443627
+      RoofTexture(forHouse)Coloured_13: -5299586952491132024
+      RoofTexture(forHouse)Coloured_14: 8426391085293467704
+      RoofTexture(forHouse)Coloured_15: 8141393962268641644
+      RoofTexture(forHouse)Coloured_16: -3504026166420361105
+      RoofTexture(forHouse)Coloured_17: 1742119611974838276
+      RoofTexture(forHouse)Coloured_18: 5299420284970720072
+      RoofTexture(forHouse)Coloured_19: -7857025512684016479
+      RoofTexture(forHouse)Coloured_2: 8822008569861536302
+      RoofTexture(forHouse)Coloured_20: 3225063768518205413
+      RoofTexture(forHouse)Coloured_21: -3365057258489921645
+      RoofTexture(forHouse)Coloured_22: 4833688058707557189
+      RoofTexture(forHouse)Coloured_23: 369546591724024104
+      RoofTexture(forHouse)Coloured_24: 1597335440342847207
+      RoofTexture(forHouse)Coloured_25: 4937383533528688794
+      RoofTexture(forHouse)Coloured_26: -9085392256355105593
+      RoofTexture(forHouse)Coloured_27: -2860172255152765546
+      RoofTexture(forHouse)Coloured_28: -1960771121885930552
+      RoofTexture(forHouse)Coloured_29: -3693085683434692006
+      RoofTexture(forHouse)Coloured_3: -6939632684104338851
+      RoofTexture(forHouse)Coloured_30: -4062730678039028375
+      RoofTexture(forHouse)Coloured_31: 8356506076557339014
+      RoofTexture(forHouse)Coloured_32: -689752211910007689
+      RoofTexture(forHouse)Coloured_33: -1730510803193283435
+      RoofTexture(forHouse)Coloured_34: -5152141404671399160
+      RoofTexture(forHouse)Coloured_35: -7631845477186693679
+      RoofTexture(forHouse)Coloured_36: -8134837593171560184
+      RoofTexture(forHouse)Coloured_37: 1859621230355697723
+      RoofTexture(forHouse)Coloured_38: -1246800293842571348
+      RoofTexture(forHouse)Coloured_39: 3486097744121870860
+      RoofTexture(forHouse)Coloured_4: 7326455661367975805
+      RoofTexture(forHouse)Coloured_40: -2005960415101244797
+      RoofTexture(forHouse)Coloured_41: 6611648480752014795
+      RoofTexture(forHouse)Coloured_5: -1652221438459219789
+      RoofTexture(forHouse)Coloured_6: 4497417505896242704
+      RoofTexture(forHouse)Coloured_7: 2483386655480213610
+      RoofTexture(forHouse)Coloured_8: 3290577221970798634
+      RoofTexture(forHouse)Coloured_9: 7881556077419165009
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
