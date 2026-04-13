@@ -10,7 +10,7 @@ namespace SupabaseModels
         [PrimaryKey("id", false)]
         public long Id { get; set; }
 
-        [Column("tittle")]
+        [Column("title")]
         public string Title { get; set; }
 
         [Column("description")]
