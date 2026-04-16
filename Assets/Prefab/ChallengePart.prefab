@@ -1785,7 +1785,7 @@ GameObject:
   - component: {fileID: 5205855321067018035}
   - component: {fileID: 1907538686649801892}
   m_Layer: 5
-  m_Name: Challenges
+  m_Name: ChallengePart
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
