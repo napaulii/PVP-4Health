@@ -1,49 +1,91 @@
-using UnityEngine;
 using SupabaseModels;
+using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using TMPro;
+using UnityEngine;
 
-public class HabitUIManager : MonoBehaviour
+public class HabitManager : MonoBehaviour
 {
     private HabitController _habitController;
+    [SerializeField] private string testEmail = "testuser@gmail.com";
+    [SerializeField] private string testPassword = "password123";
+    [Header("List UI References")]
+    public Transform listContentContainer; // The "Content" object of a Scroll View
+    public GameObject habitItemPrefab;     // The Button Prefab with HabitListItemUI attached[Header("Details View UI References")]
+    public GameObject detailsPanel;        // The popup window for the specific habit
+    public TextMeshProUGUI detailsTitleText;
+    public TextMeshProUGUI detailsDescText;
 
-    // These represent your input fields (using string variables as requested)
-    public string inputFieldTitle = "Run 5km";
-    public string inputFieldDescription = "Morning run in the park";
+    private long _currentlySelectedHabitId; // Remembers which habit we are currently looking at
 
-    void Start()
+    async void Start()
     {
-        // Initialize the controller
+        await SupabaseManager.Instance.Auth.SignIn(testEmail, testPassword);
         _habitController = new HabitController();
+        detailsPanel.SetActive(false); // Hide details panel at start
+        FetchAllHabits();
+    }
+    // 1. FETCH ALL AND SPAWN UI
+    public async void FetchAllHabits()
+    {
+        Debug.Log("Fetching all habits...");
+        List<Habit> allHabits = await _habitController.GetAllHabitsAsync();
+
+        // Clear out the old UI list before spawning new ones
+        foreach (Transform child in listContentContainer)
+        {
+            Destroy(child.gameObject);
+        }
+
+        if (allHabits != null)
+        {
+            foreach (var habit in allHabits)
+            {
+                // Spawn a new button prefab
+                GameObject newObj = Instantiate(habitItemPrefab, listContentContainer);
+
+                // Get the script and pass the data to it
+                HabitListItemUI uiScript = newObj.GetComponent<HabitListItemUI>();
+                uiScript.Setup(habit, this);
+            }
+        }
     }
 
-    // Call this method from your Unity "Submit" Button OnClick event
-    public async void SubmitNewHabit()
+    // 2. OPEN SPECIFIC HABIT (Called by HabitListItemUI)
+    public async void OpenHabitDetails(long habitId)
     {
-        // Basic validation before sending to the controller
-        if (string.IsNullOrEmpty(inputFieldTitle))
+        _currentlySelectedHabitId = habitId; // Save this ID so the Edit/Delete buttons know what to target
+
+        Debug.Log($"Fetching details for habit {habitId}...");
+        Habit habit = await _habitController.GetHabitByIdAsync(habitId);
+
+        if (habit != null)
         {
-            Debug.LogWarning("Title cannot be empty!");
-            return;
+            // Update the UI texts
+            detailsTitleText.text = habit.Title;
+            detailsDescText.text = habit.Description;
+
+            // Show the panel
+            detailsPanel.SetActive(true);
         }
+    }
 
-        Debug.Log("Attempting to create habit...");
+    // 3. ACTIONS ON SELECTED HABIT
+    public void DeleteSelectedHabit()
+    {
+        // Now you don't need parameters from the Unity Button OnClick event!
+        // It uses the ID we saved when the window was opened.
+        DeleteHabit(_currentlySelectedHabitId);
+    }
 
-        // Pass the string variables to the controller
-        Habit createdHabit = await _habitController.CreateHabitAsync(
-            inputFieldTitle,
-            inputFieldDescription
-        );
-
-        if (createdHabit != null)
+    private async void DeleteHabit(long habitId)
+    {
+        bool isDeleted = await _habitController.DeleteHabitAsync(habitId);
+        if (isDeleted)
         {
-            Debug.Log($"Successfully saved to database! Habit ID: {createdHabit.Id}");
-
-            // Clear your input strings/fields here so the user can type a new one
-            inputFieldTitle = "";
-            inputFieldDescription = "";
-        }
-        else
-        {
-            Debug.LogError("Failed to create habit in database.");
+            detailsPanel.SetActive(false); // Close the window
+            FetchAllHabits(); // Refresh the list
         }
     }
 }
