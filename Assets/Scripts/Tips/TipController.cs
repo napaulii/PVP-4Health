@@ -1,6 +1,14 @@
 // TipController.cs
-// Attach this script to the TipController GameObject in your scene.
-// Wire up the references in the Inspector to: TipBanner, TipText, and CloseButton.
+// Attach to the TipController GameObject in your scene.
+// Wire up TipBanner (RectTransform), TipText, and CloseButton in the Inspector.
+//
+// HIERARCHY:
+//   TipSystem        <- enabled
+//     TipDatabase    <- enabled
+//     TipController  <- disable THIS to suppress tips entirely
+//       TipBanner    <- keep enabled (script controls it via position)
+//         TipText    <- enabled
+//         CloseButton<- enabled
 
 using System.Collections;
 using UnityEngine;
@@ -10,43 +18,41 @@ using UnityEngine.UI;
 public class TipController : MonoBehaviour
 {
     [Header("TipSystem References")]
-    public RectTransform tipBanner;        // Drag TipBanner (Panel) here — NOTE: RectTransform, not GameObject
-    public TextMeshProUGUI tipText;        // Drag TipText (TextMeshProUGUI) here
-    public Button closeButton;             // Drag CloseButton here
+    public RectTransform tipBanner;         // Drag TipBanner (Panel) here
+    public TextMeshProUGUI tipText;         // Drag TipText here
+    public Button closeButton;              // Drag CloseButton here
 
     [Header("Animation Settings")]
-    public float animationDuration = 0.4f; // Seconds for slide in/out
-    public float bannerHeight = 200f;      // Match the height of your TipBanner RectTransform
+    public float animationDuration = 0.4f;
+    public float bannerHeight = 200f;       // Must match TipBanner's Height in RectTransform
 
-    // The banner sits anchored to the top of the screen.
-    // Hidden position: fully above the screen (positive Y offset pushes it above anchor).
-    // Shown position: slid down just below the top edge (Y = 0).
-    private Vector2 hiddenPosition;
+    [Header("Push Notification Settings")]
+    [Tooltip("How many seconds after app launch to send the push notification (e.g. 86400 = 24 hours)")]
+  //  public int notificationDelaySeconds = 86400;
+    public int notificationDelaySeconds = 10; // for testing, set to 10 seconds
+
     private Vector2 shownPosition;
-
+    private Vector2 hiddenPosition;
     private Coroutine currentAnimation;
 
     void Start()
     {
-        // In the Inspector, set TipBanner's RectTransform anchors to top-center:
-        //   Anchor Min (0.5, 1), Anchor Max (0.5, 1), Pivot (0.5, 1)
-        // This makes Y=0 sit flush at the top, and positive Y push it above/off-screen.
+        shownPosition = new Vector2(0f, 950);
+        hiddenPosition = new Vector2(0f, 1200f + bannerHeight);
 
-        shownPosition  = new Vector2(0f, 950f);                // Banner's resting position on screen
-        hiddenPosition = new Vector2(0f, 1200f + bannerHeight); // Fully above the top edge
-
-        // Start hidden, off-screen above
         tipBanner.anchoredPosition = hiddenPosition;
-
         closeButton.onClick.AddListener(HideTip);
 
-        // Show a tip as soon as the scene loads
+        // Show in-app banner
         ShowTip();
+
+        // Schedule a push notification for when the user is outside the app
+        SchedulePushNotification();
     }
 
     /// <summary>
-    /// Fetches a random tip from TipDatabase and slides the TipBanner down.
-    /// Call from any other script: FindObjectOfType<TipController>().ShowTip();
+    /// Shows the in-app TipBanner with a slide-down animation.
+    /// Call from any script: FindObjectOfType<TipController>().ShowTip();
     /// </summary>
     public void ShowTip()
     {
@@ -63,7 +69,7 @@ public class TipController : MonoBehaviour
 
     /// <summary>
     /// Slides the TipBanner back up off-screen.
-    /// Automatically called by CloseButton, or call manually: FindObjectOfType<TipController>().HideTip();
+    /// Called by CloseButton, or manually: FindObjectOfType<TipController>().HideTip();
     /// </summary>
     public void HideTip()
     {
@@ -72,8 +78,29 @@ public class TipController : MonoBehaviour
     }
 
     /// <summary>
-    /// Smoothly moves the TipBanner to the target anchored position using an ease-out curve.
+    /// Schedules an Android push notification using a random tip.
+    /// Fires after notificationDelaySeconds (default: 24 hours after app launch).
     /// </summary>
+    private void SchedulePushNotification()
+    {
+        if (NotificationManager.instance == null)
+        {
+            Debug.LogWarning("[TipController] NotificationManager not found in scene. Skipping push notification.");
+            return;
+        }
+
+        string tip = TipDatabase.instance.GetRandomTip();
+
+        if (!string.IsNullOrEmpty(tip))
+        {
+            NotificationManager.instance.ScheduleNotification(
+                title: "Here's your daily tip!",
+                body: tip,
+                secondsFromNow: notificationDelaySeconds
+            );
+        }
+    }
+
     private IEnumerator SlideTo(Vector2 targetPosition)
     {
         Vector2 startPosition = tipBanner.anchoredPosition;
@@ -84,7 +111,7 @@ public class TipController : MonoBehaviour
             elapsed += Time.deltaTime;
             float t = Mathf.Clamp01(elapsed / animationDuration);
 
-            // Ease-out cubic: feels snappy like iOS notifications
+            // Ease-out cubic — snappy like iOS notifications
             float easedT = 1f - Mathf.Pow(1f - t, 3f);
 
             tipBanner.anchoredPosition = Vector2.LerpUnclamped(startPosition, targetPosition, easedT);
