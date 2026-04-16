@@ -7,6 +7,7 @@ public class UIManager : MonoBehaviour
     public GameObject habitsPanel;
     public GameObject achievementsPanel;
     public GameObject challengePanel;
+    public GameObject settingsPanel;
 
     public void OpenShop()
     {
@@ -20,6 +21,7 @@ public class UIManager : MonoBehaviour
         habitsPanel.SetActive(false);
         achievementsPanel.SetActive(false);
         challengePanel.SetActive(false);
+        settingsPanel.SetActive(false);
         homePanel.SetActive(true);
     }
 
@@ -39,5 +41,11 @@ public class UIManager : MonoBehaviour
     {
         homePanel.SetActive(false);
         challengePanel.SetActive(true);
+    }
+
+    public void OpenSettings()
+    {
+        homePanel.SetActive(false);
+        settingsPanel.SetActive(true);
     }
 }
