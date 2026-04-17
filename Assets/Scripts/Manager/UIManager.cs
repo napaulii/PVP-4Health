@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
@@ -8,7 +9,7 @@ public class UIManager : MonoBehaviour
     public GameObject achievementsPanel;
     public GameObject addChallengesPanel;
     public GameObject profilePanel;
-
+        
     public void OpenShop()
     {
         homePanel.SetActive(false);
