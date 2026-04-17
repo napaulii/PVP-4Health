@@ -7,7 +7,8 @@ namespace SupabaseModels
     [Table("User")]
     public class User : BaseModel
     {
-        [PrimaryKey("id", true)]
+        // Changed to false because we provide the UUID from Auth
+        [PrimaryKey("id", false)] 
         public string Id { get; set; }
 
         [Column("nickname")]
@@ -28,7 +29,8 @@ namespace SupabaseModels
         [Column("xp")]
         public int Xp { get; set; }
 
+        // Changed to long? to match BIGINT and allow nulls before joining a group
         [Column("fk_groupid")]
-        public int GroupID { get; set; }
+        public long? GroupID { get; set; } 
     }
 }
