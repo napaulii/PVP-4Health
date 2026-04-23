@@ -10,6 +10,7 @@ using System.Linq;
 public class HabitManager : MonoBehaviour
 {
     private HabitController _habitController;
+    private UserController _userController;
     [SerializeField] private string testEmail = "testuser@game.com";
     [SerializeField] private string testPassword = "password123";
 
@@ -43,18 +44,17 @@ public class HabitManager : MonoBehaviour
 
     async void Start()
     {
-        // 1. IŠKARTO išjungiam visus langus, kad jie netrukdytų starto metu
         detailsPanel.SetActive(false);
         editPanel.SetActive(false);
         createPanel.SetActive(false);
         if (dimBackground != null) dimBackground.SetActive(false);
         SetScrollingEnabled(true);
 
-        // 2. Prisijungimas
         await SupabaseManager.Instance.Auth.SignIn(testEmail, testPassword);
         Debug.Log($"Logged in {SupabaseManager.Instance.Auth.CurrentUser.Id}");
 
         _habitController = new HabitController();
+        _userController = new UserController();
         FetchAllHabits();
     }
 
@@ -72,7 +72,6 @@ public class HabitManager : MonoBehaviour
         Debug.Log("Fetching all habits...");
         List<Habit> allHabits = await _habitController.GetAllHabitsAsync();
 
-        // Išvalymas
         while (listContentContainer.childCount > 0)
         {
             Transform child = listContentContainer.GetChild(0);
@@ -82,8 +81,7 @@ public class HabitManager : MonoBehaviour
 
         if (allHabits != null)
         {
-            // Rūšiavimas C# pusėje (tikslumui)
-            allHabits = allHabits.OrderByDescending(h => h.DateOfCreation).ThenByDescending(h => h.Id).ToList();
+            allHabits = allHabits.OrderByDescending(h => h.Id).ToList();
 
             foreach (var habit in allHabits)
             {
@@ -96,13 +94,12 @@ public class HabitManager : MonoBehaviour
         Canvas.ForceUpdateCanvases();
     }
 
-    // --- CREATE LOGIC ---
     public void OpenCreatePanel()
     {
+        Debug.Log("Opening create panel");
         createTitleInput.text = "";
         createDescInput.text = "";
 
-        // Išjungiam kitus langus, jei atidaryti
         detailsPanel.SetActive(false);
         editPanel.SetActive(false);
 
@@ -120,27 +117,27 @@ public class HabitManager : MonoBehaviour
 
         if (newHabit != null)
         {
-            CloseCreate(); // Naudojame CloseCreate, nes ji sutvarko Dim ir Scroll
+            CloseCreate();
             FetchAllHabits();
         }
     }
 
     public void CloseCreate()
     {
+        Debug.Log("Closing create panel");
         createPanel.SetActive(false);
         if (dimBackground != null) dimBackground.SetActive(false);
         SetScrollingEnabled(true);
     }
 
-    // --- DETAILS LOGIC ---
     public async void OpenHabitDetails(long habitId)
     {
+        Debug.Log("Opening details panel");
         _currentlySelectedHabitId = habitId;
 
-        // UI paruošimas
         SetScrollingEnabled(false);
         if (dimBackground != null) dimBackground.SetActive(true);
-        createPanel.SetActive(false); // Užtikrinam, kad create langas paslėptas
+        createPanel.SetActive(false);
 
         Habit habit = await _habitController.GetHabitByIdAsync(habitId);
 
@@ -157,14 +154,15 @@ public class HabitManager : MonoBehaviour
 
     public void CloseDetails()
     {
+        Debug.Log("Closing details panel");
         detailsPanel.SetActive(false);
         if (dimBackground != null) dimBackground.SetActive(false);
         SetScrollingEnabled(true);
     }
 
-    // --- EDIT LOGIC ---
     public void OpenEditPanel()
     {
+        Debug.Log("Opening edit panel");
         detailsPanel.SetActive(false);
         editTitleInput.text = detailsTitleText.text;
         editDescInput.text = detailsDescText.text;
@@ -176,21 +174,23 @@ public class HabitManager : MonoBehaviour
 
     public async void SaveEdit()
     {
+        Debug.Log("Saving edits");
         await _habitController.UpdateHabitAsync(_currentlySelectedHabitId, editTitleInput.text, editDescInput.text);
         editPanel.SetActive(false);
-        OpenHabitDetails(_currentlySelectedHabitId); // Grįžtam į Details
+        OpenHabitDetails(_currentlySelectedHabitId);
         FetchAllHabits();
     }
 
     public void CloseEdits()
     {
+        Debug.Log("Closing edits");
         editPanel.SetActive(false);
-        detailsPanel.SetActive(true); // Grįžta į Details, tad Dim ir Scroll lieka kaip buvę
+        detailsPanel.SetActive(true);
     }
 
-    // --- DELETE LOGIC ---
     public async void DeleteSelectedHabit()
     {
+        Debug.Log("Deleting selected Habit");
         bool isDeleted = await _habitController.DeleteHabitAsync(_currentlySelectedHabitId);
         if (isDeleted)
         {
@@ -201,9 +201,11 @@ public class HabitManager : MonoBehaviour
         }
     }
 
-    public async void ToggleHabitCompletion(long habitId)
+    public async void ToggleHabitCompletion(long habitID)
     {
-        await _habitController.ToggleCompletionAsync(habitId);
+        Debug.Log("Marking as completed");
+        await _habitController.ToggleCompletionAsync(habitID);
+        await _userController.UpdateUserAsync(10, 10, true);
         FetchAllHabits();
     }
 }

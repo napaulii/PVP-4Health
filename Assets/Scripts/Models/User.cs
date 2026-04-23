@@ -28,6 +28,9 @@ namespace SupabaseModels
         [Column("xp")]
         public int Xp { get; set; }
 
+        [Column("dailyhabitcompletedcount")]
+        public int DailyHabitCompletedCount { get; set; }
+
         [Column("fk_groupid")]
         public int GroupID { get; set; }
     }
