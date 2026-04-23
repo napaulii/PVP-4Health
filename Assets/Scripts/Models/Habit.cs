@@ -30,7 +30,7 @@ namespace SupabaseModels
         public bool IsCompletedToday { get; set; }
 
         [Column("lasttimeupdatedcompletionlist")]
-        public DateTime? LastTimeUpdatedCompletionList { get; set; }
+        public DateTime LastTimeUpdatedCompletionList { get; set; }
 
         [Column("completiondatalist")]
         public List<bool> CompletionDataList { get; set; }

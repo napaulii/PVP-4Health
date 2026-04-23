@@ -77,8 +77,9 @@ public class UserController
     }
 
     // 4. UPDATE
-    public async Task<SupabaseModels.User> UpdateUserAsync(int newBalance, int newXp)
+    public async Task<SupabaseModels.User> UpdateUserAsync(int RewardBalance, int RewardXP, bool IsHabitCompleted)
     {
+        Debug.Log("Updating User");
         try
         {
             var userToUpdate = await GetCurrentUserAsync();
@@ -88,9 +89,20 @@ public class UserController
                 Debug.LogWarning("Cannot update: User not found.");
                 return null;
             }
+            if (IsHabitCompleted)
+            {
+                if (userToUpdate.DailyHabitCompletedCount >= 3)
+                {
+                    userToUpdate.DailyHabitCompletedCount++;
+                    var response1 = await SupabaseManager.Instance.From<SupabaseModels.User>().Update(userToUpdate);
+                    return response1.Models[0];
+                }
+            }
+            userToUpdate.DailyHabitCompletedCount++;
+            userToUpdate.Balance += RewardBalance;
+            userToUpdate.Xp += RewardBalance;
+            
 
-            userToUpdate.Balance = newBalance;
-            userToUpdate.Xp = newXp;
 
             var response = await SupabaseManager.Instance.From<SupabaseModels.User>().Update(userToUpdate);
             return response.Models[0];
