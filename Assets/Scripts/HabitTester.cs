@@ -42,7 +42,7 @@ public class HabitTester : MonoBehaviour
                     Balance = 0,
                     Xp = 0,
                     FirstName = "TEST",
-                    LastName = "TEST"
+                    LastName = "TEST"   
                 };
                 await SupabaseManager.Instance.From<SupabaseModels.User>().Insert(profile);
                 Debug.Log("Game Profile created successfully!");

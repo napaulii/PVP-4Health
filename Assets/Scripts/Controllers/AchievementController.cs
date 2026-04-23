@@ -20,7 +20,6 @@ public class AchievementController
                 XpReward = xpReward,
                 BalanceReward = balanceReward,
                 UserId = currentUserId,
-                Completed = false
             };
 
             var response = await SupabaseManager.Instance.From<Achievement>().Insert(newAchievement);
@@ -71,30 +70,6 @@ public class AchievementController
         catch (Exception e)
         {
             Debug.LogError($"Error fetching achievement by ID: {e.Message}");
-            return null;
-        }
-    }
-
-    public async Task<Achievement> CompleteAchievementAsync(long achievementId)
-    {
-        try
-        {
-            var achievementToUpdate = await GetAchievementByIdAsync(achievementId);
-
-            if (achievementToUpdate == null)
-            {
-                Debug.LogWarning("Cannot complete: Achievement not found.");
-                return null;
-            }
-
-            achievementToUpdate.Completed = true;
-
-            var response = await SupabaseManager.Instance.From<Achievement>().Update(achievementToUpdate);
-            return response.Models[0];
-        }
-        catch (Exception e)
-        {
-            Debug.LogError($"Error completing achievement: {e.Message}");
             return null;
         }
     }

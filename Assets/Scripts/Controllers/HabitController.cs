@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using UnityEngine;
 using SupabaseModels;
+using System.Linq;
 
 public class HabitController
 {
@@ -43,8 +44,17 @@ public class HabitController
             string currentUserId = SupabaseManager.Instance.Auth.CurrentUser.Id;
 
             var response = await SupabaseManager.Instance.From<Habit>()
-                .Where(x => x.UserId == currentUserId)
-                .Get();
+                        .Where(x => x.UserId == currentUserId)
+                        .Order(x => x.Id, Postgrest.Constants.Ordering.Descending)
+                        .Get();
+
+            for(int i = 0; i < response.Models.Count(); i++)
+            {
+                if (response.Models[i].LastTimeUpdatedCompletionList < DateTime.UtcNow.Date)
+                {
+                    response.Models[i].IsCompletedToday = false;
+                }
+            }
 
             return response.Models;
         }
@@ -119,5 +129,21 @@ public class HabitController
             Debug.LogError($"Error deleting habit: {e.Message}");
             return false;
         }
+    }
+    public async Task ToggleCompletionAsync(long habitId)
+    {
+        var habit = await GetHabitByIdAsync(habitId);
+        if (habit == null) return;
+
+        if (!habit.IsCompletedToday)
+        {
+            habit.LastTimeUpdatedCompletionList = DateTime.UtcNow.Date;
+            habit.IsCompletedToday = true;
+            habit.CurrentStreak++;
+            if (habit.CurrentStreak > habit.LongestStreak)
+                habit.LongestStreak = habit.CurrentStreak;
+        }
+
+        await SupabaseManager.Instance.From<Habit>().Update(habit);
     }
 }
