@@ -116,60 +116,71 @@ public class LoginManager : MonoBehaviour
         finishSurveyButton.gameObject.SetActive(currentSurveyPage == surveyPages.Length - 1);
     }
 
-    private async void OnFinishSurveyClicked()
+private async void OnFinishSurveyClicked()
+{
+    SetLoadingState(true);
+    try
     {
-        SetLoadingState(true);
-        UpdateStatus("Finalizing Fortress setup...", Color.cyan);
+        var currentUser = SupabaseManager.Instance.Auth.CurrentUser;
+        if (currentUser == null) throw new Exception("No authenticated user found.");
 
-        try
-        {
-            string userId = SupabaseManager.Instance.Auth.CurrentUser.Id;
-            string email = SupabaseManager.Instance.Auth.CurrentUser.Email;
+        string userId = currentUser.Id;
+        
+        // 1. Create the User Profile FIRST
+        // We leave GroupID null for now to avoid the Foreign Key crash
+        var newProfile = new User {
+            Id = userId, 
+            Email = currentUser.Email,
+            FirstName = firstNameInput.text, 
+            LastName = lastNameInput.text,
+            Nickname = nicknameInput.text,
+            Balance = 0,
+            Xp = 0
+        };
 
-            // 1. Handle Group Assignment
-            long assignedGroupId;
-
-            if (joinExistingToggle.isOn)
-            {
-                if (!long.TryParse(joinGroupIdInput.text, out long targetId))
-                {
-                    UpdateStatus("Invalid Group ID format.", Color.red);
-                    SetLoadingState(false);
-                    return;
-                }
-                assignedGroupId = await JoinSpecifiedGroup(targetId);
-            }
-            else
-            {
-                assignedGroupId = await CreateNewGroup(userId, newGroupNameInput.text);
-            }
-
-            // 2. Create User Profile
-            var newProfile = new User {
-                Id = userId, Email = email,
-                FirstName = firstNameInput.text, LastName = lastNameInput.text,
-                Nickname = nicknameInput.text, GroupID = assignedGroupId
-            };
-            await SupabaseManager.Instance.From<User>().Insert(newProfile);
-
-            // 3. Create First Challenge
-            await CreateInitialChallenge(userId);
-            
-            EnterMainGame();
+        Debug.Log($"Attempting to insert user with ID: {userId}");
+        if (string.IsNullOrEmpty(userId)) {
+            Debug.LogError("UserId is NULL before insertion!");
+            return;
         }
-        catch (Exception ex)
+
+        // CRITICAL: Ensure we use the Return.Representation to confirm the insert worked
+        await SupabaseManager.Instance.From<User>().Insert(newProfile);
+
+        // 2. Now handle the Group creation
+        long assignedGroupId;
+        if (joinExistingToggle.isOn)
         {
-            UpdateStatus(ex.Message, Color.red);
-            SetLoadingState(false);
+            assignedGroupId = await JoinSpecifiedGroup(long.Parse(joinGroupIdInput.text));
         }
+        else
+        {
+            assignedGroupId = await CreateNewGroup(userId, newGroupNameInput.text);
+        }
+
+        // 3. Update the User with the Group ID
+        newProfile.GroupID = assignedGroupId;
+        await SupabaseManager.Instance.From<User>().Update(newProfile);
+
+        await CreateInitialChallenge(userId);
+        EnterMainGame();
     }
+    catch (Exception ex)
+    {
+        Debug.LogError($"Registration Failed: {ex.Message}");
+        UpdateStatus("Error during setup. Check console.", Color.red);
+        SetLoadingState(false);
+    }
+}
 
     private async Task<long> CreateNewGroup(string userId, string title)
     {
         if (string.IsNullOrEmpty(title)) title = "The New Bastion";
 
         var newGroup = new Group { Title = title, UserId = userId };
-        var groupRes = await SupabaseManager.Instance.From<Group>().Insert(newGroup);
+        var groupRes = await SupabaseManager.Instance
+    .From<Group>()
+    .Insert(newGroup, new Postgrest.QueryOptions { Returning = Postgrest.QueryOptions.ReturnType.Representation });
         
         if (groupRes.Models.Count == 0) throw new Exception("Failed to create group.");
         

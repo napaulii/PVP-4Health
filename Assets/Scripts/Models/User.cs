@@ -8,7 +8,10 @@ namespace SupabaseModels
     public class User : BaseModel
     {
         // Changed to false because we provide the UUID from Auth
-        [PrimaryKey("id", false)] 
+        // Adding [Column] alongside [PrimaryKey] is the secret sauce here.
+        // It forces the serializer to treat the ID like a normal data field.
+        [PrimaryKey("id", false)]
+        [Column("id")] 
         public string Id { get; set; }
 
         [Column("nickname")]

@@ -4,7 +4,7 @@ using Postgrest.Models;
 
 namespace SupabaseModels
 {
-    [Table("User_challenge")]
+    [Table("user_challenge")]
     public class UserChallenge : BaseModel
     {
         [PrimaryKey("id", false)]
