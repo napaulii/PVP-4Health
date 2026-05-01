@@ -5,7 +5,7 @@ public class UIManager : MonoBehaviour
 {
     public GameObject homePanel;
     public GameObject shopPanel;
-    public GameObject habitsPanel;
+    //public GameObject habitsPanel;
     public GameObject achievementsPanel;
     public GameObject addChallengesPanel;
     public GameObject profilePanel;
@@ -19,18 +19,18 @@ public class UIManager : MonoBehaviour
     public void OpenHome()
     {
         shopPanel.SetActive(false);
-        habitsPanel.SetActive(false);
+        //habitsPanel.SetActive(false);
         achievementsPanel.SetActive(false);
         addChallengesPanel.SetActive(false);
         profilePanel.SetActive(false);
         homePanel.SetActive(true);
     }
 
-    public void OpenHabits()
+    /*public void OpenHabits()
     {
         homePanel.SetActive(false);
         habitsPanel.SetActive(true);
-    }
+    }*/
 
     public void OpenAchievements()
     {
