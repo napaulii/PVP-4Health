@@ -24,8 +24,6 @@ namespace SupabaseModels
         [Column("fk_userid")]
         public string UserId { get; set; }
 
-        //For UI
-        public bool Unlocked { get; set; }
-        public bool Claimed { get; set; }
+        
     }
 }
