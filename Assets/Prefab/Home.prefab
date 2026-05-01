@@ -171,7 +171,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 353, y: -101}
+  m_AnchoredPosition: {x: 361.96, y: -2038}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &560913841007388646
@@ -805,6 +805,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 5055770675382029781}
     m_Modifications:
+    - target: {fileID: 473916234007837669, guid: 44d0819d613fa8b4989563d4d7d63348, type: 3}
+      propertyPath: m_SortingLayer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 500995743489856417, guid: 44d0819d613fa8b4989563d4d7d63348, type: 3}
       propertyPath: m_Name
       value: Tent
@@ -864,6 +868,14 @@ PrefabInstance:
     - target: {fileID: 4861057397883760231, guid: 44d0819d613fa8b4989563d4d7d63348, type: 3}
       propertyPath: m_LocalScale.x
       value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 6523825652875718526, guid: 44d0819d613fa8b4989563d4d7d63348, type: 3}
+      propertyPath: m_SortingLayer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7603388573795500399, guid: 44d0819d613fa8b4989563d4d7d63348, type: 3}
+      propertyPath: m_SortingLayer
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
