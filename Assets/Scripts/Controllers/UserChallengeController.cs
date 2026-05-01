@@ -3,31 +3,65 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using UnityEngine;
 using SupabaseModels;
+using Postgrest;
+using System.Linq;
 
 public class UserChallengeController
 {
     // 1. CREATE
-    public async Task<UserChallenge> CreateUserChallengeAsync(long challengeId, int timeToComplete)
+    public async Task<UserChallenge> CreateUserChallengeAsync()
     {
         try
         {
             string currentUserId = SupabaseManager.Instance.Auth.CurrentUser.Id;
 
-            var newChallenge = new UserChallenge
+            // 1. Get the list of category IDs the user has selected
+            var userCategoryResponse = await SupabaseManager.Instance
+                .From<UserCategory>()
+                .Where(x => x.UserId == currentUserId)
+                .Get();
+
+            List<long> selectedCategoryIds = userCategoryResponse.Models
+                .Select(x => x.CategoryId)
+                .ToList();
+
+
+            // 2. Fetch challenges that match the user's selected categories
+            // We use the .Filter method to find challenges where fk_categoryid is IN our list
+            var challengeResponse = await SupabaseManager.Instance
+                .From<Challenge>()
+                .Filter("fk_categoryid", Constants.Operator.In, selectedCategoryIds)
+                .Get();
+
+            List<Challenge> availableChallenges = challengeResponse.Models;
+
+            if (availableChallenges.Count == 0)
             {
-                Status = "Active", // Default status
-                Date = DateTime.UtcNow.Date,
-                TimeToComplete = timeToComplete,
+                Debug.LogWarning("No challenges found for the selected categories.");
+                return null;
+            }
+
+            // 3. Pick a random challenge from the list
+            int randomIndex = UnityEngine.Random.Range(0, availableChallenges.Count);
+            Challenge randomChallenge = availableChallenges[randomIndex];
+
+            // 4. Create the new UserChallenge entry
+            var newUserChallenge = new UserChallenge
+            {
                 UserId = currentUserId,
-                ChallengeId = challengeId
+                ChallengeId = randomChallenge.Id,
             };
 
-            var response = await SupabaseManager.Instance.From<UserChallenge>().Insert(newChallenge);
-            return response.Models[0];
+            var insertResponse = await SupabaseManager.Instance
+                .From<UserChallenge>()
+                .Insert(newUserChallenge);
+
+            Debug.Log($"Successfully assigned challenge: {randomChallenge.Description}");
+            return insertResponse.Models[0];
         }
         catch (Exception e)
         {
-            Debug.LogError($"Error creating user challenge: {e.Message}");
+            Debug.LogError($"Error assigning random challenge: {e.Message}");
             return null;
         }
     }

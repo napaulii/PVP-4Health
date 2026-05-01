@@ -31,6 +31,9 @@ namespace SupabaseModels
         [Column("dailyhabitcompletedcount")]
         public int DailyHabitCompletedCount { get; set; }
 
+        [Column("lasttimeupdatedcount")]
+        public DateTime LastTimeUpdatedCount { get; set; }
+
         [Column("fk_groupid")]
         public int GroupID { get; set; }
     }

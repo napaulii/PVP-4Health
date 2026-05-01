@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using UnityEngine;
 using SupabaseModels;
+using System.Linq;
 
 public class UserController
 {
@@ -84,6 +85,11 @@ public class UserController
         {
             var userToUpdate = await GetCurrentUserAsync();
 
+            if (DateTime.UtcNow.Date.Subtract(userToUpdate.LastTimeUpdatedCount).Days >= 1)
+            {
+                userToUpdate.DailyHabitCompletedCount = 0;
+                userToUpdate.LastTimeUpdatedCount = DateTime.UtcNow.Date;
+            }
             if (userToUpdate == null)
             {
                 Debug.LogWarning("Cannot update: User not found.");
