@@ -7,7 +7,11 @@ namespace SupabaseModels
     [Table("User")]
     public class User : BaseModel
     {
-        [PrimaryKey("id", true)]
+        // Changed to false because we provide the UUID from Auth
+        // Adding [Column] alongside [PrimaryKey] is the secret sauce here.
+        // It forces the serializer to treat the ID like a normal data field.
+        [PrimaryKey("id", false)]
+        [Column("id")] 
         public string Id { get; set; }
 
         [Column("nickname")]
@@ -28,10 +32,11 @@ namespace SupabaseModels
         [Column("xp")]
         public int Xp { get; set; }
 
+        // Changed to long? to match BIGINT and allow nulls before joining a group
         [Column("dailyhabitcompletedcount")]
         public int DailyHabitCompletedCount { get; set; }
 
         [Column("fk_groupid")]
-        public int GroupID { get; set; }
+        public long? GroupID { get; set; } 
     }
 }

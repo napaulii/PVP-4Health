@@ -1,159 +1,223 @@
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 using TMPro;
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
-using SupabaseModels; // Ensure this matches your namespace for the User model
+using SupabaseModels; 
+
+// Resolve Ambiguities
+using User = SupabaseModels.User; 
+using Group = SupabaseModels.Group;
+using Fortress = SupabaseModels.Fortress;
+using UserChallenge = SupabaseModels.UserChallenge;
 
 public class LoginManager : MonoBehaviour
 {
-    [Header("Login UI")]
-    [SerializeField] private TMP_InputField loginEmailField;
-    [SerializeField] private TMP_InputField loginPasswordField;
+    [Header("Scenes")]
+    [SerializeField] private string mainGameSceneName = "MainGameScene";
+
+    [Header("Authentication UI")]
+    [SerializeField] private GameObject loginPanel;
+    [SerializeField] private TMP_InputField emailField;
+    [SerializeField] private TMP_InputField passwordField;
     [SerializeField] private Button loginButton;
-
-    [Header("Registration UI")]
-    [SerializeField] private TMP_InputField regEmailField;
-    [SerializeField] private TMP_InputField regPasswordField;
     [SerializeField] private Button registerButton;
-
-    [Header("General UI")]
     [SerializeField] private TMP_Text statusText;
-    [SerializeField] private GameObject loginPanel;   // The whole Login/Register screen
-    [SerializeField] private GameObject SetupPanel;   // The screen to show after success
+
+    [Header("Survey (Onboarding)")]
+    [SerializeField] private GameObject surveyPanel;
+    [SerializeField] private GameObject[] surveyPages;
+    [SerializeField] private Button nextButton;
+    [SerializeField] private Button finishSurveyButton;
+    
+    [Header("Page 1: Profile")]
+    [SerializeField] private TMP_InputField firstNameInput;
+    [SerializeField] private TMP_InputField lastNameInput;
+    [SerializeField] private TMP_InputField nicknameInput;
+
+    [Header("Page 2: Path")]
+    [SerializeField] private TMP_Dropdown pathDropdown;
+
+    [Header("Page 3: Fortress (Multiplayer)")]
+    [SerializeField] private Toggle joinExistingToggle; 
+    [SerializeField] private TMP_InputField joinGroupIdInput; // Input for joining
+    [SerializeField] private TMP_InputField newGroupNameInput; // Input for creating
+
+    private int currentSurveyPage = 0;
 
     private void Start()
     {
-        if (statusText != null) statusText.text = "Welcome!";
-        
-        // Setup Button Listeners
-        loginButton.onClick.AddListener(OnLoginButtonClicked);
-        registerButton.onClick.AddListener(OnRegisterButtonClicked);
+        loginButton.onClick.AddListener(() => OnAuthClicked(false));
+        registerButton.onClick.AddListener(() => OnAuthClicked(true));
+        nextButton.onClick.AddListener(NextSurveyPage);
+        finishSurveyButton.onClick.AddListener(OnFinishSurveyClicked);
 
-        // Ensure UI state
-        if (loginPanel != null) loginPanel.SetActive(true);
-        if (SetupPanel != null) SetupPanel.SetActive(false);
+        loginPanel.SetActive(true);
+        surveyPanel.SetActive(false);
+
+        SetLoadingState(false);
     }
 
-    private async void OnLoginButtonClicked()
+    private async void OnAuthClicked(bool isRegistering)
     {
-        string email = loginEmailField.text.Trim();
-        string password = loginPasswordField.text;
+        string email = emailField.text.Trim();
+        string pass = passwordField.text;
 
-        if (!ValidateInputs(email, password)) return;
+        if (string.IsNullOrEmpty(email) || pass.Length < 6)
+        {
+            UpdateStatus("Invalid credentials.", Color.yellow);
+            return;
+        }
 
         SetLoadingState(true);
-        UpdateStatus("Logging in...", Color.white);
-
         try
         {
-            var session = await SupabaseManager.Instance.Auth.SignIn(email, password);
-            if (session?.User != null)
-            {
-                CompleteAccess();
-            }
+            if (isRegistering) await SupabaseManager.Instance.Auth.SignUp(email, pass);
+            else await SupabaseManager.Instance.Auth.SignIn(email, pass);
+
+            await DirectUserFlow();
         }
         catch (Exception ex)
         {
-            Debug.LogError($"Login Error: {ex.Message}");
-            UpdateStatus($"Login Failed: {ex.Message}", Color.red);
+            UpdateStatus($"Error: {ex.Message}", Color.red);
             SetLoadingState(false);
         }
     }
 
-    public async void OnRegisterButtonClicked()
+    private async Task DirectUserFlow()
     {
-        string email = regEmailField.text.Trim();
-        string password = regPasswordField.text;
+        string userId = SupabaseManager.Instance.Auth.CurrentUser.Id;
+        var userResponse = await SupabaseManager.Instance.From<User>().Where(u => u.Id == userId).Get();
 
-        if (!ValidateInputs(email, password)) return;
-
-        SetLoadingState(true);
-        UpdateStatus("Creating account...", Color.white);
-
-        try
-        {
-            // 1. Sign Up the user in Supabase Auth
-            var session = await SupabaseManager.Instance.Auth.SignUp(email, password);
-
-            if (session?.User != null)
-            {
-                UpdateStatus("Auth created! Setting up profile...", Color.cyan);
-
-                // 2. Create the Game Profile row in the 'public.User' table
-                // Using SupabaseModels.User to avoid conflicts with other 'User' classes
-                var newProfile = new SupabaseModels.User
-                {
-                    Id = session.User.Id,
-                    Email = email,
-                    Nickname = "NewHero", // You could add another input field for this!
-                    Balance = 0,
-                    Xp = 0,
-                    FirstName = "New",
-                    LastName = "User"
-                };
-
-                await SupabaseManager.Instance.From<SupabaseModels.User>().Insert(newProfile);
-                
-                UpdateStatus("Registration Successful!", Color.green);
-                CompleteAccess();
-            }
-        }
-        catch (Exception e)
-        {
-            // Fallback logic: If user exists, try to log them in instead
-            Debug.LogWarning($"Sign up failed, attempting login: {e.Message}");
-            try
-            {
-                await SupabaseManager.Instance.Auth.SignIn(email, password);
-                CompleteAccess();
-            }
-            catch (Exception loginErr)
-            {
-                UpdateStatus($"Error: {loginErr.Message}", Color.red);
-                SetLoadingState(false);
-            }
-        }
+        loginPanel.SetActive(false);
+        if (userResponse.Models.Count == 0) StartSurvey();
+        else EnterMainGame();
     }
 
-    private void CompleteAccess()
+    private void StartSurvey()
     {
-        UpdateStatus("Access Granted!", Color.green);
+        surveyPanel.SetActive(true);
+        currentSurveyPage = 0;
+        UpdateSurveyPageVisibility();
+    }
+
+    private void NextSurveyPage()
+    {
+        currentSurveyPage++;
+        UpdateSurveyPageVisibility();
+    }
+
+    private void UpdateSurveyPageVisibility()
+    {
+        for (int i = 0; i < surveyPages.Length; i++)
+            surveyPages[i].SetActive(i == currentSurveyPage);
         
-        // Hide login UI and show the main app
-        if (loginPanel != null) loginPanel.SetActive(false);
-        if (SetupPanel != null) SetupPanel.SetActive(true);
+        nextButton.gameObject.SetActive(currentSurveyPage < surveyPages.Length - 1);
+        finishSurveyButton.gameObject.SetActive(currentSurveyPage == surveyPages.Length - 1);
+    }
+
+private async void OnFinishSurveyClicked()
+{
+    SetLoadingState(true);
+    try
+    {
+        var currentUser = SupabaseManager.Instance.Auth.CurrentUser;
+        if (currentUser == null) throw new Exception("No authenticated user found.");
+
+        string userId = currentUser.Id;
         
+        // 1. Create the User Profile FIRST
+        // We leave GroupID null for now to avoid the Foreign Key crash
+        var newProfile = new User {
+            Id = userId, 
+            Email = currentUser.Email,
+            FirstName = firstNameInput.text, 
+            LastName = lastNameInput.text,
+            Nickname = nicknameInput.text,
+            Balance = 0,
+            Xp = 0
+        };
+
+        Debug.Log($"Attempting to insert user with ID: {userId}");
+        if (string.IsNullOrEmpty(userId)) {
+            Debug.LogError("UserId is NULL before insertion!");
+            return;
+        }
+
+        // CRITICAL: Ensure we use the Return.Representation to confirm the insert worked
+        await SupabaseManager.Instance.From<User>().Insert(newProfile);
+
+        // 2. Now handle the Group creation
+        long assignedGroupId;
+        if (joinExistingToggle.isOn)
+        {
+            assignedGroupId = await JoinSpecifiedGroup(long.Parse(joinGroupIdInput.text));
+        }
+        else
+        {
+            assignedGroupId = await CreateNewGroup(userId, newGroupNameInput.text);
+        }
+
+        // 3. Update the User with the Group ID
+        newProfile.GroupID = assignedGroupId;
+        await SupabaseManager.Instance.From<User>().Update(newProfile);
+
+        EnterMainGame();
+    }
+    catch (Exception ex)
+    {
+        Debug.LogError($"Registration Failed: {ex.Message}");
+        UpdateStatus("Error during setup. Check console.", Color.red);
         SetLoadingState(false);
     }
+}
 
-    private bool ValidateInputs(string email, string pass)
+    private async Task<long> CreateNewGroup(string userId, string title)
     {
-        if (string.IsNullOrEmpty(email) || string.IsNullOrEmpty(pass))
-        {
-            UpdateStatus("Fields cannot be empty.", Color.yellow);
-            return false;
-        }
-        if (pass.Length < 6)
-        {
-            UpdateStatus("Password too short (min 6).", Color.yellow);
-            return false;
-        }
-        return true;
+        if (string.IsNullOrEmpty(title)) title = "The New Bastion";
+
+        var newGroup = new Group { Title = title, UserId = userId };
+        var groupRes = await SupabaseManager.Instance
+    .From<Group>()
+    .Insert(newGroup, new Postgrest.QueryOptions { Returning = Postgrest.QueryOptions.ReturnType.Representation });
+        
+        if (groupRes.Models.Count == 0) throw new Exception("Failed to create group.");
+        
+        long groupId = groupRes.Models[0].Id;
+
+        var newFortress = new Fortress { State = "Stable", Level = 1, GroupId = groupId };
+        await SupabaseManager.Instance.From<Fortress>().Insert(newFortress);
+
+        return groupId;
     }
+
+    private async Task<long> JoinSpecifiedGroup(long groupId)
+    {
+        // Check if group exists
+        var groupRes = await SupabaseManager.Instance.From<Group>().Where(g => g.Id == groupId).Get();
+        if (groupRes.Models.Count == 0) throw new Exception("Group ID not found.");
+
+        // Check if group is full (max 4)
+        var userCountRes = await SupabaseManager.Instance.From<User>().Where(u => u.GroupID == groupId).Get();
+        if (userCountRes.Models.Count >= 4) throw new Exception("This Fortress is full (4/4).");
+
+        return groupId;
+    }
+
+    private void EnterMainGame() => SceneManager.LoadScene(mainGameSceneName);
 
     private void UpdateStatus(string message, Color color)
     {
-        if (statusText == null) return;
-        statusText.text = message;
-        statusText.color = color;
+        if (statusText) { statusText.text = message; statusText.color = color; }
     }
 
     private void SetLoadingState(bool isLoading)
     {
         loginButton.interactable = !isLoading;
         registerButton.interactable = !isLoading;
-        
-        // Optional: Toggle a loading spinner here
+        if (nextButton) nextButton.interactable = !isLoading;
+        if (finishSurveyButton) finishSurveyButton.interactable = !isLoading;
     }
 }

@@ -1,4 +1,12 @@
 ﻿<Solution>
+  <Project Path="Unity.Notifications.iOS.csproj" />
+  <Project Path="Unity.Notifications.Android.csproj" />
   <Project Path="Nobi.UiRoundedCorners.csproj" />
   <Project Path="Assembly-CSharp.csproj" />
+  <Project Path="Unity.Notifications.csproj" />
+  <Project Path="Unity.Notifications.Unified.csproj" />
+  <Project Path="Unity.Notifications.Tests.csproj" />
+  <Project Path="Unity.iOS.Notifications.Tests.csproj" />
+  <Project Path="Unity.Android.Notifications.Tests.csproj" />
+  <Project Path="Unity.Notifications.Unified.Tests.csproj" />
 </Solution>
