@@ -34,10 +34,6 @@ public class HabitTester : MonoBehaviour
 
             if (session != null && session.User != null)
             {
-                Debug.Log("New user created in Auth! Now creating Game Profile...");
-
-                // IMPORTANT: Since you added the Foreign Key, we MUST create the profile row 
-                // in your 'public.User' table before we can add Habits for them.
                 var profile = new SupabaseModels.User
                 {
                     Id = session.User.Id,
@@ -46,9 +42,8 @@ public class HabitTester : MonoBehaviour
                     Balance = 0,
                     Xp = 0,
                     FirstName = "TEST",
-                    LastName = "TEST"
+                    LastName = "TEST"   
                 };
-
                 await SupabaseManager.Instance.From<SupabaseModels.User>().Insert(profile);
                 Debug.Log("Game Profile created successfully!");
             }
