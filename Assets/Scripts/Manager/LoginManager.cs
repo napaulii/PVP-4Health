@@ -56,6 +56,8 @@ public class LoginManager : MonoBehaviour
 
         loginPanel.SetActive(true);
         surveyPanel.SetActive(false);
+
+        SetLoadingState(false);
     }
 
     private async void OnAuthClicked(bool isRegistering)
@@ -162,7 +164,6 @@ private async void OnFinishSurveyClicked()
         newProfile.GroupID = assignedGroupId;
         await SupabaseManager.Instance.From<User>().Update(newProfile);
 
-        await CreateInitialChallenge(userId);
         EnterMainGame();
     }
     catch (Exception ex)
@@ -203,16 +204,6 @@ private async void OnFinishSurveyClicked()
         if (userCountRes.Models.Count >= 4) throw new Exception("This Fortress is full (4/4).");
 
         return groupId;
-    }
-
-    private async Task CreateInitialChallenge(string userId)
-    {
-        var firstChallenge = new UserChallenge {
-            Status = "Active", Date = DateTime.UtcNow,
-            TimeToComplete = 1440, UserId = userId,
-            ChallengeId = pathDropdown.value + 1 
-        };
-        await SupabaseManager.Instance.From<UserChallenge>().Insert(firstChallenge);
     }
 
     private void EnterMainGame() => SceneManager.LoadScene(mainGameSceneName);
