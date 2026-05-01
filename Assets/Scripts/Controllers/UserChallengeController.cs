@@ -3,27 +3,64 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using UnityEngine;
 using SupabaseModels;
+using Postgrest;
+using System.Linq;
 
 public class UserChallengeController
 {
     // 1. CREATE
     public async Task<UserChallenge> CreateUserChallengeAsync(long challengeId, int timeToComplete)
     {
+        Debug.Log("CreateUserChallengeAsync() invoked");
         try
         {
             string currentUserId = SupabaseManager.Instance.Auth.CurrentUser.Id;
+            Debug.Log("Current user id: " + currentUserId);
+            // 1. Get the list of category IDs the user has selected
+            var userCategoryResponse = await SupabaseManager.Instance
+                .From<UserCategory>()
+                .Where(x => x.UserId == currentUserId)
+                .Get();
 
-            var newChallenge = new UserChallenge
+            List<long> selectedCategoryIds = userCategoryResponse.Models
+                .Select(x => x.CategoryId)
+                .ToList();
+            Debug.Log(selectedCategoryIds.Count);
+            foreach(var cat in selectedCategoryIds)
+                Debug.Log(cat);
+
+            // 2. Fetch challenges that match the user's selected categories
+            // We use the .Filter method to find challenges where fk_categoryid is IN our list
+            var challengeResponse = await SupabaseManager.Instance
+                .From<Challenge>()
+                .Filter("fk_categoryid", Constants.Operator.In, selectedCategoryIds)
+                .Get();
+
+            List<Challenge> availableChallenges = challengeResponse.Models;
+            foreach(var challenge in availableChallenges)
+                Debug.Log(challenge.Description);
+
+            // 3. Pick a random challenge from the list
+            int randomIndex = UnityEngine.Random.Range(0, availableChallenges.Count);
+            Challenge randomChallenge = availableChallenges[randomIndex];
+
+            // 4. Create the new UserChallenge entry
+            var newUserChallenge = new UserChallenge
             {
-                Status = "Active", // Default status
-                Date = DateTime.UtcNow.Date,
-                TimeToComplete = timeToComplete,
                 UserId = currentUserId,
-                ChallengeId = challengeId
+                ChallengeId = randomChallenge.Id,
+                // Manual defaults that match Supabase defaults.
+                Status = "Active",
+                Date = DateTime.UtcNow.Date,
+                TimeToComplete = DateTime.UtcNow.Date.AddDays(1) // Today + 1. 
             };
+            Debug.Log(newUserChallenge.UserId);
+            var insertResponse = await SupabaseManager.Instance
+                .From<UserChallenge>()
+                .Insert(newUserChallenge);
 
-            var response = await SupabaseManager.Instance.From<UserChallenge>().Insert(newChallenge);
-            return response.Models[0];
+            Debug.Log($"Successfully assigned challenge: {randomChallenge.Description}");
+            return insertResponse.Models[0];
         }
         catch (Exception e)
         {
@@ -33,16 +70,25 @@ public class UserChallengeController
     }
 
     // 2. READ ALL (For Current User)
-    public async Task<List<UserChallenge>> GetAllUserChallengesAsync()
+    public async Task<List<UserChallenge>> GetAllUserChallengesAsync() //TODO after we get tools to track data (footsteps, etc.) implement challenge update status to 'Completed'
     {
         try
         {
+            Debug.Log("Fetching challenges");
             string currentUserId = SupabaseManager.Instance.Auth.CurrentUser.Id;
 
             var response = await SupabaseManager.Instance.From<UserChallenge>()
                 .Where(x => x.UserId == currentUserId)
                 .Get();
-
+            for(int i = 0; i < response.Models.Count; i++)
+            {
+                bool isExpired = response.Models[i].TimeToComplete <= DateTime.UtcNow.Date;
+                bool isActive = response.Models[i].Status == "Active";
+                if (isExpired && isActive)
+                {
+                    response.Models[i] = await UpdateUserChallengeStatusAsync(response.Models[i].Id, "Failed");
+                }
+            }
             return response.Models;
         }
         catch (Exception e)
@@ -77,26 +123,14 @@ public class UserChallengeController
     // 4. UPDATE
     public async Task<UserChallenge> UpdateUserChallengeStatusAsync(long userChallengeId, string newStatus)
     {
-        try
-        {
-            var challengeToUpdate = await GetUserChallengeByIdAsync(userChallengeId);
+        var challengeToUpdate = await GetUserChallengeByIdAsync(userChallengeId);
 
-            if (challengeToUpdate == null)
-            {
-                Debug.LogWarning("Cannot update: User challenge not found.");
-                return null;
-            }
+        if (challengeToUpdate == null) return null;
 
-            challengeToUpdate.Status = newStatus;
+        challengeToUpdate.Status = newStatus;
 
-            var response = await SupabaseManager.Instance.From<UserChallenge>().Update(challengeToUpdate);
-            return response.Models[0];
-        }
-        catch (Exception e)
-        {
-            Debug.LogError($"Error updating user challenge: {e.Message}");
-            return null;
-        }
+        var response = await SupabaseManager.Instance.From<UserChallenge>().Update(challengeToUpdate);
+        return response.Models[0];
     }
 
     // 5. DELETE
