@@ -34,8 +34,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -30.860004, y: 1.289917}
-  m_SizeDelta: {x: 225.71, y: 65.43}
+  m_AnchoredPosition: {x: -86, y: 0.000020027}
+  m_SizeDelta: {x: 809, y: 156.46}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &864169979745599110
 CanvasRenderer:
@@ -65,7 +65,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 
+  m_text: Complete your first Challenge
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 631e7952fa0d08d45a19870611e97938, type: 2}
   m_sharedMaterial: {fileID: 4984147079574704273, guid: 631e7952fa0d08d45a19870611e97938, type: 2}
@@ -74,8 +74,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4287006342
-  m_fontColor: {r: 0.5254902, g: 0.5254902, b: 0.5254902, a: 1}
+    rgba: 4278190080
+  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -92,8 +92,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 16
-  m_fontSizeBase: 16
+  m_fontSize: 45
+  m_fontSizeBase: 45
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -149,6 +149,8 @@ GameObject:
   - component: {fileID: 7212389562318988951}
   - component: {fileID: 6728794637831549721}
   - component: {fileID: 5926608601258649937}
+  - component: {fileID: 3062271461501673708}
+  - component: {fileID: 7401507037010749007}
   m_Layer: 5
   m_Name: Achievement
   m_TagString: Untagged
@@ -163,17 +165,17 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1985364300169109003}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.1930043, y: 1, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2880851640195490690}
   - {fileID: 6954401441432277756}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMin: {x: 0.5, y: 1}
+  m_AnchorMax: {x: 0.5, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 300, y: 80}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -198,7 +200,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 0.85098046, g: 0.85098046, b: 0.85098046, a: 1}
+  m_Color: {r: 0.745283, g: 0.745283, b: 0.745283, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -227,8 +229,48 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: adb30198aa32dd140b5750692dd48104, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Nobi.UiRoundedCorners::Nobi.UiRoundedCorners.ImageWithRoundedCorners
-  radius: 10
+  radius: 30
   image: {fileID: 6728794637831549721}
+--- !u!114 &3062271461501673708
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1985364300169109003}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d4e91a0ccad62241b2781827a6ac325, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  coinReward: 100
+  xpReward: 50
+  achievText: {fileID: 7888920053932512483}
+  claimButton: {fileID: 1596023155812343937}
+  backgroundImage: {fileID: 6728794637831549721}
+  claimedBackgroundColor: {r: 0.75, g: 0.75, b: 0.75, a: 1}
+  claimedTextColor: {r: 0.4056604, g: 0.4056604, b: 0.4056604, a: 1}
+  claimedButtonSprite: {fileID: -1509030948953389623, guid: e3287da7335f87d4da8332abfc62eda9, type: 3}
+--- !u!114 &7401507037010749007
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1985364300169109003}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 306cc8c2b49d7114eaa3623786fc2126, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.LayoutElement
+  m_IgnoreLayout: 0
+  m_MinWidth: -1
+  m_MinHeight: -1
+  m_PreferredWidth: 1000
+  m_PreferredHeight: 200
+  m_FlexibleWidth: -1
+  m_FlexibleHeight: -1
+  m_LayoutPriority: 1
 --- !u!1 &2174816832041251823
 GameObject:
   m_ObjectHideFlags: 0
@@ -264,8 +306,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 110.02, y: -0.000045776367}
-  m_SizeDelta: {x: 42, y: 32}
+  m_AnchoredPosition: {x: 407, y: 0}
+  m_SizeDelta: {x: 141.37, y: 130.33}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4345610594183867682
 CanvasRenderer:
@@ -295,7 +337,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -1509030948953389623, guid: e3287da7335f87d4da8332abfc62eda9, type: 3}
+  m_Sprite: {fileID: -3620965051900288761, guid: 550c2b1907c8beb49a25bea146401776, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
