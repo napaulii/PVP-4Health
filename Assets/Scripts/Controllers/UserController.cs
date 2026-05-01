@@ -101,7 +101,7 @@ public class UserController
             userToUpdate.DailyHabitCompletedCount++;
             userToUpdate.Balance += RewardBalance;
             userToUpdate.Xp += RewardBalance;
-            
+
 
 
             var response = await SupabaseManager.Instance.From<SupabaseModels.User>().Update(userToUpdate);

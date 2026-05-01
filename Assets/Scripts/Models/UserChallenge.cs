@@ -14,10 +14,10 @@ namespace SupabaseModels
         public string Status { get; set; }
 
         [Column("date")]
-        public DateTime Date { get; set; }
+        public DateTime? Date { get; set; }
 
         [Column("timetocomplete")]
-        public int TimeToComplete { get; set; }
+        public DateTime? TimeToComplete { get; set; }
 
         [Column("fk_userid")]
         public string UserId { get; set; }
@@ -27,5 +27,5 @@ namespace SupabaseModels
 
         [Reference(typeof(Challenge))]
         public Challenge Challenge { get; set; }
-    }
+    }   
 }
