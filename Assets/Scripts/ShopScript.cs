@@ -74,13 +74,13 @@ public class ShopScript : MonoBehaviour
         }
     }
 
-    private void OnBuyClicked(Item.ItemType itemType, int cost, Button button)
+    private async void OnBuyClicked(Item.ItemType itemType, int cost, Button button)
     {
         if (Item.IsOwned(itemType)) return;
 
-        if (CoinManager.Instance == null || !CoinManager.Instance.TrySpend(cost))
+    if (CoinManager.Instance == null || !(await CoinManager.Instance.TrySpend(cost)))
         {
-            Debug.Log("Not enough coins!");
+            Debug.Log("Not enough coins (or DB error)!");
             return;
         }
 
