@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using UnityEngine;
 using SupabaseModels;
+using System.Linq;
 
 public class HabitController
 {
@@ -41,10 +42,9 @@ public class HabitController
         try
         {
             string currentUserId = SupabaseManager.Instance.Auth.CurrentUser.Id;
-
             var response = await SupabaseManager.Instance.From<Habit>()
-                .Where(x => x.UserId == currentUserId)
-                .Get();
+                        .Where(x => x.UserId == currentUserId)
+                        .Get();
 
             return response.Models;
         }
@@ -118,6 +118,37 @@ public class HabitController
         {
             Debug.LogError($"Error deleting habit: {e.Message}");
             return false;
+        }
+    }
+    /// <summary>
+    /// Marks Habit as completed, updates completion history based on missed days, updates streak counts
+    /// </summary>
+    /// <param name="habitId"></param>
+    /// <returns></returns>
+    public async Task ToggleCompletionAsync(long habitId)
+    {
+        var habit = await GetHabitByIdAsync(habitId);
+        if (habit == null) return;
+
+        if (!habit.IsCompletedToday)
+        {   
+            if(habit.CompletionDataList.Count == 0)
+            {
+            }
+            else
+            {
+                TimeSpan dateDifference = DateTime.UtcNow.Date.Subtract(habit.LastTimeUpdatedCompletionList);
+                int missedDayCount = dateDifference.Days;
+                for(int i = 0; i < missedDayCount - 1; i++) 
+                    habit.CompletionDataList.Add(false);
+            }
+            habit.CompletionDataList.Add(true);
+            habit.LastTimeUpdatedCompletionList = DateTime.UtcNow.Date;
+            habit.IsCompletedToday = true;
+            habit.CurrentStreak++;
+            if (habit.CurrentStreak > habit.LongestStreak)
+                habit.LongestStreak = habit.CurrentStreak;
+            await SupabaseManager.Instance.From<Habit>().Update(habit);
         }
     }
 }

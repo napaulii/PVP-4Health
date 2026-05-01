@@ -33,6 +33,9 @@ namespace SupabaseModels
         public int Xp { get; set; }
 
         // Changed to long? to match BIGINT and allow nulls before joining a group
+        [Column("dailyhabitcompletedcount")]
+        public int DailyHabitCompletedCount { get; set; }
+
         [Column("fk_groupid")]
         public long? GroupID { get; set; } 
     }

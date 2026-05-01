@@ -25,7 +25,5 @@ namespace SupabaseModels
         [Column("fk_userid")]
         public string UserId { get; set; }
 
-        [Column("completed")]
-        public bool Completed { get; set; }
     }
 }

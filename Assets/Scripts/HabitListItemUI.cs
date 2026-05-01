@@ -11,17 +11,54 @@ public class HabitListItemUI : MonoBehaviour
     private long _myHabitId;
     private HabitManager _manager;
 
-    // This is called by the Manager when it spawns the button
+    public Button completeButton;
+    public Image completeButtonIcon; // To change color/icon when clicked
+
     public void Setup(Habit habitData, HabitManager manager)
     {
+        Image myImage = GetComponent<Image>();
+        if (myImage != null)
+        {
+            myImage.enabled = true;
+        }
+
+        if (itemButton != null)
+        {
+            itemButton.enabled = true;
+        }
+        if (titleText != null)
+        {
+            titleText.gameObject.SetActive(true);
+            titleText.enabled = true;
+        }
+        if (completeButton != null)
+        {
+            completeButton.gameObject.SetActive(true);
+            completeButton.enabled = true;
+        }
+        if (completeButtonIcon != null)
+        {
+            completeButtonIcon.enabled = true;
+        }
+
         _myHabitId = habitData.Id;
         _manager = manager;
-
         titleText.text = habitData.Title;
 
-        // Make the button click call the manager and pass its specific ID
+        // Item click (Background)
         itemButton.onClick.RemoveAllListeners();
         itemButton.onClick.AddListener(OnItemClicked);
+
+        // Completion click
+        completeButton.onClick.RemoveAllListeners();
+        completeButton.onClick.AddListener(OnCompleteClicked);
+
+        // Visual feedback if already done today
+        completeButtonIcon.color = habitData.IsCompletedToday ? Color.green : Color.white;
+    }
+    private void OnCompleteClicked()
+    {
+        _manager.ToggleHabitCompletion(_myHabitId);
     }
 
     private void OnItemClicked()
