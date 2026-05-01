@@ -10,9 +10,8 @@ namespace SupabaseModels
         [PrimaryKey("id", false)]
         public long Id { get; set; }
 
-        [Column("title")]
+        [Column("tittle")]
         public string Title { get; set; }
-
         [Column("text")]
         public string Text { get; set; }
 
@@ -25,5 +24,6 @@ namespace SupabaseModels
         [Column("fk_userid")]
         public string UserId { get; set; }
 
+        
     }
 }
