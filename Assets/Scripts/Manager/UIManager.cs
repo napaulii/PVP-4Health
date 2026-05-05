@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
@@ -20,11 +21,17 @@ public class UIManager : MonoBehaviour
     {
         shopPanel.SetActive(false);
         achievementsPanel.SetActive(false);
-        addChallengesPanel.SetActive(false);
+        addChallengesPanel.SetActive(true);
         profilePanel.SetActive(false);
         settingsPanel.SetActive(false);
         homePanel.SetActive(true);
     }
+
+    public void OpenHabit()
+    {
+        SceneManager.LoadScene("Habit");
+    }
+
 
     public void OpenAchievements()
     {
