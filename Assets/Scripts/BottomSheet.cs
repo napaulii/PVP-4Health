@@ -9,8 +9,10 @@ public class BottomSheet : MonoBehaviour, IDragHandler, IEndDragHandler
     [SerializeField] private float peekAmount = 150f;
     [SerializeField] private float topPadding = 60f;
 
-    private float minY; // mostly hidden, only peek visible
-    private float maxY; // fully open, fills screen
+    private float minY;
+    private float maxY;
+
+    public System.Action<float> OnSheetMoved; // 0 = closed, 1 = fully open
 
     void Start()
     {
@@ -18,15 +20,9 @@ public class BottomSheet : MonoBehaviour, IDragHandler, IEndDragHandler
         canvas = GetComponentInParent<Canvas>();
 
         float canvasHeight = canvas.GetComponent<RectTransform>().rect.height;
-
-        // Make sheet exactly as tall as the canvas
         rect.sizeDelta = new Vector2(rect.sizeDelta.x, canvasHeight);
 
-        // Closed = sheet bottom sits just above screen bottom by peekAmount
-        // Since pivot is Y=0, negative Y pushes it below screen
         minY = -(canvasHeight - peekAmount);
-
-        // Open = sheet bottom at screen bottom (y=0), fills full screen
         maxY = topPadding;
 
         rect.anchoredPosition = new Vector2(0, minY);
@@ -37,6 +33,7 @@ public class BottomSheet : MonoBehaviour, IDragHandler, IEndDragHandler
         Vector2 delta = eventData.delta / canvas.scaleFactor;
         float newY = Mathf.Clamp(rect.anchoredPosition.y + delta.y, minY, maxY);
         rect.anchoredPosition = new Vector2(0, newY);
+        OnSheetMoved?.Invoke(GetNormalized());
     }
 
     public void OnEndDrag(PointerEventData eventData)
@@ -53,18 +50,27 @@ public class BottomSheet : MonoBehaviour, IDragHandler, IEndDragHandler
         StartCoroutine(AnimateTo(targetY));
     }
 
+    private float GetNormalized()
+    {
+        return Mathf.InverseLerp(minY, maxY, rect.anchoredPosition.y);
+    }
+
     System.Collections.IEnumerator AnimateTo(float targetY)
     {
         float duration = 0.3f;
         float elapsed = 0f;
         float startY = rect.anchoredPosition.y;
+
         while (elapsed < duration)
         {
             elapsed += Time.deltaTime;
             float t = 1f - Mathf.Pow(1f - elapsed / duration, 3f);
             rect.anchoredPosition = new Vector2(0, Mathf.Lerp(startY, targetY, t));
+            OnSheetMoved?.Invoke(GetNormalized());
             yield return null;
         }
+
         rect.anchoredPosition = new Vector2(0, targetY);
+        OnSheetMoved?.Invoke(GetNormalized());
     }
 }
