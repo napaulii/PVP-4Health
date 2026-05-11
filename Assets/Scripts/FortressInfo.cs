@@ -16,7 +16,7 @@ public class FortressInfo : MonoBehaviour
     {
         if (groupInfoText == null)
         {
-            Debug.LogError("Fortress Info: TextMeshPro reference is missing!");
+            //Debug.LogError("Fortress Info: TextMeshPro reference is missing!");
             return;
         }
 

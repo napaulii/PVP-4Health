@@ -9,10 +9,10 @@ using System.Linq;
 
 public class HabitManager : MonoBehaviour
 {
+    string userId = SupabaseManager.Instance.Auth.CurrentUser.Id;
     private HabitController _habitController;
     private UserController _userController;
-    [SerializeField] private string testEmail = "testuser@game.com";
-    [SerializeField] private string testPassword = "password123";
+
 
     [Header("List UI References")]
     public Transform listContentContainer;
@@ -50,7 +50,6 @@ public class HabitManager : MonoBehaviour
         if (dimBackground != null) dimBackground.SetActive(false);
         SetScrollingEnabled(true);
 
-        await SupabaseManager.Instance.Auth.SignIn(testEmail, testPassword);
         Debug.Log($"Logged in {SupabaseManager.Instance.Auth.CurrentUser.Id}");
 
         _habitController = new HabitController();

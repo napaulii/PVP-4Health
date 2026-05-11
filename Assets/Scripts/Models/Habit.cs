@@ -16,9 +16,13 @@ namespace SupabaseModels
 
         [Column("description")]
         public string Description { get; set; }
-
+        private DateTime _dateOfCreation;
         [Column("dateofcreation")]
-        public DateTime DateOfCreation { get; set; }
+        public DateTime DateOfCreation
+        {
+            get => _dateOfCreation;
+            set => _dateOfCreation = DateTime.SpecifyKind(value, DateTimeKind.Utc);
+        }
 
         [Column("longeststreak")]
         public int LongestStreak { get; set; }
@@ -29,8 +33,14 @@ namespace SupabaseModels
         [Column("iscompletedtoday")]
         public bool IsCompletedToday { get; set; }
 
+        private DateTime _lastUpdate;
         [Column("lasttimeupdatedcompletionlist")]
-        public DateTime LastTimeUpdatedCompletionList { get; set; }
+        public DateTime LastTimeUpdatedCompletionList
+        {
+            get => _lastUpdate;
+            set => _lastUpdate = DateTime.SpecifyKind(value, DateTimeKind.Utc);
+        }
+
 
         [Column("completiondatalist")]
         public List<bool> CompletionDataList { get; set; }

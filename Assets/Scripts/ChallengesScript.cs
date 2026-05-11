@@ -73,7 +73,7 @@ public class ChallengesScript : MonoBehaviour
         {
             bool done = uc.Status == "completed";
             personalCompleted[uc.Id] = done;
-            string desc = uc.Challenge?.Description ?? $"Challenge {uc.ChallengeId}";
+            string desc = uc.ChallengeData?.Description ?? $"Challenge {uc.ChallengeId}";
             SpawnRow(personalContainer, personalRowTemplate, desc, done, () => OnPersonalCheckClicked(uc));
         }
 
@@ -128,9 +128,9 @@ public class ChallengesScript : MonoBehaviour
         RefreshStatusLabel();
 
         // 1. Give Coins (if CoinManager exists)
-        if (uc.Challenge != null && CoinManager.Instance != null)
+        if (uc.ChallengeData != null && CoinManager.Instance != null)
         {
-            CoinManager.Instance.AddCoins(uc.Challenge.BalanceReward);
+            CoinManager.Instance.AddCoins(uc.ChallengeData.BalanceReward);
         }
 
         // 2. Tell Supabase using our new Controller!
