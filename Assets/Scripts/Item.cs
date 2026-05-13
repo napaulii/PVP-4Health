@@ -11,8 +11,9 @@ public class Item
         Tree3,
         Bush1,
         Bush2,
-        Bush3,
         Statue1,
+        Statue2,
+        Fountain1,
         Theme1
        
     }
@@ -26,8 +27,9 @@ public class Item
             case ItemType.Tree3: return 300;
             case ItemType.Bush1: return 200;
             case ItemType.Bush2: return 200;
-            case ItemType.Bush3: return 200;
             case ItemType.Statue1: return 500;
+            case ItemType.Statue2: return 500;
+            case ItemType.Fountain1: return 500;
             case ItemType.Theme1: return 1000;
             default: return 100;
         }
