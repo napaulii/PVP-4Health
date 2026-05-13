@@ -16,7 +16,7 @@ public class GroupController
             var newGroup = new Group
             {
                 Title = title,
-                UserId = currentUserId // The creator of the group
+                AdminId = currentUserId // The creator of the group
             };
 
             var response = await SupabaseManager.Instance.From<Group>().Insert(newGroup);

@@ -15,6 +15,6 @@ namespace SupabaseModels
 
 
         [Column("fk_userid")]
-        public string UserId { get; set; }
+        public string AdminId { get; set; }
     }
 }
