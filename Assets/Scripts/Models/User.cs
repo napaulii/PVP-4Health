@@ -36,6 +36,15 @@ namespace SupabaseModels
         [Column("dailyhabitcompletedcount")]
         public int DailyHabitCompletedCount { get; set; }
 
+        private DateTime _lastUpdate;
+        [Column("lasttimeupdatedcount")]
+        public DateTime LastTimeUpdatedCount
+        {
+            get => _lastUpdate;
+            set => _lastUpdate = DateTime.SpecifyKind(value, DateTimeKind.Utc);
+        }
+
+
         [Column("fk_groupid")]
         public long? GroupID { get; set; } 
     }

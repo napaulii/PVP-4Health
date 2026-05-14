@@ -257,7 +257,7 @@ private async void OnFinishSurveyClicked()
             title = "The New Bastion";
         }
 
-        var newGroup = new Group { Title = title, AdminId = userId };
+        var newGroup = new Group { Title = title, UserId = userId };
         Debug.Log($"LoginManager: Inserting new Group '{title}' for user {userId}.");
         try
         {
