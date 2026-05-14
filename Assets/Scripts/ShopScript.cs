@@ -8,6 +8,12 @@ public class ShopScript : MonoBehaviour
     [SerializeField] private Sprite[] itemSprites;
     [SerializeField] private TextMeshProUGUI coinText;
 
+    [Header("References")]
+    [SerializeField] private GridSystem gridSystem;
+    [SerializeField] private GameObject shopPanel;
+    [SerializeField] private GameObject HomePanel;
+    [SerializeField] private GameObject HomeBottomPanel;
+
     private Transform container;
     private Transform itemTemplate;
 
@@ -18,8 +24,9 @@ public class ShopScript : MonoBehaviour
         Item.ItemType.Tree3,
         Item.ItemType.Bush1,
         Item.ItemType.Bush2,
-        Item.ItemType.Bush3,
         Item.ItemType.Statue1,
+        Item.ItemType.Statue2,
+        Item.ItemType.Fountain1,
         Item.ItemType.Theme1,
     };
 
@@ -27,7 +34,7 @@ public class ShopScript : MonoBehaviour
     {
         Item.ResetAll();
 
-        container = transform.Find("Container");
+        container = transform.Find("Scroll View/Viewport/Container");
         itemTemplate = container.Find("Item");
         itemTemplate.gameObject.SetActive(false);
     }
@@ -78,7 +85,7 @@ public class ShopScript : MonoBehaviour
     {
         if (Item.IsOwned(itemType)) return;
 
-    if (CoinManager.Instance == null || !(await CoinManager.Instance.TrySpend(cost)))
+        if (CoinManager.Instance == null || !(await CoinManager.Instance.TrySpend(cost)))
         {
             Debug.Log("Not enough coins (or DB error)!");
             return;
@@ -88,6 +95,12 @@ public class ShopScript : MonoBehaviour
         Debug.Log($"Purchased {itemType} for {cost} coins.");
         SetButtonOwned(button, true);
         UpdateCoinDisplay();
+
+        
+        shopPanel.SetActive(false);
+        HomePanel.SetActive(true);
+        HomeBottomPanel.SetActive(true);
+        gridSystem.StartPlacement(itemType);
     }
 
     private void SetButtonOwned(Button button, bool owned)

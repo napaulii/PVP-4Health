@@ -8,6 +8,7 @@ public class BottomSheet : MonoBehaviour, IDragHandler, IEndDragHandler
 
     [SerializeField] private float peekAmount = 150f;
     [SerializeField] private float topPadding = 60f;
+    [SerializeField] private RectTransform islandZone;
 
     private float minY;
     private float maxY;
@@ -26,6 +27,15 @@ public class BottomSheet : MonoBehaviour, IDragHandler, IEndDragHandler
         maxY = topPadding;
 
         rect.anchoredPosition = new Vector2(0, minY);
+    }
+
+    public bool IsRaycastLocationValid(Vector2 screenPoint, Camera eventCamera)
+    {
+        if (islandZone == null) return true;
+
+        // Returns false = ignore raycast = touch passes through to 3D physics
+        return !RectTransformUtility.RectangleContainsScreenPoint(
+            islandZone, screenPoint, eventCamera);
     }
 
     public void OnDrag(PointerEventData eventData)
