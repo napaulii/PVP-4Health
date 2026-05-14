@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: b97b427a9a6545d49b83b0e6acefe8af
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - fortress: {instanceID: 0}
+  - gridPlane: {fileID: 1151388028547126963, guid: a43bfe8f3ad84114283b6360d9a2153e, type: 3}
+  - islandCamera: {instanceID: 0}
+  - ghostMaterial: {fileID: 2100000, guid: 9031012ec3697a1428037744f74c2a65, type: 2}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
