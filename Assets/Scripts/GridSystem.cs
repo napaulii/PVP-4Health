@@ -40,7 +40,7 @@ public class GridSystem : MonoBehaviour
 
     private void Update()
     {
-        if (!isPlacementMode) return; 
+        if (!isPlacementMode) return;
         UpdateGhostPosition();
         HandlePlacementInput();
     }
@@ -126,7 +126,7 @@ public class GridSystem : MonoBehaviour
             placed.transform.localScale = Vector3.one * objectScale;
             placed.transform.SetParent(fortress);
             occupiedPositions.Add(pos);
-            StopPlacement(); 
+            StopPlacement();
         }
     }
 
