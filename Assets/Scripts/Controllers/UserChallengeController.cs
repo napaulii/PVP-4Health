@@ -70,20 +70,27 @@ public class UserChallengeController
     }
 
     // 2. READ ALL (For Current User)
-    public async Task<List<UserChallenge>> GetAllUserChallengesAsync() //TODO after we get tools to track data (footsteps, etc.) implement challenge update status to 'Completed'
+    public async Task<List<UserChallenge>> GetAllUserChallengesAsync()
     {
         try
         {
-            Debug.Log("Fetching challenges");
+            Debug.Log("Fetching challenges for current user...");
             string currentUserId = SupabaseManager.Instance.Auth.CurrentUser.Id;
 
+            // --- THE FIX IS HERE ---
+            // We add .Select("*, Challenge(*)") to pull the template data too
             var response = await SupabaseManager.Instance.From<UserChallenge>()
+                .Select("*, ChallengeData:fk_challengeid(*)")
                 .Where(x => x.UserId == currentUserId)
                 .Get();
-            for(int i = 0; i < response.Models.Count; i++)
+            // -----------------------
+
+            for (int i = 0; i < response.Models.Count; i++)
             {
+                // Logic to check expiration
                 bool isExpired = response.Models[i].TimeToComplete <= DateTime.UtcNow.Date;
                 bool isActive = response.Models[i].Status == "Active";
+
                 if (isExpired && isActive)
                 {
                     response.Models[i] = await UpdateUserChallengeStatusAsync(response.Models[i].Id, "Failed");

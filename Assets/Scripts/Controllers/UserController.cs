@@ -65,6 +65,13 @@ public class UserController
 
             if (response.Models.Count > 0)
             {
+                if (response.Models[0].LastTimeUpdatedCount.Date < DateTime.UtcNow.Date)
+                {
+                    response.Models[0].DailyHabitCompletedCount = 0;
+                    response.Models[0].LastTimeUpdatedCount = DateTime.UtcNow.Date;
+                }
+                _ = SupabaseManager.Instance.From<User>().Update(response.Models[0]);
+
                 return response.Models[0];
             }
             return null;

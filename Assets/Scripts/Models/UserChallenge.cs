@@ -23,4 +23,6 @@ namespace SupabaseModels
         [Reference(typeof(Challenge))]
         public Challenge Challenge { get; set; }
     }
+        public Challenge ChallengeData { get; set; }
+    }   
 }

@@ -96,7 +96,7 @@ public class ShopScript : MonoBehaviour
         SetButtonOwned(button, true);
         UpdateCoinDisplay();
 
-        
+
         shopPanel.SetActive(false);
         HomePanel.SetActive(true);
         HomeBottomPanel.SetActive(true);

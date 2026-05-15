@@ -15,7 +15,7 @@ public class Item
         Statue2,
         Fountain1,
         Theme1
-       
+
     }
 
     public static int GetCost(ItemType itemType)

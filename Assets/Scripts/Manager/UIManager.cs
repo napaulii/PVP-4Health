@@ -15,7 +15,7 @@ public class UIManager : MonoBehaviour
     public void OpenShop()
     {
         homePanel.SetActive(false);
-        homeBottomPanel.SetActive(false);
+        homePanel.SetActive(false);
         shopPanel.SetActive(true);
     }
 

@@ -45,7 +45,15 @@ public class HabitController
             var response = await SupabaseManager.Instance.From<Habit>()
                         .Where(x => x.UserId == currentUserId)
                         .Get();
-
+            for(int i = 0; i < response.Models.Count; i++)
+            {
+                if(response.Models[i].LastTimeUpdatedCompletionList.Date < DateTime.UtcNow.Date)
+                {
+                    Debug.Log(response.Models[i].IsCompletedToday);
+                    response.Models[i].IsCompletedToday = false;
+                    _ = SupabaseManager.Instance.From<Habit>().Update(response.Models[i]);
+                }
+            }
             return response.Models;
         }
         catch (Exception e)
@@ -132,15 +140,16 @@ public class HabitController
 
         if (!habit.IsCompletedToday)
         {   
-            if(habit.CompletionDataList.Count == 0)
+            if(habit.CompletionDataList.Count != 0)
             {
-            }
-            else
-            {
-                TimeSpan dateDifference = DateTime.UtcNow.Date.Subtract(habit.LastTimeUpdatedCompletionList);
+                TimeSpan dateDifference = DateTime.UtcNow.Date.Subtract(habit.LastTimeUpdatedCompletionList.Date);
                 int missedDayCount = dateDifference.Days;
-                for(int i = 0; i < missedDayCount - 1; i++) 
-                    habit.CompletionDataList.Add(false);
+                if (missedDayCount > 0)
+                {
+                    for (int i = 0; i < missedDayCount - 1; i++)
+                        habit.CompletionDataList.Add(false);
+                    habit.CurrentStreak = 0;
+                }
             }
             habit.CompletionDataList.Add(true);
             habit.LastTimeUpdatedCompletionList = DateTime.UtcNow.Date;

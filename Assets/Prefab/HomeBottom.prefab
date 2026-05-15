@@ -434,6 +434,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 538
       objectReference: {fileID: 0}
+    - target: {fileID: 8722741484648321991, guid: 79ee8b10d415f1f459fca64a38130916, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 222219645418518516, guid: 5f1def0e34ab21b40a4c67be8def6a22, type: 3}
     - target: {fileID: 8789476348588312421, guid: 79ee8b10d415f1f459fca64a38130916, type: 3}
       propertyPath: m_Name
       value: Challenges
