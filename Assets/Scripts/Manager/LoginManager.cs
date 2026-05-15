@@ -45,6 +45,15 @@ public class LoginManager : MonoBehaviour
     [SerializeField] private TMP_InputField joinGroupIdInput; // Input for joining
     [SerializeField] private TMP_InputField newGroupNameInput; // Input for creating
 
+    [Header("Group UI Elements")]
+    [SerializeField] private GameObject groupPanel;
+    [SerializeField] private TMPro.TMP_InputField joinGroupIdInput2;
+    [SerializeField] private TMPro.TMP_InputField createGroupNameInput;
+    [SerializeField] private UnityEngine.UI.Button groupSubmitButton;
+
+    // Temporary reference to hold cached data during UI interaction
+    private User cachedCurrentUserProfile;
+
     private int currentSurveyPage = 0;
 
     private void Start()
@@ -104,40 +113,57 @@ public class LoginManager : MonoBehaviour
     }
 
     private async Task DirectUserFlow()
+{
+    // Assuming SupabaseManager.Instance.Auth.CurrentUser is populated after successful auth
+    var currentUser = SupabaseManager.Instance.Auth.CurrentUser;
+    if (currentUser == null) 
     {
-        // Assuming SupabaseManager.Instance.Auth.CurrentUser is populated after successful auth
-        var currentUser = SupabaseManager.Instance.Auth.CurrentUser;
-        if (currentUser == null) 
+        Debug.LogError("LoginManager: Current user object is NULL in DirectUserFlow.");
+        UpdateStatus("Attempting login...", Color.green);
+        SetLoadingState(false);
+        OnAuthClicked(false);
+        return;
+    }
+
+    string userId = currentUser.Id;
+    Debug.Log($"LoginManager: User ID retrieved for flow control: {userId}");
+
+    // Fetch user from DB to check if they completed onboarding
+    try
+    {
+        Debug.Log($"LoginManager: Querying database for existing user profile with ID: {userId}");
+        var userResponse = await SupabaseManager.Instance.From<User>().Where(u => u.Id == userId).Get();
+
+        loginPanel.SetActive(false);
+        
+        if (userResponse.Models.Count == 0) 
         {
-            Debug.LogError("LoginManager: Current user object is NULL in DirectUserFlow.");
-            UpdateStatus("Attempting login...", Color.green);
-            SetLoadingState(false);
-            OnAuthClicked(false);
-            return;
+            Debug.Log("LoginManager: User not found in DB. Starting Survey.");
+            StartSurvey();
         }
-
-        string userId = currentUser.Id;
-        Debug.Log($"LoginManager: User ID retrieved for flow control: {userId}");
-
-
-        // Fetch user from DB to check if they completed onboarding
-        try
+        else 
         {
-            Debug.Log($"LoginManager: Querying database for existing user profile with ID: {userId}");
-            var userResponse = await SupabaseManager.Instance.From<User>().Where(u => u.Id == userId).Get();
+            // Cache the profile to update it later if they need to join a group
+            cachedCurrentUserProfile = userResponse.Models[0];
+            Debug.Log("LoginManager: User profile found. Checking Group alignment...");
 
-            loginPanel.SetActive(false);
-            
-            if (userResponse.Models.Count == 0) 
+            // Check if the user has a valid group ID (Handling null or default 0 values)
+            if (cachedCurrentUserProfile.GroupID == null || cachedCurrentUserProfile.GroupID == 0)
             {
-                Debug.Log("LoginManager: User not found in DB. Starting Survey.");
-                StartSurvey();
+                Debug.Log("LoginManager: User does not belong to a group. Opening Group Panel.");
+                
+                // Set up the UI Submit Button listener dynamically or ensure it points to OnGroupSubmit
+                groupSubmitButton.onClick.RemoveAllListeners();
+                groupSubmitButton.onClick.AddListener(() => _ = OnGroupSubmit());
+                
+                groupPanel.SetActive(true);
             }
-            else 
+            else
             {
-                Debug.Log("LoginManager: User profile found. Proceeding to Main Game.");
+                Debug.Log("LoginManager: User profile found with group. Proceeding to Main Game.");
                 EnterMainGame();
             }
+        }
         }
         catch (Exception ex)
         {
@@ -145,6 +171,71 @@ public class LoginManager : MonoBehaviour
             UpdateStatus("Failed to retrieve user data after login.", Color.red);
             SetLoadingState(false);
         }
+    }
+
+    private async Task OnGroupSubmit()
+{
+    if (cachedCurrentUserProfile == null)
+    {
+        Debug.LogError("LoginManager: Cached user profile is missing during submission.");
+        return;
+    }
+
+    string joinIdText = joinGroupIdInput2.text.Trim();
+    string createNameText = createGroupNameInput.text.Trim();
+    long targetGroupId = 0;
+
+    SetLoadingState(true);
+    UpdateStatus("Processing group alignment...", Color.white);
+
+    try
+    {
+        // 1. Determine action based on input priority (If Join ID is filled, prioritize joining)
+        if (!string.IsNullOrEmpty(joinIdText))
+        {
+            if (long.TryParse(joinIdText, out long parsedGroupId))
+            {
+                UpdateStatus("Checking existing group...", Color.white);
+                targetGroupId = await JoinSpecifiedGroup(parsedGroupId);
+            }
+            else
+            {
+                throw new Exception("Group ID must be a valid number.");
+            }
+        }
+        // 2. Otherwise, check if they are trying to create a group instead
+        else if (!string.IsNullOrEmpty(createNameText))
+        {
+            UpdateStatus("Creating new group...", Color.white);
+            targetGroupId = await CreateNewGroup(cachedCurrentUserProfile.Id, createNameText);
+        }
+        else
+        {
+            throw new Exception("Please enter either a Group ID to join or a Name to create one.");
+        }
+
+        // 3. Update the User row in Supabase with the returned Group ID
+        UpdateStatus("Updating user profile...", Color.white);
+        cachedCurrentUserProfile.GroupID = targetGroupId; // Sync your local model property name here
+
+        await SupabaseManager.Instance
+            .From<User>()
+            .Where(u => u.Id == cachedCurrentUserProfile.Id)
+            .Update(cachedCurrentUserProfile);
+
+        Debug.Log($"LoginManager: User successfully updated with Group ID: {targetGroupId}");
+        
+        // Clean up UI and progress to main game loop
+        groupPanel.SetActive(false);
+        SetLoadingState(false);
+        EnterMainGame();
+    }
+    catch (Exception ex)
+    {
+        Debug.LogError($"LoginManager: Error during group assignment process: {ex.Message}");
+        UpdateStatus(ex.Message, Color.red);
+        SetLoadingState(false);
+    }
     }
 
     private void StartSurvey()
