@@ -13,6 +13,10 @@ public class GridSystem : MonoBehaviour
     public Transform fortress;
     public Transform gridPlane;
 
+    private Vector3 currentSnappedPosition;
+    private float bobFrequency = 3f;
+    private float bobAmplitude = 0.15f;
+
     [SerializeField] private Camera islandCamera;
     [SerializeField] private Material ghostMaterial;
 
@@ -35,7 +39,7 @@ public class GridSystem : MonoBehaviour
     private void Start()
     {
         if (islandCamera == null) islandCamera = Camera.main;
-        CreateGhostObject();
+        
     }
 
     private void Update()
@@ -71,20 +75,21 @@ public class GridSystem : MonoBehaviour
         if (Physics.Raycast(ray, out RaycastHit hit))
         {
             Vector3 point = hit.point;
-            Vector3 snapped = new Vector3(
+            currentSnappedPosition = new Vector3(          
                 Mathf.Round(point.x / gridSize) * gridSize,
                 Mathf.Round(point.y / gridSize) * gridSize,
                 Mathf.Round(point.z / gridSize) * gridSize
             );
 
+            float bob = Mathf.Sin(Time.time * bobFrequency) * bobAmplitude;  
+
             ghostObject.SetActive(true);
-            ghostObject.transform.position = snapped;
+            ghostObject.transform.position = currentSnappedPosition + Vector3.up * bob;  
             ghostObject.transform.rotation = gridPlane.rotation;
 
-            // Color feedback
-            SetGhostColor(occupiedPositions.Contains(snapped)
-                ? new Color(1f, 0f, 0f, 0.5f)   // red = occupied
-                : new Color(1f, 1f, 1f, 0.5f));  // white = free
+            SetGhostColor(occupiedPositions.Contains(currentSnappedPosition)  
+                ? new Color(1f, 0f, 0f, 0.5f)
+                : new Color(1f, 1f, 1f, 0.5f));
         }
         else
         {
@@ -119,13 +124,12 @@ public class GridSystem : MonoBehaviour
 
     void PlaceObject()
     {
-        Vector3 pos = ghostObject.transform.position;
-        if (!occupiedPositions.Contains(pos))
+        if (!occupiedPositions.Contains(currentSnappedPosition))  
         {
-            GameObject placed = Instantiate(objectToPlace, pos, gridPlane.rotation);
+            GameObject placed = Instantiate(objectToPlace, currentSnappedPosition, gridPlane.rotation);
             placed.transform.localScale = Vector3.one * objectScale;
             placed.transform.SetParent(fortress);
-            occupiedPositions.Add(pos);
+            occupiedPositions.Add(currentSnappedPosition);
             StopPlacement();
         }
     }
