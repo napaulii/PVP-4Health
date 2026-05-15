@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using SupabaseModels; 
+using Supabase.Gotrue;
 
 // Resolve Ambiguities
 using User = SupabaseModels.User; 
@@ -51,6 +52,10 @@ public class LoginManager : MonoBehaviour
     [SerializeField] private TMPro.TMP_InputField createGroupNameInput;
     [SerializeField] private UnityEngine.UI.Button groupSubmitButton;
 
+    [Header("Google Login")]
+    [SerializeField] private Button googleLoginButton;
+    private string redirectUrl = "fortressgame://login-callback";
+
     // Temporary reference to hold cached data during UI interaction
     private User cachedCurrentUserProfile;
 
@@ -59,6 +64,19 @@ public class LoginManager : MonoBehaviour
     private void Start()
     {
         Debug.Log("LoginManager: Starting initialization.");
+
+        // Listen for deep links while the app is running
+        Application.deepLinkActivated += OnDeepLinkActivated;
+
+        // Check if the app was STARTED by a deep link
+        if (!string.IsNullOrEmpty(Application.absoluteURL))
+        {
+            OnDeepLinkActivated(Application.absoluteURL);
+        }
+
+        // Add listener for Google button
+        if(googleLoginButton != null)
+            googleLoginButton.onClick.AddListener(OnGoogleLoginClicked);
 
         loginButton.onClick.AddListener(() => OnAuthClicked(false));
         registerButton.onClick.AddListener(() => OnAuthClicked(true));
@@ -70,6 +88,71 @@ public class LoginManager : MonoBehaviour
         
         Debug.Log("LoginManager: Initializing UI state.");
         SetLoadingState(false);
+    }
+
+    private async void OnGoogleLoginClicked()
+    {
+        SetLoadingState(true);
+        try
+        {
+            Debug.Log("LoginManager: Initiating Google OAuth...");
+
+            // 1. Request the login URI configuration from Supabase
+            var providerAuth = await SupabaseManager.Instance.Auth.SignIn(
+                Supabase.Gotrue.Constants.Provider.Google,
+                new SignInOptions { RedirectTo = redirectUrl }
+            );
+
+            if (providerAuth != null && providerAuth.Uri != null)
+            {
+                Debug.Log($"LoginManager: Opening Login URL: {providerAuth.Uri}");
+                
+                // 2. This opens the Chrome Custom Tab on Android, 
+                // and falls back to the Default Web Browser on Desktop Editor.
+                Application.OpenURL(providerAuth.Uri.ToString());
+            }
+            else
+            {
+                throw new Exception("Failed to generate OAuth URI.");
+            }
+        }
+        catch (Exception ex)
+        {
+            Debug.LogError($"LoginManager: Google Login Failed: {ex.Message}");
+            UpdateStatus("Google Login Failed", Color.red);
+            SetLoadingState(false);
+        }
+    }
+
+    private async void OnDeepLinkActivated(string url)
+    {
+        Debug.Log($"LoginManager: Deep Link received: {url}");
+    
+        try
+        {
+            // 3. Pass the incoming Android deep link URL back to Supabase 
+            // to parse the access tokens and establish the session.
+            await SupabaseManager.Instance.Auth.GetSessionFromUrl(new Uri(url));
+            
+            if (SupabaseManager.Instance.Auth.CurrentUser != null)
+            {
+                Debug.Log("LoginManager: Mobile session established successfully.");
+                await DirectUserFlow();
+            }
+        }
+        catch (Exception ex)
+        {
+            Debug.LogError($"LoginManager: Failed to process deep link session: {ex.Message}");
+            SetLoadingState(false);
+        }
+    }
+
+    private async void CheckSessionAfterLogin()
+    {
+        if (SupabaseManager.Instance.Auth.CurrentUser != null)
+        {
+            await DirectUserFlow();
+        }
     }
 
     private async void OnAuthClicked(bool isRegistering)
