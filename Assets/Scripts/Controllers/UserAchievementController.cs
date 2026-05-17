@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using UnityEngine;
 using SupabaseModels;
@@ -32,6 +33,74 @@ public class UserAchievementController
             Debug.LogError($"Error creating user achievement: {e.Message}");
             Debug.LogError($"Stack trace: {e.StackTrace}");
             return null;
+        }
+    }
+
+    // INITIALIZE ALL ACHIEVEMENTS FOR USER
+    public async Task InitializeUserAchievementsAsync()
+    {
+        try
+        {
+            string currentUserId =
+                SupabaseManager.Instance.Auth.CurrentUser.Id;
+
+            // Get all achievement definitions
+            var definitionsResponse =
+                await SupabaseManager.Instance
+                    .From<AchievementDefinition>()
+                    .Get();
+
+            // Get existing user achievements
+            var existingResponse =
+                await SupabaseManager.Instance
+                    .From<UserAchievement>()
+                    .Where(x => x.UserId == currentUserId)
+                    .Get();
+
+            HashSet<long> existingAchievementIds =
+                existingResponse.Models
+                    .Select(x => x.AchievementId)
+                    .ToHashSet();
+
+            List<UserAchievement> missingAchievements = new();
+
+            foreach (var definition in definitionsResponse.Models)
+            {
+                if (!existingAchievementIds.Contains(definition.Id))
+                {
+                    missingAchievements.Add(new UserAchievement
+                    {
+                        UserId = currentUserId,
+                        AchievementId = definition.Id,
+                        IsUnlocked = false,
+                        IsClaimed = false
+                    });
+                }
+            }
+
+            // Insert only missing achievements
+            if (missingAchievements.Count > 0)
+            {
+                await SupabaseManager.Instance
+                    .From<UserAchievement>()
+                    .Insert(missingAchievements);
+
+                Debug.Log(
+                    $"[UserAchievementController] Initialized {missingAchievements.Count} achievements.");
+            }
+            else
+            {
+                Debug.Log(
+                    "[UserAchievementController] User already has all achievements initialized.");
+            }
+        }
+        catch (Exception e)
+        {
+            Debug.LogError(
+                $"Error initializing user achievements: {e.Message}");
+
+            Debug.LogError(
+                $"Stack trace: {e.StackTrace}");
         }
     }
 

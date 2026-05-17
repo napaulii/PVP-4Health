@@ -28,6 +28,8 @@ public class AchievementChecker : MonoBehaviour
         definitionController = new AchievementDefinitionController();
         userAchievementController = new UserAchievementController();
 
+        await userAchievementController.InitializeUserAchievementsAsync();
+
         // Initial startup check
         await CheckAchievementsAsync();
     }
