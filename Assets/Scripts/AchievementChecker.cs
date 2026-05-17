@@ -104,30 +104,76 @@ public class AchievementChecker : MonoBehaviour
                 {
                     case "streak":
 
-                        if (habit != null)
-                        {
-                            shouldUnlock =
-                                habit.LongestStreak >= definition.TargetValue;
-                        }
+                        List<Habit> habits =
+                            await new HabitController().GetAllHabitsAsync();
+
+                        int longestStreak =
+                            habits.Count > 0
+                                ? habits.Max(h => h.LongestStreak)
+                                : 0;
+
+                        shouldUnlock =
+                            longestStreak >= definition.TargetValue;
+
+                        Debug.Log(
+                            $"[Checker] Streak check: {longestStreak} >= {definition.TargetValue} = {shouldUnlock}");
 
                         break;
 
                     case "habits_completed":
 
-                        if (habit != null)
-                        {
-                            shouldUnlock =
-                                GetTotalCompletedCount(habit) >= definition.TargetValue;
-                        }
+                        List<Habit> completedHabits =
+                            await new HabitController().GetAllHabitsAsync();
+
+                        int totalCompleted =
+                            completedHabits.Sum(h => GetTotalHabitsCompletedCount(h));
+
+                        shouldUnlock =
+                            totalCompleted >= definition.TargetValue;
+
+                        Debug.Log(
+                            $"[Checker] Completed habits check: {totalCompleted} >= {definition.TargetValue} = {shouldUnlock}");
 
                         break;
+
+                    case "user_challenges_completed":
+
+                        List<UserChallenge> userChallenges =
+                            await new UserChallengeController().GetAllUserChallengesAsync();
+
+                        
+
+                        int completedUserChallenges =
+                            userChallenges.Count(c => c.Status == "completed");
+
+                        shouldUnlock =
+                            completedUserChallenges >= definition.TargetValue;
+
+                        Debug.Log(
+                            $"[Checker] User challenges check: {completedUserChallenges} >= {definition.TargetValue} = {shouldUnlock}");
+
+                        break;
+
+                    /*case "group_challenges_completed":
+
+                        List<GroupChallenge> groupChallenges =
+                            await new GroupChallengeController().GetChallengesForGroupAsync();
+
+                        int completedGroupChallenges = groupChallenges.Count(c => c.Status == "completed");
+
+                        shouldUnlock =
+                            completedGroupChallenges >= definition.TargetValue;
+
+                        Debug.Log(
+                            $"[Checker] Group challenges check: {completedGroupChallenges} >= {definition.TargetValue} = {shouldUnlock}");
+
+                        break;*/
 
                     case "coins":
 
                         int currentCoins = await GetUserBalanceAsync();
 
-                        shouldUnlock =
-                            currentCoins >= definition.TargetValue;
+                        shouldUnlock = currentCoins >= definition.TargetValue;
 
                         Debug.Log(
                             $"[Checker] Coins check: {currentCoins} >= {definition.TargetValue} = {shouldUnlock}");
@@ -145,24 +191,19 @@ public class AchievementChecker : MonoBehaviour
                 // Unlock achievement
                 if (shouldUnlock)
                 {
-                    Debug.Log(
-                        $"[Checker] Unlocking '{definition.Title}' (DB ID: {userAchievement.Id})...");
+                    Debug.Log($"[Checker] Unlocking '{definition.Title}' (DB ID: {userAchievement.Id})...");
 
                     long achievementId = userAchievement.Id;
 
-                    await userAchievementController
-                        .UnlockAchievementAsync(userAchievement);
+                    await userAchievementController.UnlockAchievementAsync(userAchievement);
 
                     // Verify unlock
                     var verifiedAchievement =
-                        await userAchievementController
-                            .GetUserAchievementByIdAsync(achievementId);
+                        await userAchievementController.GetUserAchievementByIdAsync(achievementId);
 
-                    if (verifiedAchievement != null &&
-                        verifiedAchievement.IsUnlocked)
+                    if (verifiedAchievement != null && verifiedAchievement.IsUnlocked)
                     {
-                        Debug.Log(
-                            $"[Checker] Successfully unlocked '{definition.Title}' (DB ID: {achievementId})");
+                        Debug.Log($"[Checker] Successfully unlocked '{definition.Title}' (DB ID: {achievementId})");
 
                         // Update local object too
                         userAchievement.IsUnlocked = true;
@@ -171,16 +212,14 @@ public class AchievementChecker : MonoBehaviour
                     }
                     else
                     {
-                        Debug.LogError(
-                            $"[Checker] Failed to verify unlock for '{definition.Title}' (DB ID: {achievementId})");
+                        Debug.LogError($"[Checker] Failed to verify unlock for '{definition.Title}' (DB ID: {achievementId})");
                     }
                 }
             }
         }
         catch (Exception e)
         {
-            Debug.LogError(
-                $"[Checker] EXCEPTION: {e.Message}\n{e.StackTrace}");
+            Debug.LogError($"[Checker] EXCEPTION: {e.Message}\n{e.StackTrace}");
         }
         finally
         {
@@ -199,7 +238,7 @@ public class AchievementChecker : MonoBehaviour
         return response.Models.Count > 0 ? response.Models[0].Balance : 0;
     }
 
-    private int GetTotalCompletedCount(Habit habit)
+    private int GetTotalHabitsCompletedCount(Habit habit)
     {
         if (habit.CompletionDataList == null) return 0;
         return habit.CompletionDataList.Count(x => x);
