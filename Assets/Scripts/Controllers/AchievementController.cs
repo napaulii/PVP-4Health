@@ -7,7 +7,7 @@ using SupabaseModels;
 public class AchievementController
 {
     // 1. CREATE
-    public async Task<Achievement> CreateAchievementAsync(string title, string text, int xpReward, int balanceReward)
+    public async Task<Achievement> CreateAchievementAsync(string title, string text, int xpReward, int balanceReward, bool isClaimed)
     {
         try
         {
@@ -19,6 +19,7 @@ public class AchievementController
                 Text = text,
                 XpReward = xpReward,
                 BalanceReward = balanceReward,
+                IsClaimed = isClaimed,
                 UserId = currentUserId,
             };
 

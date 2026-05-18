@@ -1,79 +1,219 @@
-using TMPro;
+﻿using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using System;
+using System.Collections;
+using SupabaseModels;
 
 public class AchievementItem : MonoBehaviour
 {
-    [Header("Rewards")]
-    public int coinReward = 100;
-    public int xpReward = 50;
-
-    [Header("Internal References (auto-assigned if left empty)")]
+    [Header("UI")]
     [SerializeField] private TextMeshProUGUI achievText;
     [SerializeField] private Button claimButton;
     [SerializeField] private Image backgroundImage;
 
-    [Header("Claimed Visual Settings")]
-    [SerializeField] private Color claimedBackgroundColor = new Color(0.75f, 0.75f, 0.75f, 1f);
-    [SerializeField] private Color claimedTextColor = Color.white;
+    [Header("Reward Texts")]
+    [SerializeField] private TextMeshProUGUI xpText;
+    [SerializeField] private TextMeshProUGUI coinsText;
 
-    [Header("Claim Button Sprites")]
-    [SerializeField] private Sprite claimedButtonSprite;
+    [SerializeField] private CanvasGroup xpCanvasGroup;
+    [SerializeField] private CanvasGroup coinsCanvasGroup;
+
+    [Header("Animation")]
+    [SerializeField] private float floatDistance = 80f;
+    [SerializeField] private float animationDuration = 1.5f;
+
+    [Header("Visuals")]
+    [SerializeField]
+    private Color claimedBackgroundColor =
+        new Color(0.75f, 0.75f, 0.75f, 1f);
+
+    [SerializeField]
+    private Color claimedTextColor = Color.white;
 
     private Image claimButtonImage;
-    private bool isClaimed = false;
+
+    private AchievementDefinition definition;
+    private UserAchievement userAchievement;
+
+    private UserAchievementController controller;
+
+    private Vector2 xpStartPos;
+    private Vector2 coinsStartPos;
 
     private void Awake()
     {
-        // Auto-find children if not assigned in Inspector
-        if (achievText == null) achievText = GetComponentInChildren<TextMeshProUGUI>();
-        if (claimButton == null) claimButton = GetComponentInChildren<Button>();
-        if (backgroundImage == null) backgroundImage = GetComponent<Image>();
+        if (achievText == null)
+            achievText = GetComponentInChildren<TextMeshProUGUI>();
 
-        // Cache button image
+        if (claimButton == null)
+            claimButton = GetComponentInChildren<Button>();
+
+        if (backgroundImage == null)
+            backgroundImage = GetComponent<Image>();
+
         if (claimButton != null)
             claimButtonImage = claimButton.GetComponent<Image>();
 
         claimButton.onClick.AddListener(OnClaim);
+
+        // Save starting positions
+        xpStartPos = xpText.rectTransform.anchoredPosition;
+        coinsStartPos = coinsText.rectTransform.anchoredPosition;
+
+        HideRewardTexts();
     }
 
-    /// <summary>
-    /// Call this to set the achievement's display text.
-    /// </summary>
-    public void SetTitle(string title)
+    public void Initialize(
+        AchievementDefinition def,
+        UserAchievement userAch)
     {
-        if (achievText != null)
-            achievText.SetText(title);
+        definition = def;
+        userAchievement = userAch;
+
+        controller = new UserAchievementController();
+
+        achievText.SetText(def.Title);
+
+        xpText.SetText($"+{definition.XpReward} XP");
+        coinsText.SetText($"+{definition.BalanceReward} C");
+
+        RefreshUI();
     }
 
-    private void OnClaim()
+    public void Refresh(UserAchievement updatedAchievement)
     {
-        if (isClaimed) return;
-        isClaimed = true;
+        userAchievement = updatedAchievement;
 
-        // --- Give rewards ---
-        if (CoinManager.Instance != null)
-            CoinManager.Instance.AddCoins(coinReward);
+        RefreshUI();
+    }
 
-        // XP:
-        // XPManager.Instance?.AddXP(xpReward);
+    private void RefreshUI()
+    {
+        bool unlocked = userAchievement.IsUnlocked;
+        bool claimed = userAchievement.IsClaimed;
 
-        // --- Gray out background ---
+        // Locked state
+        if (!unlocked)
+        {
+            claimButton.gameObject.SetActive(false);
+        }
+        else
+        {
+            claimButton.gameObject.SetActive(true);
+        }
+
+        // Button usability
+        claimButton.interactable = unlocked && !claimed;
+
+        // Claimed visuals
+        if (claimed)
+        {
+            ApplyClaimedVisuals();
+        }
+    }
+
+    private async void OnClaim()
+    {
+        if (!userAchievement.IsUnlocked || userAchievement.IsClaimed)
+            return;
+
+        Debug.Log($"[AchievementItem] Attempting to claim achievement ID: {userAchievement.Id}");
+
+        // Give rewards
+        CoinManager.Instance?.AddCoins(definition.BalanceReward);
+
+        // Play animation
+        StartCoroutine(AnimateRewardText(
+            xpText,
+            xpCanvasGroup,
+            xpStartPos));
+
+        StartCoroutine(AnimateRewardText(
+            coinsText,
+            coinsCanvasGroup,
+            coinsStartPos));
+
+        // Update DB
+        await controller.ClaimAchievementAsync(userAchievement);
+
+        // Verify the claim worked
+        var verifiedAchievement = await controller.GetUserAchievementByIdAsync(userAchievement.Id);
+        if (verifiedAchievement != null && verifiedAchievement.IsClaimed)
+        {
+            Debug.Log($"[AchievementItem] ✓ Successfully claimed achievement ID: {userAchievement.Id}");
+            userAchievement.IsClaimed = true;
+            RefreshUI();
+        }
+        else
+        {
+            Debug.LogError($"[AchievementItem] ✗ Failed to claim achievement ID: {userAchievement.Id}");
+        }
+    }
+
+    private IEnumerator AnimateRewardText(
+        TextMeshProUGUI text,
+        CanvasGroup canvasGroup,
+        Vector2 startPos)
+    {
+        float timer = 0f;
+
+        RectTransform rect = text.rectTransform;
+
+        rect.anchoredPosition = startPos;
+
+        canvasGroup.alpha = 1f;
+
+        text.gameObject.SetActive(true);
+
+        Vector2 targetPos =
+            startPos + Vector2.up * floatDistance;
+
+        while (timer < animationDuration)
+        {
+            timer += Time.deltaTime;
+
+            float t = timer / animationDuration;
+
+            // Move upward
+            rect.anchoredPosition =
+                Vector2.Lerp(startPos, targetPos, t);
+
+            // Fade out
+            canvasGroup.alpha =
+                Mathf.Lerp(1f, 0f, t);
+
+            yield return null;
+        }
+
+        rect.anchoredPosition = startPos;
+
+        canvasGroup.alpha = 0f;
+
+        text.gameObject.SetActive(false);
+    }
+
+    private void HideRewardTexts()
+    {
+        xpCanvasGroup.alpha = 0f;
+        coinsCanvasGroup.alpha = 0f;
+
+        xpText.gameObject.SetActive(false);
+        coinsText.gameObject.SetActive(false);
+    }
+
+    private void ApplyClaimedVisuals()
+    {
         if (backgroundImage != null)
             backgroundImage.color = claimedBackgroundColor;
 
-        // --- Brighten text ---
         if (achievText != null)
             achievText.color = claimedTextColor;
 
-        // --- Change button sprite ---
-        if (claimButtonImage != null && claimedButtonSprite != null)
-            claimButtonImage.sprite = claimedButtonSprite;
+        if (claimButtonImage != null)
+            claimButtonImage.color = claimedBackgroundColor;
 
-        // Disable button interaction
         if (claimButton != null)
             claimButton.interactable = false;
     }
-
-    public bool IsClaimed => isClaimed;
 }
