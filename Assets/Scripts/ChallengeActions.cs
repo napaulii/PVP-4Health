@@ -35,9 +35,12 @@ public class ChallengeActions : MonoBehaviour
 
     private IEnumerator ProcessAndUpload(string path, UserChallenge uc)
     {
+        // 1. Load image from phone storage and convert to string for the AI
         byte[] imageBytes = System.IO.File.ReadAllBytes(path);
+        // Optimization: If the app is slow, consider using Texture2D.EncodeToJPG(30) here instead
         string base64Image = System.Convert.ToBase64String(imageBytes);
 
+        // 2. Prepare the data object to send to the Edge Function
         var requestData = new UploadRequest
         {
             imageBase64 = base64Image,
@@ -47,57 +50,61 @@ public class ChallengeActions : MonoBehaviour
 
         string json = JsonUtility.ToJson(requestData);
 
+        // 3. Create the Web Request
         using (UnityWebRequest www = new UnityWebRequest(edgeFunctionUrl, "POST"))
         {
             byte[] bodyRaw = System.Text.Encoding.UTF8.GetBytes(json);
             www.uploadHandler = new UploadHandlerRaw(bodyRaw);
             www.downloadHandler = new DownloadHandlerBuffer();
+
             www.SetRequestHeader("Content-Type", "application/json");
 
-            // --- SAFETY CHECK ADDED HERE ---
+            // 4. Set Authorization Header
             string token = SupabaseManager.Instance.Auth.CurrentSession?.AccessToken;
             if (string.IsNullOrEmpty(token))
             {
-                Debug.LogError("[Upload Error] Auth token is missing! The user might be logged out or the session expired.");
+                Debug.LogError("[Upload Error] User session is invalid. Please log in again.");
                 yield break;
             }
             www.SetRequestHeader("Authorization", "Bearer " + token);
 
+            // 5. Send to Supabase Cloud
+            Debug.Log("Sending photo to Gemini AI for validation...");
             yield return www.SendWebRequest();
 
+            // 6. Handle the Response
             if (www.result == UnityWebRequest.Result.Success)
             {
                 AIResponse response = JsonUtility.FromJson<AIResponse>(www.downloadHandler.text);
 
                 if (response.isHealthy)
                 {
-                    Debug.Log("AI Approved! Meal is healthy.");
-                    int xp = uc.ChallengeData.XpReward;
-                    int coins = uc.ChallengeData.BalanceReward;
+                    Debug.Log("AI Approved! Challenge is now ready to claim.");
 
-                    // 2. Call your existing UserController method
-                    // We use _ = to fire and forget or you can await it
-                    _ = _userController.UpdateUserAsync(coins, xp, false);
+                    // We DON'T give XP/Coins here anymore.
+                    // We just refresh the UI so the user can see the Orange button and click it themselves.
                     uiManager.RefreshUI();
                 }
                 else
                 {
+                    // AI looked at the photo but didn't see a healthy meal
                     Debug.LogWarning("AI Rejected: " + response.reason);
+                    // Tip: You could show response.reason in a UI popup here
                 }
             }
             else
             {
-                // --- THE MAGIC LOGGING LINES ---
-                Debug.LogError("Edge Function HTTP Status: " + www.responseCode);
+                // 7. Detailed Error Logging
+                Debug.LogError($"Edge Function Error ({www.responseCode})");
 
-                // This line will print the 79-byte secret message telling us exactly what is wrong!
                 if (www.downloadHandler != null && !string.IsNullOrEmpty(www.downloadHandler.text))
                 {
-                    Debug.LogError("EXACT SUPABASE ERROR: " + www.downloadHandler.text);
+                    // This prints the actual error message from your index.ts code
+                    Debug.LogError("SERVER MESSAGE: " + www.downloadHandler.text);
                 }
                 else
                 {
-                    Debug.LogError("Generic Unity Error: " + www.error);
+                    Debug.LogError("GENERIC ERROR: " + www.error);
                 }
             }
         }

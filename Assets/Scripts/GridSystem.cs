@@ -35,7 +35,7 @@ public class GridSystem : MonoBehaviour
     private void Start()
     {
         if (islandCamera == null) islandCamera = Camera.main;
-        CreateGhostObject();
+        //CreateGhostObject();
     }
 
     private void Update()

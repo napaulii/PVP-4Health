@@ -459,7 +459,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 0.9607843, g: 0.4627451, b: 0.39607844, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -499,9 +499,9 @@ MonoBehaviour:
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_PressedColor: {r: 1, g: 1, b: 1, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_DisabledColor: {r: 1, g: 1, b: 1, a: 1}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -522,7 +522,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 4962487717024483810}
         m_TargetAssemblyTypeName: ChallengeRowUI, Assembly-CSharp
-        m_MethodName: OnIconButtonClicked
+        m_MethodName: OnClaimRewardPressed
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -595,8 +595,8 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 6445713672176075361}
   - {fileID: 2931643751497054935}
+  - {fileID: 6445713672176075361}
   m_Father: {fileID: 7674446312121755050}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
@@ -1372,15 +1372,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ecaeae6112aa1d4ca347074e43ed0f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ChallengeRowUI
+  claimableColor: {r: 0.9, g: 0.4, b: 0.3, a: 1}
+  incompleteColor: {r: 0.9433962, g: 0.6216105, b: 0.5562478, a: 1}
+  claimedColor: {r: 0, g: 0.8301887, b: 0, a: 1}
   descriptionText: {fileID: 1115781486036044400}
   claimButton: {fileID: 7459290954046780624}
   statusIcon: {fileID: 7134131854769915348}
+  buttonBackgroundImage: {fileID: 38166437681654124}
   detailsArea: {fileID: 2767183981919422741}
   xpText: {fileID: 5398710951869347210}
   coinsText: {fileID: 1671727163582578597}
   photoActionGroup: {fileID: 6240053499794000997}
   stepActionGroup: {fileID: 3052419389467820217}
-  checkmarkSprite: {fileID: -3620965051900288761, guid: 550c2b1907c8beb49a25bea146401776, type: 3}
   cameraSprite: {fileID: 1349180431371488363, guid: 6f2afa5e9888cdb468fbd4a1ecd74b93, type: 3}
 --- !u!114 &4237904209693812889
 MonoBehaviour:
@@ -1708,8 +1711,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -2.5, y: 0.000005722}
-  m_SizeDelta: {x: 63.9, y: 55.8}
+  m_AnchoredPosition: {x: 0.000014782, y: -0.000025988}
+  m_SizeDelta: {x: 94.3798, y: 75.0505}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1698217861049001534
 CanvasRenderer:
@@ -1733,7 +1736,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -1741,11 +1744,11 @@ MonoBehaviour:
       m_Calls: []
   m_Sprite: {fileID: -4534634967793127557, guid: 124f8a26d868e164e91775296c803bfd, type: 3}
   m_Type: 0
-  m_PreserveAspect: 0
+  m_PreserveAspect: 1
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
-  m_UseSpriteMesh: 0
+  m_UseSpriteMesh: 1
   m_PixelsPerUnitMultiplier: 1

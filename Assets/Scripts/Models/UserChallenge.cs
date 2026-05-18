@@ -21,8 +21,6 @@ namespace SupabaseModels
         [Column("fk_challengeid")]
         public long ChallengeId { get; set; }
         [Reference(typeof(Challenge))]
-        public Challenge Challenge { get; set; }
-    }
         public Challenge ChallengeData { get; set; }
     }   
 }

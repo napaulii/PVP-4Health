@@ -22,11 +22,22 @@ public class ChallengeUIManager : MonoBehaviour
             if (i < userChallenges.Count)
             {
                 rows[i].gameObject.SetActive(true);
-                rows[i].Setup(userChallenges[i], actionManager);
+                rows[i].Setup(userChallenges[i], actionManager, this);
             }
             else
             {
                 rows[i].gameObject.SetActive(false);
+            }
+        }
+    }
+    public void CollapseAllOtherRows(ChallengeRowUI currentActiveRow)
+    {
+        foreach (var row in rows)
+        {
+            // If it's not the row we just clicked, close it
+            if (row != currentActiveRow)
+            {
+                row.detailsArea.SetActive(false);
             }
         }
     }

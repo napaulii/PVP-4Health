@@ -68,7 +68,12 @@ public class UserChallengeController
             return null;
         }
     }
-
+    public async Task ClaimRewardAsync(UserChallenge uc)
+    {
+        // Update status in DB so it stays green forever
+        uc.Status = "claimed";
+        await SupabaseManager.Instance.From<UserChallenge>().Update(uc);
+    }
     // 2. READ ALL (For Current User)
     public async Task<List<UserChallenge>> GetAllUserChallengesAsync()
     {
