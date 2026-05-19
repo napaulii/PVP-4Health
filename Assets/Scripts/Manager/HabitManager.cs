@@ -9,10 +9,12 @@ using System.Linq;
 
 public class HabitManager : MonoBehaviour
 {
-    string userId = SupabaseManager.Instance.Auth.CurrentUser.Id;
+    // --- Google Health ---
+    [Header("Google Health (optional)")]
+    [SerializeField] private GoogleHealthAuth googleHealth;
+
     private HabitController _habitController;
     private UserController _userController;
-
 
     [Header("List UI References")]
     public Transform listContentContainer;
@@ -54,7 +56,23 @@ public class HabitManager : MonoBehaviour
 
         _habitController = new HabitController();
         _userController = new UserController();
+
         FetchAllHabits();
+
+        // --- Google Health ---
+        if (googleHealth != null)
+        {
+            googleHealth.InitFromSupabaseSession();
+
+            if (googleHealth.IsAuthenticated)
+            {
+                var (start, end) = GoogleHealthAuth.TodayTimestamps();
+                StartCoroutine(googleHealth.FetchSteps(start, end, steps =>
+                {
+                    Debug.Log($"Today's steps: {steps}");
+                }));
+            }
+        }
     }
 
     private void SetScrollingEnabled(bool isEnabled)
@@ -81,7 +99,6 @@ public class HabitManager : MonoBehaviour
         if (allHabits != null)
         {
             allHabits = allHabits.OrderByDescending(h => h.Id).ToList();
-
             foreach (var habit in allHabits)
             {
                 GameObject newObj = Instantiate(habitItemPrefab, listContentContainer);
@@ -90,6 +107,7 @@ public class HabitManager : MonoBehaviour
                 uiScript.Setup(habit, this);
             }
         }
+
         Canvas.ForceUpdateCanvases();
     }
 
@@ -98,10 +116,8 @@ public class HabitManager : MonoBehaviour
         Debug.Log("Opening create panel");
         createTitleInput.text = "";
         createDescInput.text = "";
-
         detailsPanel.SetActive(false);
         editPanel.SetActive(false);
-
         createPanel.SetActive(true);
         if (dimBackground != null) dimBackground.SetActive(true);
         SetScrollingEnabled(false);
@@ -110,10 +126,8 @@ public class HabitManager : MonoBehaviour
     public async void CreateNewHabit()
     {
         if (string.IsNullOrEmpty(createTitleInput.text)) return;
-
         Debug.Log("Creating new habit...");
         Habit newHabit = await _habitController.CreateHabitAsync(createTitleInput.text, createDescInput.text);
-
         if (newHabit != null)
         {
             CloseCreate();
@@ -133,13 +147,11 @@ public class HabitManager : MonoBehaviour
     {
         Debug.Log("Opening details panel");
         _currentlySelectedHabitId = habitId;
-
         SetScrollingEnabled(false);
         if (dimBackground != null) dimBackground.SetActive(true);
         createPanel.SetActive(false);
 
         Habit habit = await _habitController.GetHabitByIdAsync(habitId);
-
         if (habit != null)
         {
             detailsTitleText.text = habit.Title;
@@ -165,7 +177,6 @@ public class HabitManager : MonoBehaviour
         detailsPanel.SetActive(false);
         editTitleInput.text = detailsTitleText.text;
         editDescInput.text = detailsDescText.text;
-
         editPanel.SetActive(true);
         if (dimBackground != null) dimBackground.SetActive(true);
         SetScrollingEnabled(false);
