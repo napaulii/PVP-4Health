@@ -2434,6 +2434,7 @@ GameObject:
   - component: {fileID: 1394477336496395766}
   - component: {fileID: 5000223804565529248}
   - component: {fileID: 1612669477151187335}
+  - component: {fileID: 6296214468617974294}
   m_Layer: 5
   m_Name: Habits
   m_TagString: Untagged
@@ -2531,6 +2532,18 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &6296214468617974294
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3179805811897813491}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36ac02b930a74584cbdd9cdea03371be, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GoogleHealthAuth
 --- !u!1 &3202705614046342043
 GameObject:
   m_ObjectHideFlags: 0
@@ -3869,8 +3882,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37b8257b1d87e9e4d81123bb2c65d6df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HabitManager
-  testEmail: testuser@game.com
-  testPassword: password123
   listContentContainer: {fileID: 8213458140817218117}
   habitItemPrefab: {fileID: 7001702223926001828, guid: a405145ed5515684bbad8984ed583825, type: 3}
   detailsPanel: {fileID: 3322754956005256106}
@@ -3887,6 +3898,7 @@ MonoBehaviour:
   editTitleInput: {fileID: 5441843084910327440}
   editDescInput: {fileID: 4756736180064526869}
   habitScrollRect: {fileID: 0}
+  googleHealth: {fileID: 6296214468617974294}
 --- !u!1 &5326371816451818637
 GameObject:
   m_ObjectHideFlags: 0

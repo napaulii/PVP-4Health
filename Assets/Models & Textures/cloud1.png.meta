@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 922148c9bccfe4141ba03e84d176a39d
+guid: 10070d6fe58e0ed4aa07ca437773fa99
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 1271343849930411692
-    second: Rectangle 31_0
+      213: -5457230233444185960
+    second: cloud1_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -113,23 +113,23 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Rectangle 31_0
+      name: cloud1_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 56
-        height: 56
+        x: 75
+        y: 51
+        width: 949
+        height: 864
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 6, y: 6, z: 6, w: 6}
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: caeca72ee78b4a110800000000000000
-      internalID: 1271343849930411692
+      spriteID: 898890e24060444b0800000000000000
+      internalID: -5457230233444185960
       vertices: []
       indices: 
       edges: []
@@ -138,7 +138,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: f1a2eb7b48896d54e90457ff741dba87
+    spriteID: 
     internalID: 0
     vertices: []
     indices: 
@@ -148,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Rectangle 31_0: 1271343849930411692
+      cloud1_0: -5457230233444185960
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

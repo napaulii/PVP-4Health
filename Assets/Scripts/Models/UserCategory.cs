@@ -5,10 +5,10 @@ using System.Collections.Generic;
 
 namespace SupabaseModels
 {
-    [Table("user_category")]
-    public class UserCategory : BaseModel
-    {
-        [Column("user_id")] public string UserId { get; set; }
-        [Column("category_id")] public long CategoryId { get; set; }
-    }
+        [Table("user_category")]
+        public class UserCategory : BaseModel
+        {
+            [Column("user_id")] public string UserId { get; set; }
+            [Column("category_id")] public long CategoryId { get; set; }
+        }
 }

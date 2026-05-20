@@ -32,6 +32,7 @@ public class CoinManager : MonoBehaviour
         Debug.Log("<color=cyan>[Home Scene]</color> Entered Home Scene. Initializing CoinManager...");
         
         await RefreshBalanceFromServer();
+
     }
 
     public async Task RefreshBalanceFromServer()
@@ -64,6 +65,10 @@ public class CoinManager : MonoBehaviour
                 
                 UpdateAllLabels();
                 OnCoinsChanged.Invoke(Coins);
+                if (AchievementChecker.Instance != null)
+                {
+                    await AchievementChecker.Instance.CheckAchievementsAsync();
+                }
             }
             else
             {
@@ -113,6 +118,10 @@ public class CoinManager : MonoBehaviour
             Coins = newBalance;
             UpdateAllLabels();
             OnCoinsChanged.Invoke(Coins);
+            if (AchievementChecker.Instance != null)
+            {
+                await AchievementChecker.Instance.CheckAchievementsAsync();
+            }
         }
     }
 
