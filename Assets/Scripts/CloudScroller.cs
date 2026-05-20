@@ -11,10 +11,8 @@ public class CloudScroller : MonoBehaviour
     [Header("Strip Settings")]
     [Tooltip("How many clouds to spawn")]
     public int cloudCount = 8;
-
-    [Tooltip("Total width of the cloud strip (should be wider than screen)")]
-    public float stripWidth = 30f;
-
+    [Tooltip("Fallback width if no RectTransform is found")]
+    public float stripWidth = 200f;
     [Tooltip("How spread out clouds are vertically around the strip center")]
     public float verticalSpread = 0.4f;
 
@@ -25,25 +23,29 @@ public class CloudScroller : MonoBehaviour
     [Header("Scale Pulse Settings")]
     [Tooltip("How much clouds scale up/down (0.05 = 5%)")]
     public float scalePulseAmount = 0.08f;
-
     [Tooltip("How fast the scale pulses")]
     public float scalePulseSpeed = 0.8f;
 
     // Internal
     private List<CloudData> clouds = new List<CloudData>();
     private float stripX = 0f;
+    private float halfStrip;
 
     private struct CloudData
     {
         public GameObject obj;
-        public float localX;       // position along the strip
-        public float baseY;        // vertical offset
-        public float baseScale;    // random base scale
-        public float pulseOffset;  // phase offset so clouds don't all pulse together
+        public float localX;
+        public float baseY;
+        public float baseScale;
+        public float pulseOffset;
     }
 
     void Start()
     {
+        // Use the actual RectTransform width as the strip boundary
+        RectTransform rt = GetComponent<RectTransform>();
+        halfStrip = rt != null ? rt.rect.width / 2f : stripWidth / 2f;
+
         if (cloudPrefabs == null || cloudPrefabs.Length == 0)
         {
             Debug.LogError("CloudScroller: No cloud prefabs assigned!");
@@ -55,16 +57,14 @@ public class CloudScroller : MonoBehaviour
 
     void SpawnClouds()
     {
-        // Space clouds evenly with some random jitter
-        float spacing = stripWidth / cloudCount;
+        float fullWidth = halfStrip * 2f;
+        float spacing = fullWidth / cloudCount;
 
         for (int i = 0; i < cloudCount; i++)
         {
-            // Pick a random cloud prefab
             GameObject prefab = cloudPrefabs[Random.Range(0, cloudPrefabs.Length)];
 
-            // Position: evenly spaced + jitter, centered so strip goes -half to +half
-            float localX = -stripWidth / 2f + spacing * i + Random.Range(-spacing * 0.3f, spacing * 0.3f);
+            float localX = -halfStrip + spacing * i + Random.Range(-spacing * 0.3f, spacing * 0.3f);
             float localY = Random.Range(-verticalSpread, verticalSpread);
             float baseScale = Random.Range(0.7f, 1.3f);
 
@@ -78,20 +78,17 @@ public class CloudScroller : MonoBehaviour
                 localX = localX,
                 baseY = localY,
                 baseScale = baseScale,
-                pulseOffset = Random.Range(0f, Mathf.PI * 2f)  // random phase
+                pulseOffset = Random.Range(0f, Mathf.PI * 2f)
             });
         }
     }
 
     void Update()
     {
-        // Advance the strip
         stripX -= scrollSpeed * Time.deltaTime;
 
-        // Wrap: when strip has moved one full cloud-spacing, reset and it's seamless
-        float halfStrip = stripWidth / 2f;
-        if (stripX < -halfStrip)
-            stripX += stripWidth;
+        // Wrap the strip offset at the real edges
+        if (stripX < -halfStrip) stripX += halfStrip * 2f;
 
         float time = Time.time;
 
@@ -100,12 +97,11 @@ public class CloudScroller : MonoBehaviour
             CloudData c = clouds[i];
             if (c.obj == null) continue;
 
-            // Scroll position
             float worldX = c.localX + stripX;
 
-            // Wrap individual cloud so it re-enters from the other side
-            if (worldX < -halfStrip) worldX += stripWidth;
-            if (worldX > halfStrip) worldX -= stripWidth;
+            // Wrap each cloud at the real strip edges
+            if (worldX < -halfStrip) worldX += halfStrip * 2f;
+            if (worldX > halfStrip) worldX -= halfStrip * 2f;
 
             c.obj.transform.localPosition = new Vector3(worldX, c.baseY, 0f);
 
