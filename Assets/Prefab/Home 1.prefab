@@ -69,6 +69,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 2923876871957055339}
   - {fileID: 7822513256406601381}
   - {fileID: 6216139180462788116}
   - {fileID: 4164689719035056029}
@@ -100,14 +101,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.392}
+  m_Color: {r: 0.9528302, g: 0.9528302, b: 0.9528302, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -4010375397571562949, guid: 01a272d3d0b24804996a8bc367597529, type: 3}
+  m_Sprite: {fileID: -3148884333086023953, guid: 28f1ec26429acbd4589f41bcb667cbe9, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -130,6 +131,64 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HomeScrollForwarder
   bottomSheet: {fileID: 0}
+--- !u!1 &3146099222199611253
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2923876871957055339}
+  - component: {fileID: 7869067997011656178}
+  m_Layer: 7
+  m_Name: CloudsTop
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &2923876871957055339
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3146099222199611253}
+  m_LocalRotation: {x: -0.00000008940696, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7208235622884224479}
+  m_LocalEulerAnglesHint: {x: 20, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 1}
+  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchoredPosition: {x: 0, y: -400}
+  m_SizeDelta: {x: 2000, y: 600}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &7869067997011656178
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3146099222199611253}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a14584d01920a24db94d4bcdcb9f5d4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  cloudPrefabs:
+  - {fileID: 7756315698482253163, guid: 6da1b9952fe38d14aad118465725df48, type: 3}
+  - {fileID: 8301827409077317300, guid: 584dd789ea2e1984db1ad34877456e49, type: 3}
+  - {fileID: 9161200407756358656, guid: 642fedbef84255e4ab8bbd9ab7aa66d8, type: 3}
+  cloudCount: 12
+  stripWidth: 100
+  verticalSpread: 1
+  scrollSpeed: 1.5
+  scalePulseAmount: 0.08
+  scalePulseSpeed: 0.8
 --- !u!1 &3289965726830339134
 GameObject:
   m_ObjectHideFlags: 0
@@ -267,6 +326,64 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!1 &6181168902399460524
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4975596744681713528}
+  - component: {fileID: 5375118931041135787}
+  m_Layer: 7
+  m_Name: CloudsBottom
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &4975596744681713528
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6181168902399460524}
+  m_LocalRotation: {x: 0.17364816, y: 0, z: 0, w: 0.9848078}
+  m_LocalPosition: {x: 0, y: 0, z: -20}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4164689719035056029}
+  m_LocalEulerAnglesHint: {x: 20, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: -2.5}
+  m_SizeDelta: {x: 100, y: 10}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &5375118931041135787
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6181168902399460524}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a14584d01920a24db94d4bcdcb9f5d4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  cloudPrefabs:
+  - {fileID: 7756315698482253163, guid: 6da1b9952fe38d14aad118465725df48, type: 3}
+  - {fileID: 8301827409077317300, guid: 584dd789ea2e1984db1ad34877456e49, type: 3}
+  - {fileID: 9161200407756358656, guid: 642fedbef84255e4ab8bbd9ab7aa66d8, type: 3}
+  cloudCount: 8
+  stripWidth: 30
+  verticalSpread: 0.4
+  scrollSpeed: 1.5
+  scalePulseAmount: 0.08
+  scalePulseSpeed: 0.8
 --- !u!1 &6522235195656217886
 GameObject:
   m_ObjectHideFlags: 0
@@ -589,8 +706,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -94.599976, y: -202.80005}
-  m_SizeDelta: {x: 139.03, y: 187.6001}
+  m_AnchoredPosition: {x: -100, y: -150}
+  m_SizeDelta: {x: 120, y: 120}
   m_Pivot: {x: 0.5, y: 0.5000003}
 --- !u!222 &3627752499425959866
 CanvasRenderer:
@@ -773,7 +890,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2588468132576791224, guid: 98a335507dfc1d143844253cea1c891d, type: 3}
       propertyPath: gridSize
-      value: 0.3
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 2588468132576791224, guid: 98a335507dfc1d143844253cea1c891d, type: 3}
       propertyPath: objectScale
@@ -847,6 +964,10 @@ PrefabInstance:
       propertyPath: placeableItems.Array.data[7].itemType
       value: 7
       objectReference: {fileID: 0}
+    - target: {fileID: 7712962992056012995, guid: 98a335507dfc1d143844253cea1c891d, type: 3}
+      propertyPath: riseAmount
+      value: 1500
+      objectReference: {fileID: 0}
     - target: {fileID: 8500571986702327613, guid: 98a335507dfc1d143844253cea1c891d, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -894,6 +1015,9 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 8500571986702327613, guid: 98a335507dfc1d143844253cea1c891d, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4975596744681713528}
     - targetCorrespondingSourceObject: {fileID: 959139775938916133, guid: 98a335507dfc1d143844253cea1c891d, type: 3}
       insertIndex: -1
       addedObject: {fileID: 8592379520768685152}
