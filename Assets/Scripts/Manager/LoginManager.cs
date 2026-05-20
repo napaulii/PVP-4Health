@@ -38,8 +38,11 @@ public class LoginManager : MonoBehaviour
     [SerializeField] private TMP_InputField lastNameInput;
     [SerializeField] private TMP_InputField nicknameInput;
 
-    [Header("Page 2: Path")]
-    [SerializeField] private TMP_Dropdown pathDropdown;
+    [Header("Page 2: Categories")]
+    [SerializeField] private Toggle category1Toggle; // E.g., category_id = 1
+    [SerializeField] private Toggle category2Toggle; // E.g., category_id = 2
+    [SerializeField] private Toggle category3Toggle; // E.g., category_id = 3
+    private const int CATEGORY_PAGE_INDEX = 1; // Assuming Page 2 is index 1
 
     [Header("Page 3: Fortress (Multiplayer)")]
     [SerializeField] private Toggle joinExistingToggle; 
@@ -83,6 +86,11 @@ public class LoginManager : MonoBehaviour
         nextButton.onClick.AddListener(NextSurveyPage);
         finishSurveyButton.onClick.AddListener(OnFinishSurveyClicked);
 
+        // Add listeners to category toggles to validate the Next button
+        if (category1Toggle) category1Toggle.onValueChanged.AddListener(delegate { ValidateSurveyPage(); });
+        if (category2Toggle) category2Toggle.onValueChanged.AddListener(delegate { ValidateSurveyPage(); });
+        if (category3Toggle) category3Toggle.onValueChanged.AddListener(delegate { ValidateSurveyPage(); });
+
         loginPanel.SetActive(true);
         surveyPanel.SetActive(false);
         
@@ -97,7 +105,6 @@ public class LoginManager : MonoBehaviour
         {
             Debug.Log("LoginManager: Initiating Google OAuth...");
 
-            // 1. Request the login URI configuration from Supabase
             var providerAuth = await SupabaseManager.Instance.Auth.SignIn(
                 Supabase.Gotrue.Constants.Provider.Google,
                 new SignInOptions { RedirectTo = redirectUrl }
@@ -106,9 +113,6 @@ public class LoginManager : MonoBehaviour
             if (providerAuth != null && providerAuth.Uri != null)
             {
                 Debug.Log($"LoginManager: Opening Login URL: {providerAuth.Uri}");
-                
-                // 2. This opens the Chrome Custom Tab on Android, 
-                // and falls back to the Default Web Browser on Desktop Editor.
                 Application.OpenURL(providerAuth.Uri.ToString());
             }
             else
@@ -130,8 +134,6 @@ public class LoginManager : MonoBehaviour
     
         try
         {
-            // 3. Pass the incoming Android deep link URL back to Supabase 
-            // to parse the access tokens and establish the session.
             await SupabaseManager.Instance.Auth.GetSessionFromUrl(new Uri(url));
             
             if (SupabaseManager.Instance.Auth.CurrentUser != null)
@@ -196,57 +198,52 @@ public class LoginManager : MonoBehaviour
     }
 
     private async Task DirectUserFlow()
-{
-    // Assuming SupabaseManager.Instance.Auth.CurrentUser is populated after successful auth
-    var currentUser = SupabaseManager.Instance.Auth.CurrentUser;
-    if (currentUser == null) 
     {
-        Debug.LogError("LoginManager: Current user object is NULL in DirectUserFlow.");
-        UpdateStatus("Attempting login...", Color.green);
-        SetLoadingState(false);
-        OnAuthClicked(false);
-        return;
-    }
-
-    string userId = currentUser.Id;
-    Debug.Log($"LoginManager: User ID retrieved for flow control: {userId}");
-
-    // Fetch user from DB to check if they completed onboarding
-    try
-    {
-        Debug.Log($"LoginManager: Querying database for existing user profile with ID: {userId}");
-        var userResponse = await SupabaseManager.Instance.From<User>().Where(u => u.Id == userId).Get();
-
-        loginPanel.SetActive(false);
-        
-        if (userResponse.Models.Count == 0) 
+        var currentUser = SupabaseManager.Instance.Auth.CurrentUser;
+        if (currentUser == null) 
         {
-            Debug.Log("LoginManager: User not found in DB. Starting Survey.");
-            StartSurvey();
+            Debug.LogError("LoginManager: Current user object is NULL in DirectUserFlow.");
+            UpdateStatus("Attempting login...", Color.green);
+            SetLoadingState(false);
+            OnAuthClicked(false);
+            return;
         }
-        else 
-        {
-            // Cache the profile to update it later if they need to join a group
-            cachedCurrentUserProfile = userResponse.Models[0];
-            Debug.Log("LoginManager: User profile found. Checking Group alignment...");
 
-            // Check if the user has a valid group ID (Handling null or default 0 values)
-            if (cachedCurrentUserProfile.GroupID == null || cachedCurrentUserProfile.GroupID == 0)
+        string userId = currentUser.Id;
+        Debug.Log($"LoginManager: User ID retrieved for flow control: {userId}");
+
+        try
+        {
+            Debug.Log($"LoginManager: Querying database for existing user profile with ID: {userId}");
+            var userResponse = await SupabaseManager.Instance.From<User>().Where(u => u.Id == userId).Get();
+
+            loginPanel.SetActive(false);
+            
+            if (userResponse.Models.Count == 0) 
             {
-                Debug.Log("LoginManager: User does not belong to a group. Opening Group Panel.");
-                
-                // Set up the UI Submit Button listener dynamically or ensure it points to OnGroupSubmit
-                groupSubmitButton.onClick.RemoveAllListeners();
-                groupSubmitButton.onClick.AddListener(() => _ = OnGroupSubmit());
-                
-                groupPanel.SetActive(true);
+                Debug.Log("LoginManager: User not found in DB. Starting Survey.");
+                StartSurvey();
             }
-            else
+            else 
             {
-                Debug.Log("LoginManager: User profile found with group. Proceeding to Main Game.");
-                EnterMainGame();
+                cachedCurrentUserProfile = userResponse.Models[0];
+                Debug.Log("LoginManager: User profile found. Checking Group alignment...");
+
+                if (cachedCurrentUserProfile.GroupID == null || cachedCurrentUserProfile.GroupID == 0)
+                {
+                    Debug.Log("LoginManager: User does not belong to a group. Opening Group Panel.");
+                    
+                    groupSubmitButton.onClick.RemoveAllListeners();
+                    groupSubmitButton.onClick.AddListener(() => _ = OnGroupSubmit());
+                    
+                    groupPanel.SetActive(true);
+                }
+                else
+                {
+                    Debug.Log("LoginManager: User profile found with group. Proceeding to Main Game.");
+                    EnterMainGame();
+                }
             }
-        }
         }
         catch (Exception ex)
         {
@@ -257,68 +254,64 @@ public class LoginManager : MonoBehaviour
     }
 
     private async Task OnGroupSubmit()
-{
-    if (cachedCurrentUserProfile == null)
     {
-        Debug.LogError("LoginManager: Cached user profile is missing during submission.");
-        return;
-    }
-
-    string joinIdText = joinGroupIdInput2.text.Trim();
-    string createNameText = createGroupNameInput.text.Trim();
-    long targetGroupId = 0;
-
-    SetLoadingState(true);
-    UpdateStatus("Processing group alignment...", Color.white);
-
-    try
-    {
-        // 1. Determine action based on input priority (If Join ID is filled, prioritize joining)
-        if (!string.IsNullOrEmpty(joinIdText))
+        if (cachedCurrentUserProfile == null)
         {
-            if (long.TryParse(joinIdText, out long parsedGroupId))
+            Debug.LogError("LoginManager: Cached user profile is missing during submission.");
+            return;
+        }
+
+        string joinIdText = joinGroupIdInput2.text.Trim();
+        string createNameText = createGroupNameInput.text.Trim();
+        long targetGroupId = 0;
+
+        SetLoadingState(true);
+        UpdateStatus("Processing group alignment...", Color.white);
+
+        try
+        {
+            if (!string.IsNullOrEmpty(joinIdText))
             {
-                UpdateStatus("Checking existing group...", Color.white);
-                targetGroupId = await JoinSpecifiedGroup(parsedGroupId);
+                if (long.TryParse(joinIdText, out long parsedGroupId))
+                {
+                    UpdateStatus("Checking existing group...", Color.white);
+                    targetGroupId = await JoinSpecifiedGroup(parsedGroupId);
+                }
+                else
+                {
+                    throw new Exception("Group ID must be a valid number.");
+                }
+            }
+            else if (!string.IsNullOrEmpty(createNameText))
+            {
+                UpdateStatus("Creating new group...", Color.white);
+                targetGroupId = await CreateNewGroup(cachedCurrentUserProfile.Id, createNameText);
             }
             else
             {
-                throw new Exception("Group ID must be a valid number.");
+                throw new Exception("Please enter either a Group ID to join or a Name to create one.");
             }
+
+            UpdateStatus("Updating user profile...", Color.white);
+            cachedCurrentUserProfile.GroupID = targetGroupId;
+
+            await SupabaseManager.Instance
+                .From<User>()
+                .Where(u => u.Id == cachedCurrentUserProfile.Id)
+                .Update(cachedCurrentUserProfile);
+
+            Debug.Log($"LoginManager: User successfully updated with Group ID: {targetGroupId}");
+            
+            groupPanel.SetActive(false);
+            SetLoadingState(false);
+            EnterMainGame();
         }
-        // 2. Otherwise, check if they are trying to create a group instead
-        else if (!string.IsNullOrEmpty(createNameText))
+        catch (Exception ex)
         {
-            UpdateStatus("Creating new group...", Color.white);
-            targetGroupId = await CreateNewGroup(cachedCurrentUserProfile.Id, createNameText);
+            Debug.LogError($"LoginManager: Error during group assignment process: {ex.Message}");
+            UpdateStatus(ex.Message, Color.red);
+            SetLoadingState(false);
         }
-        else
-        {
-            throw new Exception("Please enter either a Group ID to join or a Name to create one.");
-        }
-
-        // 3. Update the User row in Supabase with the returned Group ID
-        UpdateStatus("Updating user profile...", Color.white);
-        cachedCurrentUserProfile.GroupID = targetGroupId; // Sync your local model property name here
-
-        await SupabaseManager.Instance
-            .From<User>()
-            .Where(u => u.Id == cachedCurrentUserProfile.Id)
-            .Update(cachedCurrentUserProfile);
-
-        Debug.Log($"LoginManager: User successfully updated with Group ID: {targetGroupId}");
-        
-        // Clean up UI and progress to main game loop
-        groupPanel.SetActive(false);
-        SetLoadingState(false);
-        EnterMainGame();
-    }
-    catch (Exception ex)
-    {
-        Debug.LogError($"LoginManager: Error during group assignment process: {ex.Message}");
-        UpdateStatus(ex.Message, Color.red);
-        SetLoadingState(false);
-    }
     }
 
     private void StartSurvey()
@@ -343,86 +336,119 @@ public class LoginManager : MonoBehaviour
         
         nextButton.gameObject.SetActive(currentSurveyPage < surveyPages.Length - 1);
         finishSurveyButton.gameObject.SetActive(currentSurveyPage == surveyPages.Length - 1);
+
+        ValidateSurveyPage();
     }
 
-private async void OnFinishSurveyClicked()
-{
-    Debug.Log("LoginManager: Finishing Survey and proceeding to user setup.");
-    SetLoadingState(true);
-    try
+    // Controls the interactability of the 'Next' button depending on the current page's requirements
+    private void ValidateSurveyPage()
     {
-        var currentUser = SupabaseManager.Instance.Auth.CurrentUser;
-        if (currentUser == null) throw new Exception("No authenticated user found during survey completion.");
-
-        string userId = currentUser.Id;
-        Debug.Log($"LoginManager: User ID for setup: {userId}");
-        
-        // 1. Create the User Profile FIRST
-        var newProfile = new User {
-            Id = userId, 
-            Email = currentUser.Email,
-            FirstName = firstNameInput.text, 
-            LastName = lastNameInput.text,
-            Nickname = nicknameInput.text,
-            Balance = 0,
-            Xp = 0
-        };
-
-        Debug.Log($"LoginManager: Preparing to insert new User Profile for {userId}.");
-        if (string.IsNullOrEmpty(userId)) {
-            Debug.LogError("LoginManager: UserId is NULL before insertion!");
-            return;
-        }
-
-        // CRITICAL: Ensure we use the Return.Representation to confirm the insert worked
-        try
+        if (currentSurveyPage == CATEGORY_PAGE_INDEX)
         {
-             await SupabaseManager.Instance.From<User>().Insert(newProfile);
-             Debug.Log($"LoginManager: Successfully inserted new User record for {userId}.");
-        }
-        catch (Exception e)
-        {
-            Debug.LogError($"LoginManager: FAILED TO INSERT USER PROFILE: {e.Message}");
-            throw; // Re-throw to hit the main catch block
-        }
-
-
-        // 2. Now handle the Group creation/joining
-        long assignedGroupId;
-        if (joinExistingToggle.isOn)
-        {
-            Debug.Log("LoginManager: Joining existing group...");
-            assignedGroupId = await JoinSpecifiedGroup(long.Parse(joinGroupIdInput.text));
+            // Requires at least one toggle to be ON
+            bool hasSelectedCategory = category1Toggle.isOn || category2Toggle.isOn || category3Toggle.isOn;
+            nextButton.interactable = hasSelectedCategory;
         }
         else
         {
-            Debug.Log($"LoginManager: Creating new group with name: {newGroupNameInput.text}");
-            assignedGroupId = await CreateNewGroup(userId, newGroupNameInput.text);
+            // Default rule for other pages
+            nextButton.interactable = true;
         }
+    }
 
-        // 3. Update the User with the Group ID
-        newProfile.GroupID = assignedGroupId;
-        Debug.Log($"LoginManager: Preparing to update user {userId} with GroupID: {assignedGroupId}.");
+    private async void OnFinishSurveyClicked()
+    {
+        Debug.Log("LoginManager: Finishing Survey and proceeding to user setup.");
+        SetLoadingState(true);
         try
         {
-            await SupabaseManager.Instance.From<User>().Update(newProfile);
-            Debug.Log($"LoginManager: Successfully updated User record with Group ID.");
-        }
-        catch (Exception e)
-        {
-            Debug.LogError($"LoginManager: FAILED TO UPDATE USER WITH GROUPID: {e.Message}");
-            throw; // Re-throw to hit the main catch block
-        }
+            var currentUser = SupabaseManager.Instance.Auth.CurrentUser;
+            if (currentUser == null) throw new Exception("No authenticated user found during survey completion.");
 
-        EnterMainGame();
+            string userId = currentUser.Id;
+            Debug.Log($"LoginManager: User ID for setup: {userId}");
+            
+            // 1. Create the User Profile FIRST
+            var newProfile = new User {
+                Id = userId, 
+                Email = currentUser.Email,
+                FirstName = firstNameInput.text, 
+                LastName = lastNameInput.text,
+                Nickname = nicknameInput.text,
+                Balance = 0,
+                Xp = 0
+            };
+
+            Debug.Log($"LoginManager: Preparing to insert new User Profile for {userId}.");
+            try
+            {
+                 await SupabaseManager.Instance.From<User>().Insert(newProfile);
+                 Debug.Log($"LoginManager: Successfully inserted new User record for {userId}.");
+            }
+            catch (Exception e)
+            {
+                Debug.LogError($"LoginManager: FAILED TO INSERT USER PROFILE: {e.Message}");
+                throw; 
+            }
+
+            // 2. Assign selected categories to the user_category joining table
+            List<UserCategory> selectedCategories = new List<UserCategory>();
+            
+            // Note: Map the CategoryId integers to match the actual IDs in your `public.category` table.
+            if (category1Toggle.isOn) selectedCategories.Add(new UserCategory { UserId = userId, CategoryId = 1 });
+            if (category2Toggle.isOn) selectedCategories.Add(new UserCategory { UserId = userId, CategoryId = 2 });
+            if (category3Toggle.isOn) selectedCategories.Add(new UserCategory { UserId = userId, CategoryId = 3 });
+
+            if (selectedCategories.Count > 0)
+            {
+                try
+                {
+                    await SupabaseManager.Instance.From<UserCategory>().Insert(selectedCategories);
+                    Debug.Log("LoginManager: Successfully assigned categories to user.");
+                }
+                catch (Exception e)
+                {
+                    Debug.LogError($"LoginManager: FAILED TO INSERT USER CATEGORIES: {e.Message}");
+                    throw;
+                }
+            }
+
+            // 3. Now handle the Group creation/joining
+            long assignedGroupId;
+            if (joinExistingToggle.isOn)
+            {
+                Debug.Log("LoginManager: Joining existing group...");
+                assignedGroupId = await JoinSpecifiedGroup(long.Parse(joinGroupIdInput.text));
+            }
+            else
+            {
+                Debug.Log($"LoginManager: Creating new group with name: {newGroupNameInput.text}");
+                assignedGroupId = await CreateNewGroup(userId, newGroupNameInput.text);
+            }
+
+            // 4. Update the User with the Group ID
+            newProfile.GroupID = assignedGroupId;
+            Debug.Log($"LoginManager: Preparing to update user {userId} with GroupID: {assignedGroupId}.");
+            try
+            {
+                await SupabaseManager.Instance.From<User>().Update(newProfile);
+                Debug.Log($"LoginManager: Successfully updated User record with Group ID.");
+            }
+            catch (Exception e)
+            {
+                Debug.LogError($"LoginManager: FAILED TO UPDATE USER WITH GROUPID: {e.Message}");
+                throw; 
+            }
+
+            EnterMainGame();
+        }
+        catch (Exception ex)
+        {
+            Debug.LogError($"LoginManager: Registration/Setup Flow Failed: {ex}");
+            UpdateStatus("Error during setup. Check console for details.", Color.red);
+            SetLoadingState(false);
+        }
     }
-    catch (Exception ex)
-    {
-        Debug.LogError($"LoginManager: Registration/Setup Flow Failed: {ex}");
-        UpdateStatus("Error during setup. Check console for details.", Color.red);
-        SetLoadingState(false);
-    }
-}
 
     private async Task<long> CreateNewGroup(string userId, string title)
     {
@@ -435,7 +461,6 @@ private async void OnFinishSurveyClicked()
         Debug.Log($"LoginManager: Inserting new Group '{title}' for user {userId}.");
         try
         {
-             // Use QueryOptions to get the inserted ID back
             var groupRes = await SupabaseManager.Instance
                 .From<Group>()
                 .Insert(newGroup, new Postgrest.QueryOptions { Returning = Postgrest.QueryOptions.ReturnType.Representation });
@@ -445,7 +470,6 @@ private async void OnFinishSurveyClicked()
             long groupId = groupRes.Models[0].Id;
             Debug.Log($"LoginManager: Successfully created Group with ID: {groupId}");
 
-            // Create Fortress associated with this new group
             var newFortress = new Fortress { State = "Stable", Level = 1, GroupId = groupId };
             Debug.Log($"LoginManager: Inserting new Fortress for Group ID: {groupId}.");
             await SupabaseManager.Instance.From<Fortress>().Insert(newFortress);
@@ -463,7 +487,6 @@ private async void OnFinishSurveyClicked()
     private async Task<long> JoinSpecifiedGroup(long groupId)
     {
         Debug.Log($"LoginManager: Checking existence of Group ID: {groupId}.");
-        // Check if group exists
         try
         {
             var groupRes = await SupabaseManager.Instance.From<Group>().Where(g => g.Id == groupId).Get();
@@ -473,10 +496,9 @@ private async void OnFinishSurveyClicked()
         catch (Exception ex)
         {
              Debug.LogError($"LoginManager: Group Existence Check Failed: {ex}");
-             throw; // Propagate error up
+             throw;
         }
 
-        // Check if group is full (max 4 users)
         Debug.Log($"LoginManager: Checking user count for Group ID: {groupId}.");
         try
         {
@@ -489,7 +511,7 @@ private async void OnFinishSurveyClicked()
         catch (Exception ex)
         {
              Debug.LogError($"LoginManager: User Count Check Failed: {ex}");
-             throw; // Propagate error up
+             throw; 
         }
 
         return groupId;
