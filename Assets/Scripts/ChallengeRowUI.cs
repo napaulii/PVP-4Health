@@ -5,10 +5,16 @@ using SupabaseModels;
 
 public class ChallengeRowUI : MonoBehaviour
 {
+    [Header("Colors")]
+    public Color claimableColor;
+    public Color incompleteColor;
+    public Color claimedColor;
+
     [Header("Header References")]
     public TextMeshProUGUI descriptionText;
     public Button claimButton; // The checkmark button in the header
     public Image statusIcon;
+    public Image buttonBackgroundImage; // The Image component ON the Button object
 
     [Header("Expandable Area")]
     public GameObject detailsArea; // Drag the 'DetailsArea' object here
@@ -20,53 +26,99 @@ public class ChallengeRowUI : MonoBehaviour
     public GameObject stepActionGroup;  // Drag 'ProgressText' here
 
     [Header("Sprites")]
-    public Sprite checkmarkSprite;
     public Sprite cameraSprite;
 
     private UserChallenge _data;
     private ChallengeActions _actions;
-
-    public void Setup(UserChallenge data, ChallengeActions actions)
+    private ChallengeUIManager _uiManager;
+    public void Setup(UserChallenge data, ChallengeActions actions, ChallengeUIManager uiManager)
     {
         _data = data;
         _actions = actions;
+        _uiManager = uiManager;
 
-        // 1. Setup Header
         descriptionText.text = data.ChallengeData.Description;
-
-        // 2. Setup Rewards (inside details)
         xpText.text = $"+{data.ChallengeData.XpReward} XP";
         coinsText.text = $"+{data.ChallengeData.BalanceReward} Coins";
 
-        // 3. Set visibility of specific actions
-        bool isMeal = data.ChallengeData.Type.ToLower().Contains("meal");
-        photoActionGroup.SetActive(isMeal);
-        stepActionGroup.SetActive(!isMeal);
+        // FORCE CHECKMARK SETTINGS
+        statusIcon.color = Color.white;
+        statusIcon.material = null;
 
-        // 4. Start Collapsed
-        detailsArea.SetActive(false);
+        string status = (data.Status ?? "active").ToLower();
 
-        // 5. Icon Logic
-        if (string.Equals(data.Status, "completed", System.StringComparison.OrdinalIgnoreCase))
+        // --- APPLY SOLID COLORS (Using 255 Alpha) ---
+        if (status == "claimed")
         {
-            statusIcon.sprite = checkmarkSprite;
-            statusIcon.color = Color.green;
-            claimButton.interactable = true; // Click to claim!
+            // Solid Green
+            buttonBackgroundImage.color = claimedColor;
+            claimButton.interactable = false;
+        }
+        else if (status == "completed")
+        {
+            // Solid Orange
+            buttonBackgroundImage.color = claimedColor;
+            claimButton.interactable = true;
         }
         else
         {
-            statusIcon.sprite = isMeal ? cameraSprite : checkmarkSprite;
-            statusIcon.color = Color.white;
-            claimButton.interactable = false; // Locked until AI/Steps finish
+            // Solid Dull Red/Brown
+            buttonBackgroundImage.color = incompleteColor;
+            claimButton.interactable = false;
+
+            bool isMeal = data.ChallengeData.Type.ToLower().Contains("meal");
+            photoActionGroup.SetActive(isMeal);
+            stepActionGroup.SetActive(!isMeal);
         }
+
+        detailsArea.SetActive(false);
+    }
+
+    public void ToggleExpand()
+    {
+        // LOCK EXPANSION IF FINISHED
+        string status = _data.Status.ToLower();
+        if (status == "completed" || status == "claimed")
+        {
+            return;
+        }
+
+        if (!detailsArea.activeSelf)
+        {
+            _uiManager.CollapseAllOtherRows(this);
+            detailsArea.SetActive(true);
+        }
+        else
+        {
+            detailsArea.SetActive(false);
+        }
+    }
+    public async void OnClaimRewardPressed()
+    {
+        // Disable immediately to prevent double-clicks
+        claimButton.interactable = false;
+
+        // 1. Grant Rewards
+        UserController userCtrl = new UserController();
+        await userCtrl.UpdateUserAsync(_data.ChallengeData.BalanceReward, _data.ChallengeData.XpReward, false);
+
+        // 2. Mark as claimed in DB
+        UserChallengeController ucCtrl = new UserChallengeController();
+        await ucCtrl.UpdateUserChallengeStatusAsync(_data.Id, "claimed");
+
+        // Update local data so the UI knows it changed
+        _data.Status = "claimed";
+
+        // 3. Refresh
+        _uiManager.RefreshUI();
     }
 
     // Call this from the PChallengeRow's main Button component
-    public void ToggleExpand()
+    public void CloseDetails()
     {
-        detailsArea.SetActive(!detailsArea.activeSelf);
-        // Because of Content Size Fitter, the box will grow/shrink automatically
+        detailsArea.SetActive(false);
     }
+
 
     // Call this from the 'UploadPhotoButton' OnClick
     public void OnTakePhotoClicked()
