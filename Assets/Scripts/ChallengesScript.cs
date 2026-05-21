@@ -4,6 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using SupabaseModels;
+using System.Threading.Tasks;
 
 public class ChallengesScript : MonoBehaviour
 {
@@ -39,7 +40,7 @@ public class ChallengesScript : MonoBehaviour
         _challengeController = new ChallengeController();
     }
 
-    private void Start()
+    private async void Start()
     {
         if (personalRowTemplate != null) personalRowTemplate.gameObject.SetActive(false);
         if (groupRowTemplate != null) groupRowTemplate.gameObject.SetActive(false);
@@ -49,10 +50,12 @@ public class ChallengesScript : MonoBehaviour
         //     userId = SupabaseManager.Instance.Auth.CurrentUser.Id;
         //     FetchAndLoadChallenges();
         // }
+
+        await FetchAndLoadChallenges();
     }
 
     // NEW METHOD: Easily fetch and load directly from Supabase
-    public async void FetchAndLoadChallenges()
+    public async Task FetchAndLoadChallenges()
     {
         Debug.Log("Fetching challenges from Supabase...");
         List<UserChallenge> userChalls = await _challengeController.GetUserChallengesAsync(userId);
@@ -130,7 +133,7 @@ public class ChallengesScript : MonoBehaviour
         // 1. Give Coins (if CoinManager exists)
         if (uc.ChallengeData != null && CoinManager.Instance != null)
         {
-            CoinManager.Instance.AddCoins(uc.ChallengeData.BalanceReward);
+            await CoinManager.Instance.AddCoins(uc.ChallengeData.BalanceReward);
         }
 
         // 2. Tell Supabase using our new Controller!
@@ -158,7 +161,7 @@ public class ChallengesScript : MonoBehaviour
 
         if (gc.Challenge != null && CoinManager.Instance != null)
         {
-            CoinManager.Instance.AddCoins(gc.Challenge.BalanceReward);
+            await CoinManager.Instance.AddCoins(gc.Challenge.BalanceReward);
         }
 
         // Tell Supabase using our new Controller!

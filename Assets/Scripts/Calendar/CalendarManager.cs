@@ -66,7 +66,7 @@ public class CalendarManager : MonoBehaviour
             closeButton = GetComponentInChildren<Button>();
             if (closeButton == null)
             {
-                var found = FindObjectsOfType<Button>().FirstOrDefault(b => b.name == "CloseButton");
+                var found = FindObjectsByType<Button>(FindObjectsSortMode.None).FirstOrDefault(b => b.name == "CloseButton");
                 closeButton = found;
             }
 

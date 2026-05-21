@@ -57,7 +57,7 @@ public class HabitManager : MonoBehaviour
         _habitController = new HabitController();
         _userController = new UserController();
 
-        FetchAllHabits();
+        await FetchAllHabits();
 
         // --- Google Health ---
         if (googleHealth != null)
@@ -84,7 +84,7 @@ public class HabitManager : MonoBehaviour
         }
     }
 
-    public async void FetchAllHabits()
+    public async Task FetchAllHabits()
     {
         Debug.Log("Fetching all habits...");
         List<Habit> allHabits = await _habitController.GetAllHabitsAsync();
@@ -131,7 +131,7 @@ public class HabitManager : MonoBehaviour
         if (newHabit != null)
         {
             CloseCreate();
-            FetchAllHabits();
+            await FetchAllHabits();
         }
     }
 
@@ -188,7 +188,7 @@ public class HabitManager : MonoBehaviour
         await _habitController.UpdateHabitAsync(_currentlySelectedHabitId, editTitleInput.text, editDescInput.text);
         editPanel.SetActive(false);
         OpenHabitDetails(_currentlySelectedHabitId);
-        FetchAllHabits();
+        await FetchAllHabits();
     }
 
     public void CloseEdits()
@@ -207,7 +207,7 @@ public class HabitManager : MonoBehaviour
             detailsPanel.SetActive(false);
             if (dimBackground != null) dimBackground.SetActive(false);
             SetScrollingEnabled(true);
-            FetchAllHabits();
+            await FetchAllHabits();
         }
     }
 
@@ -216,6 +216,6 @@ public class HabitManager : MonoBehaviour
         Debug.Log("Marking as completed");
         await _habitController.ToggleCompletionAsync(habitID);
         await _userController.UpdateUserAsync(10, 10, true);
-        FetchAllHabits();
+        await  FetchAllHabits();
     }
 }
