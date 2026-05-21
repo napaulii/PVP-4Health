@@ -91,6 +91,10 @@ public class LoginManager : MonoBehaviour
         if (category2Toggle) category2Toggle.onValueChanged.AddListener(delegate { ValidateSurveyPage(); });
         if (category3Toggle) category3Toggle.onValueChanged.AddListener(delegate { ValidateSurveyPage(); });
 
+        // Add listener to the join/create toggle on Page 3 and set initial UI state
+        if (joinExistingToggle) joinExistingToggle.onValueChanged.AddListener(delegate { UpdateGroupInputVisibility(); });
+        UpdateGroupInputVisibility();
+
         loginPanel.SetActive(true);
         surveyPanel.SetActive(false);
         
@@ -311,6 +315,23 @@ public class LoginManager : MonoBehaviour
             Debug.LogError($"LoginManager: Error during group assignment process: {ex.Message}");
             UpdateStatus(ex.Message, Color.red);
             SetLoadingState(false);
+        }
+    }
+
+    private void UpdateGroupInputVisibility()
+    {
+        bool isJoining = joinExistingToggle != null && joinExistingToggle.isOn;
+
+        // When joining: show the join ID field, hide the new group name field
+        if (joinGroupIdInput != null)
+        {
+            joinGroupIdInput.gameObject.SetActive(isJoining);
+        }
+
+        // When creating: show the new group name field, hide the join ID field
+        if (newGroupNameInput != null)
+        {
+            newGroupNameInput.gameObject.SetActive(!isJoining);
         }
     }
 
