@@ -887,6 +887,7 @@ GameObject:
   - component: {fileID: 399901906}
   - component: {fileID: 399901909}
   - component: {fileID: 399901908}
+  - component: {fileID: 399901910}
   - component: {fileID: 399901907}
   m_Layer: 5
   m_Name: CloseButton
@@ -1008,6 +1009,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 399901905}
   m_CullTransparentMesh: 1
+--- !u!114 &399901910
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 399901905}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad4ad13237cbd8148aa0f3975f4605c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ButtonSound
 --- !u!1 &495793576
 GameObject:
   m_ObjectHideFlags: 0
@@ -1249,8 +1262,6 @@ MonoBehaviour:
   itemListContent: {fileID: 1086446156}
   taskItemPrefab: {fileID: 0}
   emptyText: {fileID: 247444407}
-  testEmail: testuser@game.com
-  testPassword: password123
 --- !u!1 &555848103
 GameObject:
   m_ObjectHideFlags: 0
@@ -1476,6 +1487,7 @@ GameObject:
   - component: {fileID: 701717562}
   - component: {fileID: 701717566}
   - component: {fileID: 701717565}
+  - component: {fileID: 701717567}
   - component: {fileID: 701717564}
   - component: {fileID: 701717563}
   m_Layer: 5
@@ -1611,6 +1623,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 701717561}
   m_CullTransparentMesh: 1
+--- !u!114 &701717567
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 701717561}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad4ad13237cbd8148aa0f3975f4605c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ButtonSound
 --- !u!1 &702858571
 GameObject:
   m_ObjectHideFlags: 0
@@ -1660,6 +1684,7 @@ GameObject:
   - component: {fileID: 707678316}
   - component: {fileID: 707678319}
   - component: {fileID: 707678318}
+  - component: {fileID: 707678320}
   - component: {fileID: 707678317}
   m_Layer: 5
   m_Name: NextButton
@@ -1770,6 +1795,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 707678315}
   m_CullTransparentMesh: 1
+--- !u!114 &707678320
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 707678315}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad4ad13237cbd8148aa0f3975f4605c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ButtonSound
 --- !u!1 &708458243
 GameObject:
   m_ObjectHideFlags: 0
@@ -3168,8 +3205,6 @@ MonoBehaviour:
   itemListContent: {fileID: 1086446156}
   taskItemPrefab: {fileID: 4669257739552563735, guid: 2b950d6c555c02b41bde215f37949a38, type: 3}
   emptyText: {fileID: 247444407}
-  testEmail: testuser@game.com
-  testPassword: password123
 --- !u!1 &1744418417
 GameObject:
   m_ObjectHideFlags: 0
@@ -3695,6 +3730,7 @@ GameObject:
   - component: {fileID: 2094532997}
   - component: {fileID: 2094533000}
   - component: {fileID: 2094532999}
+  - component: {fileID: 2094533001}
   - component: {fileID: 2094532998}
   m_Layer: 5
   m_Name: PrevButton
@@ -3805,6 +3841,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2094532996}
   m_CullTransparentMesh: 1
+--- !u!114 &2094533001
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2094532996}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad4ad13237cbd8148aa0f3975f4605c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ButtonSound
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

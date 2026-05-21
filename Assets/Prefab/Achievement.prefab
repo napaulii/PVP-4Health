@@ -285,6 +285,7 @@ GameObject:
   - component: {fileID: 6954401441432277756}
   - component: {fileID: 4345610594183867682}
   - component: {fileID: 4688076061388243065}
+  - component: {fileID: 3777516895787586167}
   - component: {fileID: 1596023155812343937}
   m_Layer: 5
   m_Name: claimButton
@@ -352,6 +353,18 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &3777516895787586167
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2174816832041251823}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad4ad13237cbd8148aa0f3975f4605c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ButtonSound
 --- !u!114 &1596023155812343937
 MonoBehaviour:
   m_ObjectHideFlags: 0

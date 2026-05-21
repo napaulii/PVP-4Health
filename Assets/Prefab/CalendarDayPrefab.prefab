@@ -299,6 +299,7 @@ GameObject:
   - component: {fileID: 1425166800568458084}
   - component: {fileID: 4691588386551447210}
   - component: {fileID: 6311953026190902736}
+  - component: {fileID: 3908329082235649204}
   - component: {fileID: 3288478045603147116}
   m_Layer: 5
   m_Name: CalendarDayPrefab
@@ -382,6 +383,18 @@ MonoBehaviour:
   background: {fileID: 3091018641984946775}
   dayText: {fileID: 1700653817717542938}
   dot: {fileID: 3028953442746474638}
+--- !u!114 &3908329082235649204
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8401712760409580974}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad4ad13237cbd8148aa0f3975f4605c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ButtonSound
 --- !u!114 &3288478045603147116
 MonoBehaviour:
   m_ObjectHideFlags: 0
