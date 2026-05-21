@@ -61,7 +61,6 @@ public class ShopScript : MonoBehaviour
             CreateItemButton(type);
     }
 
-    // Fetches all items bought by any group member and unlocks them locally
     private async System.Threading.Tasks.Task LoadGroupOwnedItems()
     {
         List<PersonalItem> groupItems = await _groupController.GetGroupPurchasedItemsAsync();
@@ -99,7 +98,6 @@ public class ShopScript : MonoBehaviour
         Button buyButton = clone.Find("BuyButton")?.GetComponent<Button>();
         if (buyButton != null)
         {
-            // Items owned by anyone in the group show as owned for everyone
             SetButtonOwned(buyButton, Item.IsOwned(itemType));
 
             Item.ItemType capturedType = itemType;
@@ -114,11 +112,11 @@ public class ShopScript : MonoBehaviour
 
         if (CoinManager.Instance == null || !(await CoinManager.Instance.TrySpend(cost)))
         {
-            Debug.Log("Not enough coins (or DB error)!");
+            Debug.Log("[Shop] Not enough coins (or DB error)!");
             return;
         }
 
-        // Save purchase to Supabase under the current user
+        // Save purchase to Supabase
         PersonalItem saved = await _personalItemController.CreatePersonalItemAsync(
             title: Item.GetName(itemType),
             description: $"Purchased {Item.GetName(itemType)}",
@@ -132,14 +130,29 @@ public class ShopScript : MonoBehaviour
         }
 
         Item.Unlock(itemType);
-        Debug.Log($"[Shop] Purchased {itemType} for {cost} coins and saved to DB.");
+        Debug.Log($"[Shop] Purchased {itemType} for {cost} coins.");
         SetButtonOwned(button, true);
         UpdateCoinDisplay();
 
-        shopPanel.SetActive(false);
-        HomePanel.SetActive(true);
-        HomeBottomPanel.SetActive(true);
-        gridSystem.StartPlacement(itemType);
+        // Validate gridSystem before switching panels
+        if (gridSystem == null)
+        {
+            Debug.LogError("[Shop] GridSystem reference is null! Assign it in the Inspector.");
+            return;
+        }
+
+        // Only switch panels if placement started successfully
+        bool placementStarted = gridSystem.StartPlacement(itemType);
+        if (placementStarted)
+        {
+            shopPanel.SetActive(false);
+            HomePanel.SetActive(true);
+            HomeBottomPanel.SetActive(true);
+        }
+        else
+        {
+            Debug.LogError($"[Shop] Placement failed for {itemType}. Check GridSystem placeableItems in the Inspector.");
+        }
     }
 
     private void SetButtonOwned(Button button, bool owned)
