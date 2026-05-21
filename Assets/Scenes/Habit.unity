@@ -290,6 +290,10 @@ PrefabInstance:
       propertyPath: m_hasFontAssetChanged
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 596754438722604589, guid: e4445e33dd8b3cc40a58214b2783bc2f, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 666387476314886453, guid: e4445e33dd8b3cc40a58214b2783bc2f, type: 3}
       propertyPath: m_fontSize
       value: 36
@@ -378,6 +382,18 @@ PrefabInstance:
       propertyPath: m_AnchorMin.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1830223687184817346, guid: e4445e33dd8b3cc40a58214b2783bc2f, type: 3}
+      propertyPath: m_Color.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1830223687184817346, guid: e4445e33dd8b3cc40a58214b2783bc2f, type: 3}
+      propertyPath: m_Color.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1830223687184817346, guid: e4445e33dd8b3cc40a58214b2783bc2f, type: 3}
+      propertyPath: m_Color.r
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3179805811897813491, guid: e4445e33dd8b3cc40a58214b2783bc2f, type: 3}
       propertyPath: m_Name
       value: Canvas
@@ -442,6 +458,10 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: -2263401542262443572, guid: 6439fb530c308584e8d9dfc56a93837f, type: 3}
+    - target: {fileID: 4461417157737717531, guid: e4445e33dd8b3cc40a58214b2783bc2f, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 4877529464377509526, guid: 6ce215f48f0b93143831ee23799f1f8a, type: 3}
     - target: {fileID: 5169590336049180871, guid: e4445e33dd8b3cc40a58214b2783bc2f, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -610,6 +630,10 @@ PrefabInstance:
       propertyPath: m_hasFontAssetChanged
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6228624326473196595, guid: e4445e33dd8b3cc40a58214b2783bc2f, type: 3}
+      propertyPath: m_Name
+      value: CalendarButton
+      objectReference: {fileID: 0}
     - target: {fileID: 6235077284520497322, guid: e4445e33dd8b3cc40a58214b2783bc2f, type: 3}
       propertyPath: m_SizeDelta.x
       value: 416.8771
@@ -621,6 +645,22 @@ PrefabInstance:
     - target: {fileID: 6235077284520497322, guid: e4445e33dd8b3cc40a58214b2783bc2f, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 72
+      objectReference: {fileID: 0}
+    - target: {fileID: 6389035263332290925, guid: e4445e33dd8b3cc40a58214b2783bc2f, type: 3}
+      propertyPath: m_fontColor.b
+      value: 0.54901963
+      objectReference: {fileID: 0}
+    - target: {fileID: 6389035263332290925, guid: e4445e33dd8b3cc40a58214b2783bc2f, type: 3}
+      propertyPath: m_fontColor.g
+      value: 0.29803923
+      objectReference: {fileID: 0}
+    - target: {fileID: 6389035263332290925, guid: e4445e33dd8b3cc40a58214b2783bc2f, type: 3}
+      propertyPath: m_fontColor.r
+      value: 0.54509807
+      objectReference: {fileID: 0}
+    - target: {fileID: 6389035263332290925, guid: e4445e33dd8b3cc40a58214b2783bc2f, type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 4287384715
       objectReference: {fileID: 0}
     - target: {fileID: 6595151477472491413, guid: e4445e33dd8b3cc40a58214b2783bc2f, type: 3}
       propertyPath: m_SizeDelta.x
@@ -672,7 +712,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8213458140817218117, guid: e4445e33dd8b3cc40a58214b2783bc2f, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -0.0008544922
+      value: -0.00061035156
       objectReference: {fileID: 0}
     - target: {fileID: 8241891361020767300, guid: e4445e33dd8b3cc40a58214b2783bc2f, type: 3}
       propertyPath: m_AnchoredPosition.y

@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 1c6d05c4556a83441b216bcdf9b9eb37
+guid: 58e6c878e2fe66f4ca99eb49f7beb111
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -7614473924040101094
-    second: Cog_0
+      213: -5060947621028161469
+    second: shop-button 1_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Cog_0
+      name: shop-button 1_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 45
-        height: 45
+        width: 89
+        height: 82
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: a137d1e2f44f35690800000000000000
-      internalID: -7614473924040101094
+      spriteID: 34812c5e3f6e3c9b0800000000000000
+      internalID: -5060947621028161469
       vertices: []
       indices: 
       edges: []
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Cog_0: -7614473924040101094
+      shop-button 1_0: -5060947621028161469
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

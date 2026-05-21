@@ -38,7 +38,7 @@ public class TipController : MonoBehaviour
     void Start()
     {
         shownPosition = new Vector2(0f, 950);
-        hiddenPosition = new Vector2(0f, 1200f + bannerHeight);
+        hiddenPosition = new Vector2(0f, 12000f + bannerHeight);
 
         tipBanner.anchoredPosition = hiddenPosition;
         closeButton.onClick.AddListener(HideTip);
