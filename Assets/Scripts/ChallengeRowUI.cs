@@ -25,12 +25,18 @@ public class ChallengeRowUI : MonoBehaviour
     public GameObject photoActionGroup; // Drag 'UploadPhotoButton' here
     public GameObject stepActionGroup;  // Drag 'ProgressText' here
 
+    [Header("Traveler Action Area")]
+    public GameObject travelerActionGroup; // Drag 'TravelerActionGroup' here
+    public TextMeshProUGUI targetDestinationText; // Drag 'TargetDestinationText' here
+    public Button checkLocationButton; // Drag 'CheckLocationButton' here
+
     [Header("Sprites")]
     public Sprite cameraSprite;
 
     private UserChallenge _data;
     private ChallengeActions _actions;
     private ChallengeUIManager _uiManager;
+
     public void Setup(UserChallenge data, ChallengeActions actions, ChallengeUIManager uiManager)
     {
         _data = data;
@@ -50,25 +56,48 @@ public class ChallengeRowUI : MonoBehaviour
         // --- APPLY SOLID COLORS (Using 255 Alpha) ---
         if (status == "claimed")
         {
-            // Solid Green
             buttonBackgroundImage.color = claimedColor;
             claimButton.interactable = false;
         }
         else if (status == "completed")
         {
-            // Solid Orange
             buttonBackgroundImage.color = claimedColor;
             claimButton.interactable = true;
         }
         else
         {
-            // Solid Dull Red/Brown
             buttonBackgroundImage.color = incompleteColor;
             claimButton.interactable = false;
 
-            bool isMeal = data.ChallengeData.Type.ToLower().Contains("meal");
+            string challengeType = (data.ChallengeData.Type ?? "").ToLower();
+
+            bool isMeal = challengeType.Contains("meal");
+            bool isTraveler = challengeType.Contains("traveler");
+
+            // Toggle visibility of specialized UI panels
             photoActionGroup.SetActive(isMeal);
-            stepActionGroup.SetActive(!isMeal);
+            travelerActionGroup.SetActive(isTraveler);
+            stepActionGroup.SetActive(!isMeal && !isTraveler);
+
+            if (isTraveler)
+            {
+                // Check if the destination is already assigned
+                if (!string.IsNullOrEmpty(data.TargetName) && data.TargetLatitude.HasValue && data.TargetLongitude.HasValue)
+                {
+                    targetDestinationText.text = $"Target: {data.TargetName}";
+                    checkLocationButton.interactable = true;
+                    checkLocationButton.GetComponentInChildren<TextMeshProUGUI>().text = "Check Distance";
+                }
+                else
+                {
+                    // Automatically trigger location generation if fields are null/empty
+                    targetDestinationText.text = "Locating nearby destination...";
+                    checkLocationButton.interactable = false;
+                    checkLocationButton.GetComponentInChildren<TextMeshProUGUI>().text = "Locating...";
+
+                    _actions.AutoGenerateTravelerLocation(data);
+                }
+            }
         }
 
         detailsArea.SetActive(false);
@@ -93,6 +122,7 @@ public class ChallengeRowUI : MonoBehaviour
             detailsArea.SetActive(false);
         }
     }
+
     public async void OnClaimRewardPressed()
     {
         // Disable immediately to prevent double-clicks
@@ -119,9 +149,14 @@ public class ChallengeRowUI : MonoBehaviour
         detailsArea.SetActive(false);
     }
 
-
     // Call this from the 'UploadPhotoButton' OnClick
     public void OnTakePhotoClicked()
+    {
+        _actions.ExecuteChallengeAction(_data);
+    }
+
+    // Call this from the 'CheckLocationButton' OnClick
+    public void OnCheckLocationClicked()
     {
         _actions.ExecuteChallengeAction(_data);
     }
