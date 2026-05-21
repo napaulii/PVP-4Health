@@ -24,7 +24,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 306377845521599590}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: -1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -164,7 +164,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 20, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: -400}
+  m_AnchoredPosition: {x: 0, y: -400.00024}
   m_SizeDelta: {x: 2000, y: 600}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &7869067997011656178
@@ -183,11 +183,14 @@ MonoBehaviour:
   - {fileID: 7756315698482253163, guid: 6da1b9952fe38d14aad118465725df48, type: 3}
   - {fileID: 8301827409077317300, guid: 584dd789ea2e1984db1ad34877456e49, type: 3}
   - {fileID: 9161200407756358656, guid: 642fedbef84255e4ab8bbd9ab7aa66d8, type: 3}
-  cloudCount: 12
-  stripWidth: 100
-  verticalSpread: 1
-  scrollSpeed: 1.5
-  scalePulseAmount: 0.08
+  cloudCount: 16
+  stripWidth: 30
+  verticalSpread: 20
+  minCloudScale: 16
+  maxCloudScale: 22
+  scrollSpeed: 25
+  scrollRight: 1
+  scalePulseAmount: 0.1
   scalePulseSpeed: 0.8
 --- !u!1 &3289965726830339134
 GameObject:
@@ -381,7 +384,10 @@ MonoBehaviour:
   cloudCount: 8
   stripWidth: 30
   verticalSpread: 0.4
+  minCloudScale: 0.7
+  maxCloudScale: 1.3
   scrollSpeed: 1.5
+  scrollRight: 0
   scalePulseAmount: 0.08
   scalePulseSpeed: 0.8
 --- !u!1 &6522235195656217886
@@ -737,7 +743,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -7614473924040101094, guid: 1c6d05c4556a83441b216bcdf9b9eb37, type: 3}
+  m_Sprite: {fileID: -3358933203163112000, guid: abe7fbdfdf1fe0442bfb32af8addc630, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -964,6 +970,14 @@ PrefabInstance:
       propertyPath: placeableItems.Array.data[7].itemType
       value: 7
       objectReference: {fileID: 0}
+    - target: {fileID: 2748575662604160384, guid: 98a335507dfc1d143844253cea1c891d, type: 3}
+      propertyPath: m_SortingLayer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7240302077368038331, guid: 98a335507dfc1d143844253cea1c891d, type: 3}
+      propertyPath: m_SortingLayer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7712962992056012995, guid: 98a335507dfc1d143844253cea1c891d, type: 3}
       propertyPath: riseAmount
       value: 1500
@@ -1096,6 +1110,10 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 1274b3017efde724eb639cfa57342659, type: 3}
       propertyPath: m_ConstrainProportionsScale
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -7635826562936255635, guid: 1274b3017efde724eb639cfa57342659, type: 3}
+      propertyPath: m_SortingLayer
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 1274b3017efde724eb639cfa57342659, type: 3}
       propertyPath: m_Name

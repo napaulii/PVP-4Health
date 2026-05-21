@@ -16,9 +16,17 @@ public class CloudScroller : MonoBehaviour
     [Tooltip("How spread out clouds are vertically around the strip center")]
     public float verticalSpread = 0.4f;
 
+    [Header("Cloud Size")]
+    [Tooltip("Minimum cloud scale")]
+    public float minCloudScale = 0.7f;
+    [Tooltip("Maximum cloud scale")]
+    public float maxCloudScale = 1.3f;
+
     [Header("Scroll Settings")]
     [Tooltip("Speed the strip moves horizontally")]
     public float scrollSpeed = 1.5f;
+    [Tooltip("Checked = scroll right, Unchecked = scroll left")]
+    public bool scrollRight = false;
 
     [Header("Scale Pulse Settings")]
     [Tooltip("How much clouds scale up/down (0.05 = 5%)")]
@@ -42,7 +50,6 @@ public class CloudScroller : MonoBehaviour
 
     void Start()
     {
-        // Use the actual RectTransform width as the strip boundary
         RectTransform rt = GetComponent<RectTransform>();
         halfStrip = rt != null ? rt.rect.width / 2f : stripWidth / 2f;
 
@@ -63,10 +70,9 @@ public class CloudScroller : MonoBehaviour
         for (int i = 0; i < cloudCount; i++)
         {
             GameObject prefab = cloudPrefabs[Random.Range(0, cloudPrefabs.Length)];
-
             float localX = -halfStrip + spacing * i + Random.Range(-spacing * 0.3f, spacing * 0.3f);
             float localY = Random.Range(-verticalSpread, verticalSpread);
-            float baseScale = Random.Range(0.7f, 1.3f);
+            float baseScale = Random.Range(minCloudScale, maxCloudScale);
 
             GameObject obj = Instantiate(prefab, transform);
             obj.transform.localPosition = new Vector3(localX, localY, 0f);
@@ -85,10 +91,12 @@ public class CloudScroller : MonoBehaviour
 
     void Update()
     {
-        stripX -= scrollSpeed * Time.deltaTime;
+        float direction = scrollRight ? 1f : -1f;
+        stripX += direction * scrollSpeed * Time.deltaTime;
 
-        // Wrap the strip offset at the real edges
+        // Wrap strip offset
         if (stripX < -halfStrip) stripX += halfStrip * 2f;
+        if (stripX > halfStrip) stripX -= halfStrip * 2f;
 
         float time = Time.time;
 
@@ -99,13 +107,11 @@ public class CloudScroller : MonoBehaviour
 
             float worldX = c.localX + stripX;
 
-            // Wrap each cloud at the real strip edges
             if (worldX < -halfStrip) worldX += halfStrip * 2f;
             if (worldX > halfStrip) worldX -= halfStrip * 2f;
 
             c.obj.transform.localPosition = new Vector3(worldX, c.baseY, 0f);
 
-            // Scale pulse
             float pulse = Mathf.Sin(time * scalePulseSpeed + c.pulseOffset) * scalePulseAmount;
             float s = c.baseScale + pulse;
             c.obj.transform.localScale = new Vector3(s, s, s);
