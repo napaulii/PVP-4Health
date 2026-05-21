@@ -1,6 +1,8 @@
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using System.Collections.Generic;
+using SupabaseModels;
 
 public class ShopScript : MonoBehaviour
 {
@@ -16,6 +18,9 @@ public class ShopScript : MonoBehaviour
 
     private Transform container;
     private Transform itemTemplate;
+
+    private PersonalItemController _personalItemController;
+    private GroupController _groupController;
 
     private static readonly Item.ItemType[] ALL_ITEMS =
     {
@@ -37,17 +42,38 @@ public class ShopScript : MonoBehaviour
         container = transform.Find("Scroll View/Viewport/Container");
         itemTemplate = container.Find("Item");
         itemTemplate.gameObject.SetActive(false);
+
+        _personalItemController = new PersonalItemController();
+        _groupController = new GroupController();
     }
 
-    private void Start()
+    private async void Start()
     {
         if (CoinManager.Instance != null)
             CoinManager.Instance.OnCoinsChanged.AddListener(OnCoinsChanged);
 
         UpdateCoinDisplay();
 
+        // Load all items purchased by anyone in the group
+        await LoadGroupOwnedItems();
+
         foreach (Item.ItemType type in ALL_ITEMS)
             CreateItemButton(type);
+    }
+
+    // Fetches all items bought by any group member and unlocks them locally
+    private async System.Threading.Tasks.Task LoadGroupOwnedItems()
+    {
+        List<PersonalItem> groupItems = await _groupController.GetGroupPurchasedItemsAsync();
+
+        foreach (PersonalItem dbItem in groupItems)
+        {
+            if (System.Enum.TryParse(dbItem.Title, out Item.ItemType type))
+            {
+                Item.Unlock(type);
+                Debug.Log($"[Shop] Unlocked from group purchase: {type} (owner: {dbItem.UserId})");
+            }
+        }
     }
 
     private void CreateItemButton(Item.ItemType itemType)
@@ -73,7 +99,8 @@ public class ShopScript : MonoBehaviour
         Button buyButton = clone.Find("BuyButton")?.GetComponent<Button>();
         if (buyButton != null)
         {
-            SetButtonOwned(buyButton, false);
+            // Items owned by anyone in the group show as owned for everyone
+            SetButtonOwned(buyButton, Item.IsOwned(itemType));
 
             Item.ItemType capturedType = itemType;
             Button capturedBtn = buyButton;
@@ -91,11 +118,23 @@ public class ShopScript : MonoBehaviour
             return;
         }
 
+        // Save purchase to Supabase under the current user
+        PersonalItem saved = await _personalItemController.CreatePersonalItemAsync(
+            title: Item.GetName(itemType),
+            description: $"Purchased {Item.GetName(itemType)}",
+            price: cost
+        );
+
+        if (saved == null)
+        {
+            Debug.LogWarning($"[Shop] Failed to save purchase of {itemType} to DB.");
+            return;
+        }
+
         Item.Unlock(itemType);
-        Debug.Log($"Purchased {itemType} for {cost} coins.");
+        Debug.Log($"[Shop] Purchased {itemType} for {cost} coins and saved to DB.");
         SetButtonOwned(button, true);
         UpdateCoinDisplay();
-
 
         shopPanel.SetActive(false);
         HomePanel.SetActive(true);
