@@ -28,10 +28,16 @@ namespace SupabaseModels
         [Column("fk_challengeid")]
         public long ChallengeId { get; set; }
 
-        [Reference(typeof(Challenge))]
-        public Challenge Challenge { get; set; }
-
         [Reference(typeof(Challenge), columnName: "fk_challengeid")]
         public Challenge ChallengeData { get; set; }
+
+        [Column("target_name")]
+        public string TargetName { get; set; }
+
+        [Column("target_latitude")]
+        public double? TargetLatitude { get; set; }
+
+        [Column("target_longitude")]
+        public double? TargetLongitude { get; set; }
     }
 }
