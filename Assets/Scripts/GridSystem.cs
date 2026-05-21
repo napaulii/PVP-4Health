@@ -39,7 +39,6 @@ public class GridSystem : MonoBehaviour
     private void Start()
     {
         if (islandCamera == null) islandCamera = Camera.main;
-        
     }
 
     private void Update()
@@ -57,7 +56,6 @@ public class GridSystem : MonoBehaviour
         if (ghostObject.TryGetComponent<Collider>(out var col))
             col.enabled = false;
 
-        // Just swap to a transparent material instead of modifying shader
         if (ghostMaterial != null)
         {
             foreach (Renderer r in ghostObject.GetComponentsInChildren<Renderer>())
@@ -75,19 +73,19 @@ public class GridSystem : MonoBehaviour
         if (Physics.Raycast(ray, out RaycastHit hit))
         {
             Vector3 point = hit.point;
-            currentSnappedPosition = new Vector3(          
+            currentSnappedPosition = new Vector3(
                 Mathf.Round(point.x / gridSize) * gridSize,
                 Mathf.Round(point.y / gridSize) * gridSize,
                 Mathf.Round(point.z / gridSize) * gridSize
             );
 
-            float bob = Mathf.Sin(Time.time * bobFrequency) * bobAmplitude;  
+            float bob = Mathf.Sin(Time.time * bobFrequency) * bobAmplitude;
 
             ghostObject.SetActive(true);
-            ghostObject.transform.position = currentSnappedPosition + Vector3.up * bob;  
+            ghostObject.transform.position = currentSnappedPosition + Vector3.up * bob;
             ghostObject.transform.rotation = gridPlane.rotation;
 
-            SetGhostColor(occupiedPositions.Contains(currentSnappedPosition)  
+            SetGhostColor(occupiedPositions.Contains(currentSnappedPosition)
                 ? new Color(1f, 0f, 0f, 0.5f)
                 : new Color(1f, 1f, 1f, 0.5f));
         }
@@ -107,7 +105,6 @@ public class GridSystem : MonoBehaviour
     {
         if (!ghostObject.activeSelf) return;
 
-        // Block on actual UI buttons only
         var eventData = new PointerEventData(EventSystem.current)
         { position = GetCurrentScreenPosition() };
         var results = new List<RaycastResult>();
@@ -124,7 +121,7 @@ public class GridSystem : MonoBehaviour
 
     void PlaceObject()
     {
-        if (!occupiedPositions.Contains(currentSnappedPosition))  
+        if (!occupiedPositions.Contains(currentSnappedPosition))
         {
             GameObject placed = Instantiate(objectToPlace, currentSnappedPosition, gridPlane.rotation);
             placed.transform.localScale = Vector3.one * objectScale;
@@ -141,22 +138,35 @@ public class GridSystem : MonoBehaviour
         return Vector2.negativeInfinity;
     }
 
-    public void StartPlacement(Item.ItemType itemType)
+    public bool StartPlacement(Item.ItemType itemType)
     {
+        if (placeableItems == null || placeableItems.Length == 0)
+        {
+            Debug.LogError("[GridSystem] placeableItems array is empty! Assign prefabs in the Inspector.");
+            return false;
+        }
+
         foreach (var item in placeableItems)
         {
             if (item.itemType == itemType)
             {
+                if (item.prefab == null)
+                {
+                    Debug.LogError($"[GridSystem] Prefab for {itemType} is null! Assign it in the Inspector.");
+                    return false;
+                }
+
                 objectToPlace = item.prefab;
                 isPlacementMode = true;
 
-                // Recreate ghost with new prefab
                 if (ghostObject != null) Destroy(ghostObject);
                 CreateGhostObject();
-                return;
+                return true;
             }
         }
-        Debug.LogWarning($"No 3D prefab found for {itemType}");
+
+        Debug.LogError($"[GridSystem] No prefab entry found for {itemType}. Add it to placeableItems in the Inspector.");
+        return false;
     }
 
     public void StopPlacement()
