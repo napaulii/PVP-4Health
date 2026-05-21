@@ -9,6 +9,8 @@ public class GlobalSound : MonoBehaviour
     [SerializeField] private AudioClip buttonClickSound;
     private AudioSource audioSource;
 
+    private float currentVolume = 0.7f;
+
     void Awake()
     {
         if (Instance == null)
@@ -18,7 +20,7 @@ public class GlobalSound : MonoBehaviour
 
             audioSource = gameObject.AddComponent<AudioSource>();
             audioSource.playOnAwake = false;
-            audioSource.volume = 0.7f;
+            audioSource.volume = currentVolume;
         }
         else
         {
@@ -32,5 +34,19 @@ public class GlobalSound : MonoBehaviour
         {
             audioSource.PlayOneShot(buttonClickSound);
         }
+    }
+
+    public void SetVolume(float volume)
+    {
+        currentVolume = volume;
+        if (audioSource != null)
+        {
+            audioSource.volume = currentVolume;
+        }
+    }
+
+    public float GetVolume()
+    {
+        return currentVolume;
     }
 }
