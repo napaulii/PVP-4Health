@@ -135,15 +135,39 @@ public class ChallengeActions : MonoBehaviour
 
         double distance = CalculateDistance(coords.Value.lat, coords.Value.lng, uc.TargetLatitude ?? 0, uc.TargetLongitude ?? 0);
         Debug.LogError("distance: " + distance);
+
         if (distance <= arrivalThresholdMeters)
         {
-            if (row != null) row.targetDestinationText.text = "Arrived! Updating progress...";
+            if (row != null)
+            {
+                row.targetDestinationText.text = $"Target: {uc.TargetName}";
+                if (row.targetDestinationDistance != null)
+                {
+                    row.targetDestinationDistance.text = "Arrived!";
+                }
+            }
             Debug.LogError("Updating Challenge");
             _ = CompleteChallengeAsync(uc);
         }
         else
         {
-            if (row != null) row.targetDestinationText.text = $"Target: {uc.TargetName}\n({distance:F0}m away)";
+            if (row != null)
+            {
+                row.targetDestinationText.text = $"Target: {uc.TargetName}";
+
+                if (row.targetDestinationDistance != null)
+                {
+                    // Formats distance nicely based on how far away you are
+                    if (distance >= 1000)
+                    {
+                        row.targetDestinationDistance.text = $"{distance / 1000f:F1} km away";
+                    }
+                    else
+                    {
+                        row.targetDestinationDistance.text = $"{distance:F0} m away";
+                    }
+                }
+            }
         }
     }
 
@@ -152,17 +176,25 @@ public class ChallengeActions : MonoBehaviour
         string url = $"https://maps.googleapis.com/maps/api/place/nearbysearch/json?location={lat},{lng}&radius=5000&type=tourist_attraction|museum|park&key={googleApiKey}";
 
         using (UnityWebRequest www = UnityWebRequest.Get(url))
+        using (UnityWebRequest wwwGet = UnityWebRequest.Get(url))
         {
-            var operation = www.SendWebRequest();
+            var operation = wwwGet.SendWebRequest();
             while (!operation.isDone) await Task.Delay(100);
 
-            if (www.result == UnityWebRequest.Result.Success)
+            if (wwwGet.result == UnityWebRequest.Result.Success)
             {
-                GooglePlacesResponse response = JsonUtility.FromJson<GooglePlacesResponse>(www.downloadHandler.text);
+                GooglePlacesResponse response = JsonUtility.FromJson<GooglePlacesResponse>(wwwGet.downloadHandler.text);
                 if (response?.results != null && response.results.Length > 0)
                 {
                     var place = response.results[UnityEngine.Random.Range(0, response.results.Length)];
-                    uc.TargetName = place.name;
+
+                    string cleanName = place.name;
+                    if (cleanName.Contains(","))
+                    {
+                        cleanName = cleanName.Split(',')[0].Trim();
+                    }
+
+                    uc.TargetName = cleanName;
                     uc.TargetLatitude = place.geometry.location.lat;
                     uc.TargetLongitude = place.geometry.location.lng;
 

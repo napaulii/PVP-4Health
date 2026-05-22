@@ -29,6 +29,7 @@ public class ChallengeRowUI : MonoBehaviour
     [Header("Traveler Action Area")]
     public GameObject travelerActionGroup; // Drag 'TravelerActionGroup' here
     public TextMeshProUGUI targetDestinationText; // Drag 'TargetDestinationText' here
+    public TextMeshProUGUI targetDestinationDistance; // Drag 'TargetDestinationDistance' here
     public Button checkLocationButton; // Drag 'CheckLocationButton' here
 
     [Header("Sprites")]
@@ -79,28 +80,30 @@ public class ChallengeRowUI : MonoBehaviour
 
             if (isTraveler)
             {
-                // DYNAMIC RUNTIME BINDING
+                // Programmatically bind the click
                 if (checkLocationButton != null)
                 {
                     checkLocationButton.onClick.RemoveAllListeners();
                     checkLocationButton.onClick.AddListener(OnCheckLocationClicked);
                 }
-                else
-                {
-                    Debug.LogError("[ChallengeRowUI Error] 'checkLocationButton' is null on " + gameObject.name);
-                }
 
                 if (!string.IsNullOrEmpty(data.TargetName) && data.TargetLatitude.HasValue && data.TargetLongitude.HasValue)
                 {
                     targetDestinationText.text = $"Target: {data.TargetName}";
+
+                    if (targetDestinationDistance != null) targetDestinationDistance.text = ""; // Clear on startup until checked
+
                     checkLocationButton.interactable = true;
                     checkLocationButton.GetComponentInChildren<TextMeshProUGUI>().text = "Check Distance";
                 }
                 else
                 {
-                    targetDestinationText.text = "Locating nearby destination...";
-                    checkLocationButton.interactable = false;
-                    checkLocationButton.GetComponentInChildren<TextMeshProUGUI>().text = "Locating...";
+                    targetDestinationText.text = "GPS warming up. Tap button to search.";
+
+                    if (targetDestinationDistance != null) targetDestinationDistance.text = "";
+
+                    checkLocationButton.interactable = true;
+                    checkLocationButton.GetComponentInChildren<TextMeshProUGUI>().text = "Generate Location";
 
                     _actions.AutoGenerateTravelerLocation(data, this);
                 }
