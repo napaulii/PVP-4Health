@@ -24,7 +24,7 @@ public class TipController : MonoBehaviour
 
     [Header("Animation Settings")]
     public float animationDuration = 0.4f;
-    public float bannerHeight = 200f;       // Must match TipBanner's Height in RectTransform
+    public float bannerHeight = 260f;       // Must match TipBanner's Height in RectTransform
 
     [Header("Push Notification Settings")]
     [Tooltip("How many seconds after app launch to send the push notification (e.g. 86400 = 24 hours)")]
@@ -37,7 +37,7 @@ public class TipController : MonoBehaviour
 
     void Start()
     {
-        shownPosition = new Vector2(0f, 950);
+        shownPosition = new Vector2(0f, 1050);
         hiddenPosition = new Vector2(0f, 12000f + bannerHeight);
 
         tipBanner.anchoredPosition = hiddenPosition;

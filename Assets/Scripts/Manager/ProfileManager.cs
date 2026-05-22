@@ -13,17 +13,5 @@ public class ProfileManager : MonoBehaviour
         historyPanel.SetActive(false);
         profilePanel.SetActive(true);
     }
-    public void OpenGoals()
-    {
-        goalsPanel.SetActive(true);
-        historyPanel.SetActive(false);
-        profilePanel.SetActive(false);
-    }
-    public void OpenHistory()
-    {
-        goalsPanel.SetActive(false);
-        historyPanel.SetActive(true);
-        profilePanel.SetActive(false);
-    }
 }
 
