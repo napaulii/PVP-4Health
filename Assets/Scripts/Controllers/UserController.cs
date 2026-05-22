@@ -65,14 +65,20 @@ public class UserController
 
             if (response.Models.Count > 0)
             {
-                if (response.Models[0].LastTimeUpdatedCount.Date < DateTime.UtcNow.Date)
-                {
-                    response.Models[0].DailyHabitCompletedCount = 0;
-                    response.Models[0].LastTimeUpdatedCount = DateTime.UtcNow.Date;
-                }
-                _ = SupabaseManager.Instance.From<User>().Update(response.Models[0]);
+                var user = response.Models[0];
 
-                return response.Models[0];
+                // Only write to the database if a new day has actually occurred
+                if (user.LastTimeUpdatedCount.Date < DateTime.UtcNow.Date)
+                {
+                    user.DailyHabitCompletedCount = 0;
+                    user.LastTimeUpdatedCount = DateTime.UtcNow.Date;
+
+                    // Await the update so it completes safely before the method returns, 
+                    // preventing background race conditions
+                    await SupabaseManager.Instance.From<User>().Update(user);
+                }
+
+                return user;
             }
             return null;
         }
@@ -119,5 +125,52 @@ public class UserController
             Debug.LogError($"Error updating user: {e.Message}");
             return null;
         }
+    }
+    public async Task<int> GetTodayStepsAsync()
+    {
+        var currentUser = await GetCurrentUserAsync();
+        if (currentUser == null)
+        {
+            Debug.LogError("[GetTodaySteps] Failed to fetch current user from Supabase.");
+            return 0;
+        }
+
+        int currentDeviceSteps = HardwareStepCounter.Instance.GetTotalDeviceSteps();
+        DateTime todayLocal = DateTime.Today;
+
+        // DIAGNOSTIC LOG: Watch these values on your screen
+        Debug.LogError($"[StepDebug] DeviceTotal: {currentDeviceSteps} | Baseline: {currentUser.StepBaseline} | " +
+                       $"SavedDate: {currentUser.StepBaselineDate.Date:yyyy-MM-dd} | TodayLocal: {todayLocal:yyyy-MM-dd}");
+
+        // If the saved date is older than today, reset the baseline for the new day
+        if (currentUser.StepBaselineDate.Date < todayLocal)
+        {
+            Debug.LogError($"[StepDebug] New day detected! Resetting baseline to {currentDeviceSteps}.");
+
+            currentUser.StepBaseline = currentDeviceSteps;
+
+            // --- THE FIX ---
+            // Force Unity to treat todayLocal as UTC so PostgreSQL does not perform timezone shifting
+            currentUser.StepBaselineDate = DateTime.SpecifyKind(todayLocal, DateTimeKind.Utc);
+
+            // Save the new baseline to Supabase
+            await SupabaseManager.Instance.From<SupabaseModels.User>().Update(currentUser);
+            return 0;
+        }
+
+        // Today's steps = (Current hardware total) - (Midnight baseline total)
+        int todaySteps = currentDeviceSteps - currentUser.StepBaseline;
+
+        // Handle device reboot edge-case
+        if (todaySteps < 0)
+        {
+            Debug.LogWarning("[StepDebug] Device reboot detected. Resetting baseline.");
+            currentUser.StepBaseline = 0;
+            await SupabaseManager.Instance.From<SupabaseModels.User>().Update(currentUser);
+            todaySteps = currentDeviceSteps;
+        }
+
+        Debug.LogError($"[StepDebug] Final Calculated Steps: {todaySteps}");
+        return todaySteps;
     }
 }

@@ -43,7 +43,11 @@ namespace SupabaseModels
             get => _lastUpdate;
             set => _lastUpdate = DateTime.SpecifyKind(value, DateTimeKind.Utc);
         }
+        [Column("step_baseline")]
+        public int StepBaseline { get; set; }
 
+        [Column("step_baseline_date")]
+        public DateTime StepBaselineDate { get; set; }
 
         [Column("fk_groupid")]
         public long? GroupID { get; set; } 

@@ -87,6 +87,7 @@ public class UserChallengeController
             var response = await SupabaseManager.Instance.From<UserChallenge>()
                 .Select("*, ChallengeData:fk_challengeid(*)")
                 .Where(x => x.UserId == currentUserId)
+                .Where(x => x.TimeToComplete > DateTime.UtcNow.Date) // Only fetches today's active/completed rows
                 .Get();
             // -----------------------
 
@@ -94,7 +95,7 @@ public class UserChallengeController
             {
                 // Logic to check expiration
                 bool isExpired = response.Models[i].TimeToComplete <= DateTime.UtcNow.Date;
-                bool isActive = response.Models[i].Status == "Active";
+                bool isActive = response.Models[i].Status.ToLower() == "active";
 
                 if (isExpired && isActive)
                 {

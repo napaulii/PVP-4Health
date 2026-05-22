@@ -32,14 +32,14 @@ public class GoogleHealthAuth : MonoBehaviour
         var session = SupabaseManager.Instance.Auth.CurrentSession;
         if (session == null)
         {
-            Debug.LogWarning("[GoogleHealth] No active Supabase session found.");
+            Debug.LogError("[GoogleHealth] No active Supabase session found.");
             return;
         }
 
         _accessToken = session.AccessToken;
         _tokenExpiresAt = DateTime.UtcNow.AddSeconds(session.ExpiresIn - 60);
 
-        Debug.Log("[GoogleHealth] Initialised from Supabase session.");
+        Debug.LogError("[GoogleHealth] Initialised from Supabase session.");
     }
 
     // -------------------------------------------------------------------------

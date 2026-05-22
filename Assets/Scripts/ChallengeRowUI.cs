@@ -1,6 +1,7 @@
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using System.Threading.Tasks;
 using SupabaseModels;
 
 public class ChallengeRowUI : MonoBehaviour
@@ -47,13 +48,11 @@ public class ChallengeRowUI : MonoBehaviour
         xpText.text = $"+{data.ChallengeData.XpReward} XP";
         coinsText.text = $"+{data.ChallengeData.BalanceReward} Coins";
 
-        // FORCE CHECKMARK SETTINGS
         statusIcon.color = Color.white;
         statusIcon.material = null;
 
         string status = (data.Status ?? "active").ToLower();
 
-        // --- APPLY SOLID COLORS (Using 255 Alpha) ---
         if (status == "claimed")
         {
             buttonBackgroundImage.color = claimedColor;
@@ -61,7 +60,7 @@ public class ChallengeRowUI : MonoBehaviour
         }
         else if (status == "completed")
         {
-            buttonBackgroundImage.color = claimedColor;
+            buttonBackgroundImage.color = claimableColor;
             claimButton.interactable = true;
         }
         else
@@ -74,14 +73,23 @@ public class ChallengeRowUI : MonoBehaviour
             bool isMeal = challengeType.Contains("meal");
             bool isTraveler = challengeType.Contains("traveler");
 
-            // Toggle visibility of specialized UI panels
             photoActionGroup.SetActive(isMeal);
             travelerActionGroup.SetActive(isTraveler);
             stepActionGroup.SetActive(!isMeal && !isTraveler);
 
             if (isTraveler)
             {
-                // Check if the destination is already assigned
+                // DYNAMIC RUNTIME BINDING
+                if (checkLocationButton != null)
+                {
+                    checkLocationButton.onClick.RemoveAllListeners();
+                    checkLocationButton.onClick.AddListener(OnCheckLocationClicked);
+                }
+                else
+                {
+                    Debug.LogError("[ChallengeRowUI Error] 'checkLocationButton' is null on " + gameObject.name);
+                }
+
                 if (!string.IsNullOrEmpty(data.TargetName) && data.TargetLatitude.HasValue && data.TargetLongitude.HasValue)
                 {
                     targetDestinationText.text = $"Target: {data.TargetName}";
@@ -90,22 +98,73 @@ public class ChallengeRowUI : MonoBehaviour
                 }
                 else
                 {
-                    // Automatically trigger location generation if fields are null/empty
                     targetDestinationText.text = "Locating nearby destination...";
                     checkLocationButton.interactable = false;
                     checkLocationButton.GetComponentInChildren<TextMeshProUGUI>().text = "Locating...";
 
-                    _actions.AutoGenerateTravelerLocation(data);
+                    _actions.AutoGenerateTravelerLocation(data, this);
                 }
+            }
+            else if (!isMeal && !isTraveler)
+            {
+                // This is a Step Challenge. Update the progress text.
+                UpdateStepProgress(data);
             }
         }
 
         detailsArea.SetActive(false);
     }
 
+    #region Step Count Logic
+
+    private async void UpdateStepProgress(UserChallenge data)
+    {
+        var textComp = stepActionGroup.GetComponent<TextMeshProUGUI>();
+        if (textComp == null) return;
+
+        textComp.text = "Reading steps...";
+
+        UserController userCtrl = new UserController();
+        int steps = await userCtrl.GetTodayStepsAsync(); // Reads locally and calculates against database
+
+        int target = ExtractTargetFromDescription(data.ChallengeData.Description);
+
+        // Re-enable the standard user-friendly step counter format
+        textComp.text = $"{steps} / {target} steps";
+
+        if (steps >= target && data.Status.ToLower() == "active")
+        {
+            await MarkStepChallengeAsCompleted(data);
+        }
+    }
+
+    /// <summary>
+    /// Extracts all digits from the description string to determine target step count.
+    /// E.g., "Walk 5000 steps" -> 5000
+    /// </summary>
+    private int ExtractTargetFromDescription(string desc)
+    {
+        string numStr = "";
+        foreach (char c in desc)
+        {
+            if (char.IsDigit(c)) numStr += c;
+        }
+        if (int.TryParse(numStr, out int target)) return target;
+        return 5000; // Fallback default
+    }
+
+    private async Task MarkStepChallengeAsCompleted(UserChallenge data)
+    {
+        data.Status = "completed";
+        UserChallengeController ucCtrl = new UserChallengeController();
+        await ucCtrl.UpdateUserChallengeStatusAsync(data.Id, "completed");
+        _uiManager.RefreshUI();
+    }
+
+    #endregion
+
     public void ToggleExpand()
     {
-        // LOCK EXPANSION IF FINISHED
         string status = _data.Status.ToLower();
         if (status == "completed" || status == "claimed")
         {
@@ -116,6 +175,14 @@ public class ChallengeRowUI : MonoBehaviour
         {
             _uiManager.CollapseAllOtherRows(this);
             detailsArea.SetActive(true);
+
+            // --- THE UPDATE TRIGGER ---
+            // If the row is expanding, check if it's a Step challenge and refresh the counter
+            string challengeType = (_data.ChallengeData.Type ?? "").ToLower();
+            if (!challengeType.Contains("meal") && !challengeType.Contains("traveler"))
+            {
+                UpdateStepProgress(_data);
+            }
         }
         else
         {
@@ -125,39 +192,58 @@ public class ChallengeRowUI : MonoBehaviour
 
     public async void OnClaimRewardPressed()
     {
-        // Disable immediately to prevent double-clicks
         claimButton.interactable = false;
 
-        // 1. Grant Rewards
         UserController userCtrl = new UserController();
         await userCtrl.UpdateUserAsync(_data.ChallengeData.BalanceReward, _data.ChallengeData.XpReward, false);
 
-        // 2. Mark as claimed in DB
         UserChallengeController ucCtrl = new UserChallengeController();
         await ucCtrl.UpdateUserChallengeStatusAsync(_data.Id, "claimed");
 
-        // Update local data so the UI knows it changed
         _data.Status = "claimed";
-
-        // 3. Refresh
         _uiManager.RefreshUI();
     }
 
-    // Call this from the PChallengeRow's main Button component
     public void CloseDetails()
     {
         detailsArea.SetActive(false);
     }
 
-    // Call this from the 'UploadPhotoButton' OnClick
     public void OnTakePhotoClicked()
     {
-        _actions.ExecuteChallengeAction(_data);
+        _actions.ExecuteChallengeAction(_data, this);
     }
 
-    // Call this from the 'CheckLocationButton' OnClick
     public void OnCheckLocationClicked()
     {
-        _actions.ExecuteChallengeAction(_data);
+        // 1. Verify if Text reference is missing
+        if (targetDestinationText == null)
+        {
+            Debug.LogError("[ChallengeRowUI Error] 'targetDestinationText' reference is missing/unassigned in the Inspector!");
+        }
+
+        // 2. Verify if ChallengeActions is missing
+        if (_actions == null)
+        {
+            Debug.LogError("[ChallengeRowUI Error] '_actions' (ChallengeActions) reference is null on this row! " +
+                           "Please ensure that the 'Action Manager' slot on your ChallengeUIManager GameObject is assigned in the Inspector.");
+
+            if (targetDestinationText != null)
+            {
+                targetDestinationText.text = "Error: Action Manager Null";
+            }
+            return;
+        }
+
+        // 3. Verify if database row data is missing
+        if (_data == null)
+        {
+            Debug.LogError("[ChallengeRowUI Error] '_data' (UserChallenge row data) is null on this row!");
+            return;
+        }
+
+        // Run the action
+        _actions.ExecuteChallengeAction(_data, this);
     }
+
 }

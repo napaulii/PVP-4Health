@@ -1,6 +1,7 @@
-using System.Collections;
-using System.Threading.Tasks;
 using UnityEngine;
+#if UNITY_ANDROID
+using UnityEngine.Android; // Required for Android permissions
+#endif
 
 public class GPSManager : MonoBehaviour
 {
@@ -8,51 +9,61 @@ public class GPSManager : MonoBehaviour
 
     private void Awake()
     {
-        if (Instance == null) Instance = this;
-        else Destroy(gameObject);
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
     }
 
-    public async Task<(double lat, double lng)?> GetCurrentLocationAsync()
+    private void Start()
     {
-        // 1. If running inside the Unity Editor, return mock coordinates
-#if UNITY_EDITOR
-        // Fake coordinates (e.g., Central Park, New York)
-        // You can change these to coordinates in your city to find local landmarks!
-        double mockLatitude = 40.785091; 
-        double mockLongitude = -73.968285;
-
-        await Task.Delay(500); // Simulate sensor warm-up delay
-        return (mockLatitude, mockLongitude);
+#if UNITY_ANDROID
+        // Prompt for permission. If already granted, start the sensor.
+        if (!Permission.HasUserAuthorizedPermission(Permission.FineLocation))
+        {
+            Permission.RequestUserPermission(Permission.FineLocation);
+        }
+        else
+        {
+            Input.location.Start(10f, 10f);
+        }
 #else
-
-        // 2. If running on a real phone, use the actual hardware GPS
-        if (!Input.location.isEnabledByUser)
-        {
-            Debug.LogWarning("GPS is not enabled by the user.");
-            return null;
-        }
-
-        Input.location.Start();
-
-        int maxWait = 20;
-        while (Input.location.status == LocationServiceStatus.Initializing && maxWait > 0)
-        {
-            await Task.Delay(1000);
-            maxWait--;
-        }
-
-        if (maxWait < 1 || Input.location.status == LocationServiceStatus.Failed)
-        {
-            Debug.LogWarning("Failed to initialize GPS location services.");
-            Input.location.Stop();
-            return null;
-        }
-
-        double latitude = Input.location.lastData.latitude;
-        double longitude = Input.location.lastData.longitude;
-
-        Input.location.Stop();
-        return (latitude, longitude);
+        Input.location.Start(10f, 10f);
 #endif
+    }
+
+    /// <summary>
+    /// Instantly returns the current GPS coordinates, or null if the sensor is still warming up.
+    /// </summary>
+    public (double lat, double lng)? GetLocation()
+    {
+#if UNITY_EDITOR
+        return (40.785091, -73.968285);
+#endif
+
+        Debug.LogError($"[GPSManager] Status: {Input.location.status} | EnabledByUser: {Input.location.isEnabledByUser}");
+
+        if (Input.location.status == LocationServiceStatus.Running)
+        {
+            return (Input.location.lastData.latitude, Input.location.lastData.longitude);
+        }
+
+        // Safe restart logic: only executes on-demand when clicked, preventing main-thread lag
+#if UNITY_ANDROID
+        if (Permission.HasUserAuthorizedPermission(Permission.FineLocation))
+        {
+            if (Input.location.status == LocationServiceStatus.Stopped || Input.location.status == LocationServiceStatus.Failed)
+            {
+                Input.location.Start(10f, 10f);
+            }
+        }
+#endif
+
+        return null;
     }
 }
