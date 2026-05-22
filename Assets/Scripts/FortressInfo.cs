@@ -5,18 +5,28 @@ using System.Threading.Tasks;
 using UnityEngine;
 using TMPro;
 using SupabaseModels;
-using User = SupabaseModels.User; // Resolving ambiguity
+using User = SupabaseModels.User;
+using Group = SupabaseModels.Group; // Reference the new model
 
 public class FortressInfo : MonoBehaviour
 {
-    [Header("UI References")]
-    [SerializeField] private TextMeshProUGUI groupInfoText;
+    [Header("Own Profile UI")]
+    [SerializeField] private TextMeshProUGUI ownNicknameText;
+    [SerializeField] private TextMeshProUGUI ownEmailText;
+
+    [Header("Squad UI References")]
+    [Tooltip("Assign the 4 friend GameObjects here in order.")]
+    [SerializeField] private GameObject[] squadSlots; 
+    [SerializeField] private TextMeshProUGUI fortressIdText;
+
+    // Keep track of the current list locally so we know who to kick by index
+    private List<User> currentSquadMembers = new List<User>();
 
     private async void Start()
     {
-        if (groupInfoText == null)
+        if (squadSlots == null || squadSlots.Length == 0)
         {
-            //Debug.LogError("Fortress Info: TextMeshPro reference is missing!");
+            Debug.LogError("Fortress Info: Squad Slots are not assigned!");
             return;
         }
 
@@ -30,46 +40,117 @@ public class FortressInfo : MonoBehaviour
             var currentUser = SupabaseManager.Instance.Auth.CurrentUser;
             if (currentUser == null) return;
 
-            // 1. Fetch YOUR profile to get your Group ID
             var myProfileResponse = await SupabaseManager.Instance
                 .From<User>()
                 .Where(u => u.Id == currentUser.Id)
                 .Single();
 
-            if (myProfileResponse == null || myProfileResponse.GroupID == null)
+            if (myProfileResponse == null) return;
+
+            if (ownNicknameText != null) ownNicknameText.text = "Username: " + myProfileResponse.Nickname;
+            if (ownEmailText != null) ownEmailText.text = "Email: " + myProfileResponse.Email;
+
+            if (myProfileResponse.GroupID == null)
             {
-                groupInfoText.text = "No Fortress assigned.";
+                DisableAllSlots();
+                if (fortressIdText != null) fortressIdText.text = "No Fortress assigned.";
                 return;
             }
 
             long myGroupId = (long)myProfileResponse.GroupID;
+            if (fortressIdText != null) fortressIdText.text = $"Fortress ID: {myGroupId}";
 
-            // 2. Fetch EVERYONE who has the same Group ID
+            // --- NEW: Admin Check ---
+            var groupData = await SupabaseManager.Instance
+                .From<Group>()
+                .Where(g => g.Id == myGroupId)
+                .Single();
+            
+            bool isAdmin = groupData != null && groupData.UserId == currentUser.Id;
+            // ------------------------
+
             var squadResponse = await SupabaseManager.Instance
                 .From<User>()
                 .Where(u => u.GroupID == myGroupId)
                 .Get();
 
-            List<User> squadMembers = squadResponse.Models;
+            currentSquadMembers = squadResponse.Models
+                .Where(u => u.Id != currentUser.Id) 
+                .ToList();
 
-            // 3. Format the display string
-            string displayResult = "";
-            for (int i = 0; i < squadMembers.Count; i++)
+            for (int i = 0; i < squadSlots.Length; i++)
             {
-                // Format: Friend1: nickname
-                displayResult += $"Friend{i + 1}: {squadMembers[i].Nickname}\n";
+                if (i < currentSquadMembers.Count)
+                {
+                    squadSlots[i].SetActive(true);
+                    UpdateSlotUI(squadSlots[i], currentSquadMembers[i].Nickname, isAdmin);
+                }
+                else
+                {
+                    squadSlots[i].SetActive(false);
+                }
             }
 
-            // 4. Add the Fortress ID (which is the Group ID)
-            displayResult += $"Fortress ID: {myGroupId}";
-
-            groupInfoText.text = displayResult;
-            Debug.Log($"<color=green>[Squad]</color> Successfully fetched {squadMembers.Count} squad members.");
+            Debug.Log($"<color=green>[Squad]</color> Updated. Admin Status: {isAdmin}");
         }
         catch (Exception ex)
         {
-            Debug.LogError($"[SquadDisplay] Failed to fetch squad: {ex.Message}");
-            groupInfoText.text = "Error loading squad.";
+            Debug.LogError($"[SquadDisplay] Failed: {ex.Message}");
+            DisableAllSlots();
+        }
+    }
+
+    private void UpdateSlotUI(GameObject slot, string nickname, bool showKickButton)
+    {
+        // Set Nickname
+        Transform textTransform = slot.transform.Find("Text (TMP)");
+        if (textTransform != null)
+        {
+            var tmp = textTransform.GetComponent<TextMeshProUGUI>();
+            if (tmp != null) tmp.text = nickname;
+        }
+
+        // Set Kick Button Visibility
+        Transform kickBtnTransform = slot.transform.Find("KickButton");
+        if (kickBtnTransform != null)
+        {
+            kickBtnTransform.gameObject.SetActive(showKickButton);
+        }
+    }
+
+    // This is the method you call from your UI Button
+    // Pass 0 for the first slot, 1 for second, etc.
+    public async void KickPlayer(int index)
+    {
+        if (index >= currentSquadMembers.Count) return;
+
+        User targetUser = currentSquadMembers[index];
+        
+        try 
+        {
+            // Nullify the GroupID for the kicked user
+            targetUser.GroupID = null;
+
+            await SupabaseManager.Instance
+                .From<User>()
+                .Update(targetUser);
+
+            Debug.Log($"Kicked {targetUser.Nickname} successfully.");
+            
+            // Refresh UI
+            await RefreshSquadList();
+        }
+        catch (Exception ex)
+        {
+            Debug.LogError($"Kick failed: {ex.Message}");
+        }
+    }
+
+    private void DisableAllSlots()
+    {
+        foreach (var slot in squadSlots)
+        {
+            if (slot != null) slot.SetActive(false);
         }
     }
 }

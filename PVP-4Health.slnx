@@ -4,11 +4,9 @@
   <Project Path="Nobi.UiRoundedCorners.csproj" />
   <Project Path="Assembly-CSharp.csproj" />
   <Project Path="Unity.Notifications.csproj" />
-  <Project Path="Assembly-CSharp-firstpass.csproj" />
   <Project Path="Unity.Notifications.Unified.csproj" />
   <Project Path="Unity.Notifications.Tests.csproj" />
   <Project Path="Unity.iOS.Notifications.Tests.csproj" />
-  <Project Path="Assembly-CSharp-Editor-firstpass.csproj" />
   <Project Path="Unity.Android.Notifications.Tests.csproj" />
   <Project Path="Unity.Notifications.Unified.Tests.csproj" />
 </Solution>
