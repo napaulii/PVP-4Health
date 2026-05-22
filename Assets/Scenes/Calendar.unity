@@ -163,6 +163,67 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &100112123
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 100112124}
+  - component: {fileID: 100112125}
+  m_Layer: 5
+  m_Name: CloudsBottom
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &100112124
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 100112123}
+  m_LocalRotation: {x: -0.00000008940696, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 1
+  m_Children: []
+  m_Father: {fileID: 543152279}
+  m_LocalEulerAnglesHint: {x: 20, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 327.83}
+  m_SizeDelta: {x: 2000, y: 500}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &100112125
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 100112123}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a14584d01920a24db94d4bcdcb9f5d4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  cloudPrefabs:
+  - {fileID: 7756315698482253163, guid: 6da1b9952fe38d14aad118465725df48, type: 3}
+  - {fileID: 8301827409077317300, guid: 584dd789ea2e1984db1ad34877456e49, type: 3}
+  - {fileID: 9161200407756358656, guid: 642fedbef84255e4ab8bbd9ab7aa66d8, type: 3}
+  cloudCount: 16
+  stripWidth: 30
+  verticalSpread: 2
+  minCloudScale: 0.7
+  maxCloudScale: 1.3
+  scrollSpeed: 1.5
+  scrollRight: 0
+  scalePulseAmount: 0.1
+  scalePulseSpeed: 0.8
 --- !u!1 &107050169
 GameObject:
   m_ObjectHideFlags: 0
@@ -659,7 +720,7 @@ GameObject:
   m_Component:
   - component: {fileID: 249014963}
   - component: {fileID: 249014964}
-  m_Layer: 7
+  m_Layer: 5
   m_Name: CloudsBottom (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1250,6 +1311,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 100112124}
   - {fileID: 1059106907}
   - {fileID: 249014963}
   - {fileID: 812388236}
@@ -1321,12 +1383,12 @@ MonoBehaviour:
   nextButton: {fileID: 707678317}
   monthYearText: {fileID: 1478780166}
   calendarGrid: {fileID: 180385703}
-  calendarDayPrefab: {fileID: 0}
+  calendarDayPrefab: {fileID: 8401712760409580974, guid: 84401e2360f004446aebcb6cce2f5b2d, type: 3}
   detailPanel: {fileID: 619322844}
   closeButton: {fileID: 399901907}
   dateTitle: {fileID: 708458245}
   itemListContent: {fileID: 1086446156}
-  taskItemPrefab: {fileID: 0}
+  taskItemPrefab: {fileID: 4669257739552563735, guid: 2b950d6c555c02b41bde215f37949a38, type: 3}
   emptyText: {fileID: 247444407}
 --- !u!1 &555848103
 GameObject:
@@ -2010,7 +2072,7 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 708458243}
   m_CullTransparentMesh: 1
---- !u!21 &756932219
+--- !u!21 &795430681
 Material:
   serializedVersion: 8
   m_ObjectHideFlags: 0
@@ -2060,7 +2122,7 @@ GameObject:
   m_Component:
   - component: {fileID: 812388236}
   - component: {fileID: 812388237}
-  m_Layer: 7
+  m_Layer: 5
   m_Name: CloudsBottom (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2121,7 +2183,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1059106907}
   - component: {fileID: 1059106908}
-  m_Layer: 7
+  m_Layer: 5
   m_Name: CloudsBottom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2136,7 +2198,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1059106906}
   m_LocalRotation: {x: -0.00000008940696, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: -1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -3051,7 +3113,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1589534348}
   - component: {fileID: 1589534349}
-  m_Layer: 7
+  m_Layer: 5
   m_Name: CloudsBottom (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3775,9 +3837,9 @@ RectTransform:
   - {fileID: 701717562}
   m_Father: {fileID: 543152279}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 1045}
+  m_AnchorMin: {x: 0.5, y: 1}
+  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchoredPosition: {x: 0, y: -344}
   m_SizeDelta: {x: 625, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1905356316
@@ -3792,7 +3854,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
-  m_Material: {fileID: 756932219}
+  m_Material: {fileID: 795430681}
   m_Color: {r: 0.90588236, g: 0.90588236, b: 0.90588236, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
