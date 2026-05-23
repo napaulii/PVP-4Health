@@ -37,7 +37,19 @@ public class Item
 
     public static string GetName(ItemType itemType)
     {
-        return itemType.ToString();
+        switch (itemType)
+        {
+            case ItemType.Tree1: return "Green Tree";
+            case ItemType.Tree2: return "Orange Tree";
+            case ItemType.Tree3: return "Pink Tree";
+            case ItemType.Bush1: return "Green Bush";
+            case ItemType.Bush2: return "Orange Bush";
+            case ItemType.Statue1: return "Man Statue";
+            case ItemType.Statue2: return "Warrior Statue";
+            case ItemType.Fountain1: return "Fountain";
+            case ItemType.Theme1: return "Halloween Theme";
+            default: return itemType.ToString();
+        }
     }
 
 
