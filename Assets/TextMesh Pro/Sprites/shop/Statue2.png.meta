@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 894d632006f316148ab0d1b5b9a64fa9
+guid: 3aee8f73fcca80d4eabebee2bba3463b
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 7772053563467876060
-    second: fountain_0
+      213: 453812030836072132
+    second: Statue2_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -113,13 +113,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: fountain_0
+      name: Statue2_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 500
-        height: 500
+        width: 200
+        height: 200
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: cd6cfc1b981ebdb60800000000000000
-      internalID: 7772053563467876060
+      spriteID: 4ce58cc33a34c4600800000000000000
+      internalID: 453812030836072132
       vertices: []
       indices: 
       edges: []
@@ -148,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      fountain_0: 7772053563467876060
+      Statue2_0: 453812030836072132
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

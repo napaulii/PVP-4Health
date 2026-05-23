@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Collections.Generic;
 using SupabaseModels;
+using static Item;
 
 public class ShopScript : MonoBehaviour
 {
@@ -34,6 +35,23 @@ public class ShopScript : MonoBehaviour
         Item.ItemType.Fountain1,
         Item.ItemType.Theme1,
     };
+
+    public static string GetName(ItemType itemType)
+    {
+        switch (itemType)
+        {
+            case ItemType.Tree1: return "Green Tree";
+            case ItemType.Tree2: return "Orange Tree";
+            case ItemType.Tree3: return "Pink Tree";
+            case ItemType.Bush1: return "Green Bush";
+            case ItemType.Bush2: return "Orange Bush";
+            case ItemType.Statue1: return "Man Statue";
+            case ItemType.Statue2: return "Warrior Statue";
+            case ItemType.Fountain1: return "Fountain";
+            case ItemType.Theme1: return "Halloween Theme";
+            default: return itemType.ToString();
+        }
+    }
 
     private void Awake()
     {
