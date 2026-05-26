@@ -1203,8 +1203,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 8.500244, y: 0.00048828125}
-  m_SizeDelta: {x: 17, y: 0}
+  m_AnchoredPosition: {x: -6.0756226, y: 0.00048828125}
+  m_SizeDelta: {x: 12.151, y: 0}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &7796784739406114105
 MonoBehaviour:
@@ -3882,6 +3882,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37b8257b1d87e9e4d81123bb2c65d6df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HabitManager
+  googleHealth: {fileID: 6296214468617974294}
   listContentContainer: {fileID: 8213458140817218117}
   habitItemPrefab: {fileID: 7001702223926001828, guid: a405145ed5515684bbad8984ed583825, type: 3}
   detailsPanel: {fileID: 3322754956005256106}
@@ -3898,7 +3899,6 @@ MonoBehaviour:
   editTitleInput: {fileID: 5441843084910327440}
   editDescInput: {fileID: 4756736180064526869}
   habitScrollRect: {fileID: 0}
-  googleHealth: {fileID: 6296214468617974294}
 --- !u!1 &5326371816451818637
 GameObject:
   m_ObjectHideFlags: 0
@@ -7092,9 +7092,13 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 3617117989977785813, guid: a405145ed5515684bbad8984ed583825, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 5654277203904801125, guid: a405145ed5515684bbad8984ed583825, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -12.5
+      value: -35
       objectReference: {fileID: 0}
     - target: {fileID: 6682769458197849824, guid: a405145ed5515684bbad8984ed583825, type: 3}
       propertyPath: m_Navigation.m_Mode
