@@ -12,7 +12,7 @@ public class ChallengeActions : MonoBehaviour
     [SerializeField] private string edgeFunctionUrl = "https://tqrbelbyudxdoovbybar.supabase.co/functions/v1/validate-meal";
 
     [Header("Traveler Challenge Config")]
-    [SerializeField] private string googleApiKey = "YOUR_GOOGLE_PLACES_API_KEY";
+    [SerializeField] private string googleApiKey = "AIzaSyCk4K5x72HLMEdTbs-rIhmZP4xFvSuQIfo";
     [SerializeField] private double arrivalThresholdMeters = 100.0;
 
     [Header("References")]
@@ -34,7 +34,14 @@ public class ChallengeActions : MonoBehaviour
             HandleTravelerChallenge(uc, row);
         }
     }
-
+    private async Task CompleteChallengeAsync(UserChallenge uc)
+    {
+        // Simply complete the personal challenge and refresh the UI.
+        // No group increments are needed here anymore since the group works on its own tab!
+        uc.Status = "completed";
+        await SupabaseManager.Instance.From<UserChallenge>().Update(uc);
+        uiManager.RefreshUI();
+    }
     public async void AutoGenerateTravelerLocation(UserChallenge uc, ChallengeRowUI row = null)
     {
         var coords = GPSManager.Instance != null ? GPSManager.Instance.GetLocation() : null;
@@ -205,12 +212,6 @@ public class ChallengeActions : MonoBehaviour
         }
     }
 
-    private async Task CompleteChallengeAsync(UserChallenge uc)
-    {
-        uc.Status = "completed";
-        await SupabaseManager.Instance.From<UserChallenge>().Update(uc);
-        uiManager.RefreshUI();
-    }
 
     private double CalculateDistance(double lat1, double lon1, double lat2, double lon2)
     {
@@ -226,7 +227,103 @@ public class ChallengeActions : MonoBehaviour
     }
 
     #endregion
+    #region Group Traveler Logic
 
+    public async void AutoGenerateGroupTravelerLocation(GroupChallenge gc, GroupChallengeRowUI row)
+    {
+        var coords = GPSManager.Instance != null ? GPSManager.Instance.GetLocation() : null;
+        if (coords == null)
+        {
+            if (row != null)
+            {
+                row.targetDestinationText.text = "GPS warming up. Tap button to search.";
+                row.checkLocationButton.interactable = true;
+                row.checkLocationButton.GetComponentInChildren<TMPro.TextMeshProUGUI>().text = "Generate Location";
+            }
+            return;
+        }
+
+        if (row != null)
+        {
+            row.targetDestinationText.text = "Locating nearby landmark...";
+            row.checkLocationButton.interactable = false;
+        }
+
+        // Fetch Google Places
+        string url = $"https://maps.googleapis.com/maps/api/place/nearbysearch/json?location={coords.Value.lat},{coords.Value.lng}&radius=5000&type=tourist_attraction|museum|park&key={googleApiKey}";
+        using (UnityWebRequest wwwGet = UnityWebRequest.Get(url))
+        {
+            var operation = wwwGet.SendWebRequest();
+            while (!operation.isDone) await Task.Delay(100);
+
+            if (wwwGet.result == UnityWebRequest.Result.Success)
+            {
+                GooglePlacesResponse response = JsonUtility.FromJson<GooglePlacesResponse>(wwwGet.downloadHandler.text);
+                if (response?.results != null && response.results.Length > 0)
+                {
+                    var place = response.results[UnityEngine.Random.Range(0, response.results.Length)];
+                    string cleanName = place.name.Contains(",") ? place.name.Split(',')[0].Trim() : place.name;
+
+                    gc.TargetName = cleanName;
+                    gc.TargetLatitude = place.geometry.location.lat;
+                    gc.TargetLongitude = place.geometry.location.lng;
+
+                    await SupabaseManager.Instance.From<GroupChallenge>().Update(gc);
+                    if (row != null) row._uiManager.RefreshUI();
+                }
+            }
+        }
+    }
+
+    public void ExecuteGroupTravelerChallenge(GroupChallenge gc, GroupChallengeRowUI row)
+    {
+        var coords = GPSManager.Instance != null ? GPSManager.Instance.GetLocation() : null;
+        if (coords == null)
+        {
+            if (string.IsNullOrEmpty(gc.TargetName)) AutoGenerateGroupTravelerLocation(gc, row);
+            else if (row != null) row.targetDestinationText.text = "GPS initializing. Please try again.";
+            return;
+        }
+
+        if (string.IsNullOrEmpty(gc.TargetName))
+        {
+            AutoGenerateGroupTravelerLocation(gc, row);
+            return;
+        }
+
+        double distance = CalculateDistance(coords.Value.lat, coords.Value.lng, gc.TargetLatitude ?? 0, gc.TargetLongitude ?? 0);
+
+        if (distance <= arrivalThresholdMeters)
+        {
+            if (row != null)
+            {
+                row.targetDestinationText.text = $"Target: {gc.TargetName}";
+                if (row.targetDestinationDistance != null) row.targetDestinationDistance.text = "Arrived!";
+                row.checkLocationButton.interactable = false;
+            }
+            _ = CompleteGroupTravelerAsync(gc, row);
+        }
+        else
+        {
+            if (row != null)
+            {
+                row.targetDestinationText.text = $"Target: {gc.TargetName}";
+                if (row.targetDestinationDistance != null)
+                {
+                    row.targetDestinationDistance.text = distance >= 1000 ? $"{distance / 1000f:F1} km away" : $"{distance:F0} m away";
+                }
+            }
+        }
+    }
+
+    private async Task CompleteGroupTravelerAsync(GroupChallenge gc, GroupChallengeRowUI row)
+    {
+        GroupChallengeController groupCtrl = new GroupChallengeController();
+        await groupCtrl.ProgressGroupTravelerAsync(gc); // Increments, clears location, updates DB
+        if (row != null) row._uiManager.RefreshUI(); // Refreshes UI (which auto-generates the next location!)
+    }
+
+    #endregion
     #region Helper Classes
 
     [System.Serializable] public class UploadRequest { public string imageBase64; public string userId; public int challengeId; }

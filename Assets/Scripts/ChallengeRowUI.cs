@@ -168,19 +168,18 @@ public class ChallengeRowUI : MonoBehaviour
 
     public void ToggleExpand()
     {
+        // --- THE SAFETY CHECK ---
+        if (_data == null || _data.ChallengeData == null) return;
+
         string status = _data.Status.ToLower();
-        if (status == "completed" || status == "claimed")
-        {
-            return;
-        }
+        if (status == "completed" || status == "claimed") return;
 
         if (!detailsArea.activeSelf)
         {
             _uiManager.CollapseAllOtherRows(this);
             detailsArea.SetActive(true);
 
-            // --- THE UPDATE TRIGGER ---
-            // If the row is expanding, check if it's a Step challenge and refresh the counter
+            // Fetch steps on expansion
             string challengeType = (_data.ChallengeData.Type ?? "").ToLower();
             if (!challengeType.Contains("meal") && !challengeType.Contains("traveler"))
             {
