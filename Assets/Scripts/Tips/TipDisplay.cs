@@ -15,25 +15,25 @@ public class TipDisplay : MonoBehaviour
 
     void Start()
     {
-        // Make sure the database is ready before we try to show a tip
-        if (TipDatabase.instance != null)
-        {
-            ShowNewTip();
-        }
+        StartCoroutine(InitWhenReady());
+    }
 
-        // Start auto-rotation if enabled
+    private IEnumerator InitWhenReady()
+    {
+        // Wait until TipDatabase has finished fetching from Supabase
+        yield return new WaitUntil(() => TipDatabase.instance != null && TipDatabase.instance.IsReady());
+
+        ShowNewTip();
+
         if (autoRotate)
-        {
             StartTipRotation();
-        }
     }
 
     void StartTipRotation()
     {
         if (tipRotationCoroutine != null)
-        {
             StopCoroutine(tipRotationCoroutine);
-        }
+
         tipRotationCoroutine = StartCoroutine(RotateTips());
     }
 
@@ -49,20 +49,14 @@ public class TipDisplay : MonoBehaviour
     public void ShowNewTip()
     {
         if (tipText != null && TipDatabase.instance != null)
-        {
-            // Get a random tip from the database and update the UI
             tipText.text = TipDatabase.instance.GetRandomTip();
-        }
     }
 
-    // Optional: Method to manually trigger a new tip
+    // Optional: manually trigger a new tip and reset the rotation timer
     public void ForceNewTip()
     {
         ShowNewTip();
-        // Reset the coroutine timer
         if (autoRotate)
-        {
             StartTipRotation();
-        }
     }
 }

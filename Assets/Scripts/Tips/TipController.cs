@@ -28,7 +28,7 @@ public class TipController : MonoBehaviour
 
     [Header("Push Notification Settings")]
     [Tooltip("How many seconds after app launch to send the push notification (e.g. 86400 = 24 hours)")]
-  //  public int notificationDelaySeconds = 86400;
+    //  public int notificationDelaySeconds = 86400;
     public int notificationDelaySeconds = 10; // for testing, set to 10 seconds
 
     private Vector2 shownPosition;
@@ -43,10 +43,16 @@ public class TipController : MonoBehaviour
         tipBanner.anchoredPosition = hiddenPosition;
         closeButton.onClick.AddListener(HideTip);
 
-        // Show in-app banner
-        ShowTip();
+        // Wait for DB before showing tip or scheduling notification
+        StartCoroutine(InitWhenReady());
+    }
 
-        // Schedule a push notification for when the user is outside the app
+    private IEnumerator InitWhenReady()
+    {
+        // Wait until TipDatabase has finished fetching from Supabase
+        yield return new WaitUntil(() => TipDatabase.instance != null && TipDatabase.instance.IsReady());
+
+        ShowTip();
         SchedulePushNotification();
     }
 

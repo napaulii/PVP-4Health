@@ -1,60 +1,79 @@
 // TipDatabase.cs
 using UnityEngine;
-using System.IO; // Required for file operations
+using System.Collections;
 using System.Collections.Generic;
+using Postgrest.Attributes;
+using Postgrest.Models;
+using SupabaseModels;
+
+// --- Tip model matching your Supabase table ---
+namespace SupabaseModels
+{
+    [Table("tips")]
+    public class TipModel : BaseModel
+    {
+        [PrimaryKey("id", false)]
+        public long Id { get; set; }
+
+        [Column("tip_text")]
+        public string Tip { get; set; }
+    }
+}
 
 public class TipDatabase : MonoBehaviour
 {
     public static TipDatabase instance;
 
-    private List<Tip> allTips = new List<Tip>();
+    private List<string> allTips = new List<string>();
     private int lastTipIndex = -1;
+    private bool isLoaded = false;
 
     void Awake()
     {
-        // Singleton pattern
         if (instance == null)
-        {
             instance = this;
-        }
         else
         {
             Destroy(gameObject);
             return;
         }
 
-        LoadTips();
+        StartCoroutine(LoadTips());
     }
 
-    private void LoadTips()
+    private IEnumerator LoadTips()
     {
-        // Path to the JSON file in the StreamingAssets folder
-        string path = Path.Combine(Application.streamingAssetsPath, "tips.json");
+        // Wait until SupabaseManager.Instance (the Client) is ready
+        yield return new WaitUntil(() => SupabaseManager.Instance != null);
 
-        if (File.Exists(path))
+        var task = SupabaseManager.Instance
+            .From<TipModel>()
+            .Get();
+
+        yield return new WaitUntil(() => task.IsCompleted);
+
+        if (task.IsFaulted)
         {
-            string jsonContent = File.ReadAllText(path);
-
-            // Deserialize the JSON into our C# classes
-            TipList loadedTips = JsonUtility.FromJson<TipList>(jsonContent);
-
-            // Add the loaded tips to our main list
-            allTips.AddRange(loadedTips.tips);
-
-            Debug.Log(allTips.Count + " tips loaded successfully from the database.");
+            Debug.LogError($"[TipDatabase] Failed to fetch tips: {task.Exception?.Message}");
+            isLoaded = true;
+            yield break;
         }
-        else
+
+        allTips.Clear();
+        foreach (var row in task.Result.Models)
         {
-            Debug.LogError("Database file not found at: " + path);
+            if (!string.IsNullOrWhiteSpace(row.Tip))
+                allTips.Add(row.Tip);
         }
+
+        Debug.Log($"[TipDatabase] {allTips.Count} tips loaded from Supabase.");
+        isLoaded = true;
     }
 
     public string GetRandomTip()
     {
         if (allTips.Count == 0)
-        {
-            return "No tips were found in the database.";
-        }
+            return string.Empty;
 
         int randomIndex;
         if (allTips.Count > 1)
@@ -70,6 +89,8 @@ public class TipDatabase : MonoBehaviour
         }
 
         lastTipIndex = randomIndex;
-        return allTips[randomIndex].tipText;
+        return allTips[randomIndex];
     }
+
+    public bool IsReady() => isLoaded;
 }
