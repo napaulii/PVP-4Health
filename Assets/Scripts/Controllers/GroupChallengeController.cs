@@ -115,17 +115,11 @@ public class GroupChallengeController
         {
             newChallenge.TargetName = "Walk 100k steps as a group";
             newChallenge.StepTarget = 100000;
-            newChallenge.StepProgress = 0;
-            newChallenge.TravelsCompleted = 0;
         }
         else
         {
-            // --- THE CHANGE ---
-            // Set the group challenge title strictly to "Travel" every time
-            newChallenge.TargetName = "Travel";
+            newChallenge.TargetName = "Complete 20 Traveler challenges as a group";
             newChallenge.StepTarget = 0;
-            newChallenge.StepProgress = 0;
-            newChallenge.TravelsCompleted = 0;
         }
 
         var insertResponse = await SupabaseManager.Instance.From<GroupChallenge>().Insert(newChallenge);
