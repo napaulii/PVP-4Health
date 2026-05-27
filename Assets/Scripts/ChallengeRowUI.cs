@@ -31,6 +31,7 @@ public class ChallengeRowUI : MonoBehaviour
     public TextMeshProUGUI targetDestinationText; // Drag 'TargetDestinationText' here
     public TextMeshProUGUI targetDestinationDistance; // Drag 'TargetDestinationDistance' here
     public Button checkLocationButton; // Drag 'CheckLocationButton' here
+    public Button openMapButton;
 
     [Header("Sprites")]
     public Sprite cameraSprite;
@@ -80,6 +81,21 @@ public class ChallengeRowUI : MonoBehaviour
 
             if (isTraveler)
             {
+                if (openMapButton != null)
+                {
+                    openMapButton.onClick.RemoveAllListeners();
+                    if (data.TargetLatitude.HasValue && data.TargetLongitude.HasValue)
+                    {
+                        double lat = data.TargetLatitude.Value;
+                        double lng = data.TargetLongitude.Value;
+                        openMapButton.onClick.AddListener(() => _actions.OpenMapForTarget(lat, lng));
+                        openMapButton.interactable = true;
+                    }
+                    else
+                    {
+                        openMapButton.interactable = false; // Lock if no location generated yet
+                    }
+                }
                 // Programmatically bind the click
                 if (checkLocationButton != null)
                 {

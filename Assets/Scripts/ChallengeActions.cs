@@ -225,7 +225,17 @@ public class ChallengeActions : MonoBehaviour
 
         return r * (2 * Math.Atan2(Math.Sqrt(a), Math.Sqrt(1 - a)));
     }
+    /// <summary>
+    /// Opens the native Google Maps app on the phone with walking directions to the target.
+    /// </summary>
+    public void OpenMapForTarget(double targetLat, double targetLng)
+    {
+        // Creates a Google Maps intent for walking directions to the target
+        string url = $"https://www.google.com/maps/search/?api=1&query={targetLat},{targetLng}";
 
+        Debug.Log($"[Map] Opening native map app to: {url}");
+        Application.OpenURL(url);
+    }
     #endregion
     #region Group Traveler Logic
 

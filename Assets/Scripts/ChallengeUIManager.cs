@@ -4,19 +4,19 @@ using UnityEngine;
 
 public class ChallengeUIManager : MonoBehaviour
 {
-    public ChallengeRowUI[] rows; // Drag your 3 static PChallengeRows here
+    public ChallengeRowUI[] rows;
     public ChallengeActions actionManager;
+
+    // --- ADD THIS: Reference to the Group Manager ---
+    public GroupChallengeUIManager groupUIManager;
 
     private UserChallengeController _userChallengeController = new UserChallengeController();
 
-    async void OnEnable() // Refresh when the window opens
+    async void OnEnable()
     {
         string userId = SupabaseManager.Instance.Auth.CurrentUser.Id;
-
-        // Use your existing ChallengeController method that has the .Select("*, Challenge(*)")
         List<UserChallenge> userChallenges = await _userChallengeController.GetAllUserChallengesAsync();
 
-        // Map the database rows to your 3 UI rows
         for (int i = 0; i < rows.Length; i++)
         {
             if (i < userChallenges.Count)
@@ -30,20 +30,39 @@ public class ChallengeUIManager : MonoBehaviour
             }
         }
     }
+
     public void CollapseAllOtherRows(ChallengeRowUI currentActiveRow)
+    {
+        // 1. Close all other PERSONAL rows
+        foreach (var row in rows)
+        {
+            if (row != currentActiveRow && row.gameObject.activeSelf && row.detailsArea != null)
+            {
+                row.detailsArea.SetActive(false);
+            }
+        }
+
+        // 2. Tell the GROUP manager to close all its rows too
+        if (groupUIManager != null)
+        {
+            groupUIManager.CollapseAllRows();
+        }
+    }
+
+    // --- ADD THIS: A method for the Group manager to call ---
+    public void CollapseAllRows()
     {
         foreach (var row in rows)
         {
-            // If it's not the row we just clicked, close it
-            if (row != currentActiveRow)
+            if (row.gameObject.activeSelf && row.detailsArea != null)
             {
                 row.detailsArea.SetActive(false);
             }
         }
     }
+
     public void RefreshUI()
     {
-        // This just triggers the OnEnable logic again to fetch fresh data from DB
         OnEnable();
     }
 }

@@ -28,6 +28,7 @@ public class GroupChallengeRowUI : MonoBehaviour
     public TextMeshProUGUI targetDestinationText;
     public TextMeshProUGUI targetDestinationDistance;
     public Button checkLocationButton;
+    public Button openMapButton;
 
     private GroupChallenge _data;
     private ChallengeActions _actions;
@@ -54,11 +55,9 @@ public class GroupChallengeRowUI : MonoBehaviour
 
         if (isStepChallenge)
         {
+            progressText.text = $"{data.StepProgress} / {data.StepTarget.Value} steps";
             if (travelerActionGroup != null) travelerActionGroup.SetActive(false);
             progressText.gameObject.SetActive(true);
-
-            // Auto-sync steps on initial startup load
-            _ = SyncAndLoadGroupSteps(data);
         }
         else
         {
@@ -69,30 +68,63 @@ public class GroupChallengeRowUI : MonoBehaviour
             {
                 travelerActionGroup.SetActive(true);
 
+                // 1. Bind the Check Distance Button
                 if (checkLocationButton != null)
                 {
                     checkLocationButton.onClick.RemoveAllListeners();
                     checkLocationButton.onClick.AddListener(OnCheckLocationClicked);
                 }
 
+                // 2. Bind the Open Map Button
+                if (openMapButton != null)
+                {
+                    openMapButton.onClick.RemoveAllListeners();
+
+                    if (data.TargetLatitude.HasValue && data.TargetLongitude.HasValue)
+                    {
+                        double lat = data.TargetLatitude.Value;
+                        double lng = data.TargetLongitude.Value;
+
+                        // Pass the coordinates directly to ChallengeActions
+                        openMapButton.onClick.AddListener(() => _actions.OpenMapForTarget(lat, lng));
+                        openMapButton.interactable = true;
+                    }
+                    else
+                    {
+                        // Lock the map button if a location hasn't been generated yet
+                        openMapButton.interactable = false;
+                    }
+                }
+
+                // 3. Configure Text and Button States based on generation
                 if (!string.IsNullOrEmpty(data.TargetName) && data.TargetLatitude.HasValue && data.TargetLongitude.HasValue)
                 {
                     targetDestinationText.text = $"Target: {data.TargetName}";
                     if (targetDestinationDistance != null) targetDestinationDistance.text = "";
-                    checkLocationButton.interactable = true;
-                    checkLocationButton.GetComponentInChildren<TextMeshProUGUI>().text = "Check Distance";
+
+                    if (checkLocationButton != null)
+                    {
+                        checkLocationButton.interactable = true;
+                        checkLocationButton.GetComponentInChildren<TextMeshProUGUI>().text = "Check Distance";
+                    }
                 }
                 else
                 {
                     targetDestinationText.text = "GPS warming up. Tap button to search.";
                     if (targetDestinationDistance != null) targetDestinationDistance.text = "";
-                    checkLocationButton.interactable = true;
-                    checkLocationButton.GetComponentInChildren<TextMeshProUGUI>().text = "Generate Location";
+
+                    if (checkLocationButton != null)
+                    {
+                        checkLocationButton.interactable = true;
+                        checkLocationButton.GetComponentInChildren<TextMeshProUGUI>().text = "Generate Location";
+                    }
+
                     _actions.AutoGenerateGroupTravelerLocation(data, this);
                 }
             }
         }
 
+        // Configure Row Colors and Claim Button based on Status
         string status = (data.Status ?? "active").ToLower();
 
         if (status == "claimed")
@@ -104,6 +136,8 @@ public class GroupChallengeRowUI : MonoBehaviour
         {
             buttonBackgroundImage.color = claimableColor;
             claimButton.interactable = true;
+
+            // Clean up UI by hiding the traveler actions once the challenge is complete
             if (travelerActionGroup != null) travelerActionGroup.SetActive(false);
         }
         else
