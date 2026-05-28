@@ -521,8 +521,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: ChallengeRowUI, Assembly-CSharp
+      - m_Target: {fileID: 7031619560063963490}
+        m_TargetAssemblyTypeName: GroupChallengeRowUI, Assembly-CSharp
         m_MethodName: OnClaimRewardPressed
         m_Mode: 1
         m_Arguments:
