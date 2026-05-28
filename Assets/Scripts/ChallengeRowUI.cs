@@ -220,6 +220,7 @@ public class ChallengeRowUI : MonoBehaviour
 
         _data.Status = "claimed";
         _uiManager.RefreshUI();
+        Object.FindFirstObjectByType<FortressUpdateScript>()?.UpdateFortressModelAsync();
     }
 
     public void CloseDetails()

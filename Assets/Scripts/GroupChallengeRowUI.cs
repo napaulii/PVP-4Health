@@ -239,5 +239,6 @@ public class GroupChallengeRowUI : MonoBehaviour
         _data.Status = "claimed";
         await SupabaseManager.Instance.From<GroupChallenge>().Update(_data);
         _uiManager.RefreshUI();
+        Object.FindFirstObjectByType<FortressUpdateScript>()?.UpdateFortressModelAsync();
     }
 }
