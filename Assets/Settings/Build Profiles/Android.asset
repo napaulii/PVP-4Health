@@ -26,6 +26,10 @@ MonoBehaviour:
     m_path: Assets/Scenes/Home.unity
   - m_enabled: 1
     m_path: Assets/Scenes/Habit.unity
+  - m_enabled: 1
+    m_path: Assets/Scenes/Calendar.unity
+  - m_enabled: 1
+    m_path: Assets/Scenes/Leaderboards.unity
   m_HasScriptingDefines: 0
   m_ScriptingDefines: []
   m_PlayerSettingsYaml:
