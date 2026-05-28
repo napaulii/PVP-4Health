@@ -219,6 +219,10 @@ public class ChallengeRowUI : MonoBehaviour
         await ucCtrl.UpdateUserChallengeStatusAsync(_data.Id, "claimed");
 
         _data.Status = "claimed";
+        if (CoinManager.Instance != null)
+        {
+            await CoinManager.Instance.RefreshBalanceFromServer();
+        }
         _uiManager.RefreshUI();
         Object.FindFirstObjectByType<FortressUpdateScript>()?.UpdateFortressModelAsync();
     }

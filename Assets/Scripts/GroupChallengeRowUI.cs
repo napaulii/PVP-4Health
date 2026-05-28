@@ -44,7 +44,6 @@ public class GroupChallengeRowUI : MonoBehaviour
         _data = data;
         _actions = actions;
         _uiManager = uiManager;
-
         descriptionText.text = data.TargetName;
         xpText.text = $"+{_rewardXp} XP";
         coinsText.text = $"+{_rewardCoins} Coins";
@@ -238,6 +237,10 @@ public class GroupChallengeRowUI : MonoBehaviour
         await userCtrl.UpdateUserAsync(_rewardCoins, _rewardXp, false);
         _data.Status = "claimed";
         await SupabaseManager.Instance.From<GroupChallenge>().Update(_data);
+        if (CoinManager.Instance != null)
+        {
+            await CoinManager.Instance.RefreshBalanceFromServer();
+        }
         _uiManager.RefreshUI();
         Object.FindFirstObjectByType<FortressUpdateScript>()?.UpdateFortressModelAsync();
     }
