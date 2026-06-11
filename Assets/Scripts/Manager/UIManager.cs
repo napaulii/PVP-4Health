@@ -11,7 +11,8 @@ public class UIManager : MonoBehaviour
     public GameObject addChallengesPanel;
     public GameObject profilePanel;
     public GameObject settingsPanel;
-        
+    public GameObject tutorialPanel;
+
     public void OpenShop()
     {
         homePanel.SetActive(false);
@@ -26,6 +27,7 @@ public class UIManager : MonoBehaviour
         addChallengesPanel.SetActive(true);
         profilePanel.SetActive(false);
         settingsPanel.SetActive(false);
+        tutorialPanel.SetActive(false);
         homeBottomPanel.SetActive(true);
         homePanel.SetActive(true);
     }
@@ -62,5 +64,12 @@ public class UIManager : MonoBehaviour
         homePanel.SetActive(false);
         homeBottomPanel.SetActive(false);
         settingsPanel.SetActive(true);
+    }
+
+    public void OpenTutorial()
+    {
+        homePanel.SetActive(true);
+        homeBottomPanel.SetActive(true);
+        tutorialPanel.SetActive(true);
     }
 }
