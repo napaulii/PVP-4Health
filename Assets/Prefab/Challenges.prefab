@@ -783,10 +783,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce74f82c208ae004ca6b7210e551091d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ChallengeUIManager
-  rows:
-  - {fileID: 1448151791488280703}
-  - {fileID: 4461749410563073517}
-  - {fileID: 994593706336600260}
+  personalRows: []
+  groupRows: []
   actionManager: {fileID: 108319091264257619}
 --- !u!114 &108319091264257619
 MonoBehaviour:
@@ -1823,7 +1821,6 @@ GameObject:
   m_Component:
   - component: {fileID: 8085137397715924755}
   - component: {fileID: 9021924999152518864}
-  - component: {fileID: 6754172159014926976}
   - component: {fileID: 9117253711147639223}
   m_Layer: 5
   m_Name: Challenges
@@ -1867,25 +1864,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8789476348588312421}
   m_CullTransparentMesh: 1
---- !u!114 &6754172159014926976
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8789476348588312421}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 718b6e8a903e0104181582a0369014c1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: '::'
-  personalContainer: {fileID: 5944562116479790385}
-  personalRowTemplate: {fileID: 0}
-  groupContainer: {fileID: 6605813584910559802}
-  groupRowTemplate: {fileID: 0}
-  statusLabel: {fileID: 0}
-  userId: 1
-  groupId: 1
 --- !u!114 &9117253711147639223
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2145,7 +2123,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3882923727090877017, guid: bc4d2a53ce2244246be5e70b5e70b763, type: 3}
       propertyPath: m_fontSize
-      value: 20
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3882923727090877017, guid: bc4d2a53ce2244246be5e70b5e70b763, type: 3}
       propertyPath: m_fontSizeBase
@@ -2355,7 +2333,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3551401139768623086, guid: 3ea0b241c504add49881a1c7cc90d803, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -922.5086
+      value: -1160
       objectReference: {fileID: 0}
     - target: {fileID: 3551401139768623086, guid: 3ea0b241c504add49881a1c7cc90d803, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -2553,17 +2531,6 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 6084360744771745940}
   m_SourcePrefab: {fileID: 100100000, guid: 3ea0b241c504add49881a1c7cc90d803, type: 3}
---- !u!114 &994593706336600260 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4962487717024483810, guid: 3ea0b241c504add49881a1c7cc90d803, type: 3}
-  m_PrefabInstance: {fileID: 5265778878344038694}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3154599992689765390}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2ecaeae6112aa1d4ca347074e43ed0f9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ChallengeRowUI
 --- !u!1 &3154599992689765390 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7121508257239835944, guid: 3ea0b241c504add49881a1c7cc90d803, type: 3}
@@ -2740,7 +2707,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3551401139768623086, guid: 3ea0b241c504add49881a1c7cc90d803, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -269
+      value: -264
       objectReference: {fileID: 0}
     - target: {fileID: 3551401139768623086, guid: 3ea0b241c504add49881a1c7cc90d803, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -2934,17 +2901,6 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 2615541090430064154}
   m_SourcePrefab: {fileID: 100100000, guid: 3ea0b241c504add49881a1c7cc90d803, type: 3}
---- !u!114 &1448151791488280703 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4962487717024483810, guid: 3ea0b241c504add49881a1c7cc90d803, type: 3}
-  m_PrefabInstance: {fileID: 5820500273213923741}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3608012426960716981}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2ecaeae6112aa1d4ca347074e43ed0f9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ChallengeRowUI
 --- !u!1 &3608012426960716981 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7121508257239835944, guid: 3ea0b241c504add49881a1c7cc90d803, type: 3}
@@ -3121,8 +3077,17 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 8935619744728140375}
     - targetCorrespondingSourceObject: {fileID: 4752086609467002735, guid: 9b3373949ed9bcb498cf402f54ef81f7, type: 3}
-      insertIndex: 3
+      insertIndex: -1
       addedObject: {fileID: 4961107490533694042}
+    - targetCorrespondingSourceObject: {fileID: 4752086609467002735, guid: 9b3373949ed9bcb498cf402f54ef81f7, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1503535063282448233}
+    - targetCorrespondingSourceObject: {fileID: 9223372036854775804, guid: 9b3373949ed9bcb498cf402f54ef81f7, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2835591361615765889}
+    - targetCorrespondingSourceObject: {fileID: 9223372036854775803, guid: 9b3373949ed9bcb498cf402f54ef81f7, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2178914778724689886}
   m_SourcePrefab: {fileID: 100100000, guid: 9b3373949ed9bcb498cf402f54ef81f7, type: 3}
 --- !u!224 &3236596721610619223 stripped
 RectTransform:
@@ -3146,6 +3111,50 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad4ad13237cbd8148aa0f3975f4605c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ButtonSound
+--- !u!114 &1503535063282448233
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4140885557805965869}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
+  m_Navigation:
+    m_Mode: 3
+    m_WrapAround: 0
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 1
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_SelectedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_SelectedTrigger: Selected
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 0}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &4913495056277257496 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4374562414980567130, guid: 9b3373949ed9bcb498cf402f54ef81f7, type: 3}
@@ -3171,7 +3180,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2623900321970198796, guid: 9b3373949ed9bcb498cf402f54ef81f7, type: 3}
   m_PrefabInstance: {fileID: 8684537595792338242}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4140885557805965869}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
@@ -3182,12 +3191,38 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1986902422567909249, guid: 9b3373949ed9bcb498cf402f54ef81f7, type: 3}
   m_PrefabInstance: {fileID: 8684537595792338242}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
+  m_GameObject: {fileID: 8684537595792338244}
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
+--- !u!1 &8684537595792338243 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 9223372036854775804, guid: 9b3373949ed9bcb498cf402f54ef81f7, type: 3}
+  m_PrefabInstance: {fileID: 8684537595792338242}
+  m_PrefabAsset: {fileID: 0}
+--- !u!222 &2835591361615765889
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8684537595792338243}
+  m_CullTransparentMesh: 1
+--- !u!1 &8684537595792338244 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 9223372036854775803, guid: 9b3373949ed9bcb498cf402f54ef81f7, type: 3}
+  m_PrefabInstance: {fileID: 8684537595792338242}
+  m_PrefabAsset: {fileID: 0}
+--- !u!222 &2178914778724689886
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8684537595792338244}
+  m_CullTransparentMesh: 1
 --- !u!1001 &8733919188677061647
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3334,7 +3369,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3551401139768623086, guid: 3ea0b241c504add49881a1c7cc90d803, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -539.50287
+      value: -612
       objectReference: {fileID: 0}
     - target: {fileID: 3551401139768623086, guid: 3ea0b241c504add49881a1c7cc90d803, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -3552,17 +3587,6 @@ MonoBehaviour:
   challengeText: {fileID: 8523361790387725951}
   completeButton: {fileID: 0}
   coinReward: 100
---- !u!114 &4461749410563073517 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4962487717024483810, guid: 3ea0b241c504add49881a1c7cc90d803, type: 3}
-  m_PrefabInstance: {fileID: 8733919188677061647}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2009083983422998823}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2ecaeae6112aa1d4ca347074e43ed0f9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ChallengeRowUI
 --- !u!224 &5223051589518037985 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 3551401139768623086, guid: 3ea0b241c504add49881a1c7cc90d803, type: 3}

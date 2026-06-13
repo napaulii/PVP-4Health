@@ -10,12 +10,10 @@ public class ShopScript : MonoBehaviour
     [Header("References")]
     [SerializeField] private Sprite[] itemSprites;
     [SerializeField] private TextMeshProUGUI coinText;
-
-    [Header("References")]
-    [SerializeField] private GridSystem gridSystem;
+    [SerializeField] private PlacementSystem placementSystem;
     [SerializeField] private GameObject shopPanel;
     [SerializeField] private GameObject HomePanel;
-    [SerializeField] private GameObject HomeBottomPanel;
+    [SerializeField] private GameObject platform;
 
     private Transform container;
     private Transform itemTemplate;
@@ -54,8 +52,6 @@ public class ShopScript : MonoBehaviour
             CoinManager.Instance.OnCoinsChanged.AddListener(OnCoinsChanged);
 
         UpdateCoinDisplay();
-
-        // Load all items purchased by anyone in the group
         await LoadGroupOwnedItems();
 
         foreach (Item.ItemType type in ALL_ITEMS)
@@ -113,11 +109,10 @@ public class ShopScript : MonoBehaviour
 
         if (CoinManager.Instance == null || !(await CoinManager.Instance.TrySpend(cost)))
         {
-            Debug.Log("[Shop] Not enough coins (or DB error)!");
+            Debug.Log("[Shop] Not enough coins!");
             return;
         }
 
-        // Save purchase to Supabase
         PersonalItem saved = await _personalItemController.CreatePersonalItemAsync(
             title: Item.GetName(itemType),
             description: $"Purchased {Item.GetName(itemType)}",
@@ -126,34 +121,13 @@ public class ShopScript : MonoBehaviour
 
         if (saved == null)
         {
-            Debug.LogWarning($"[Shop] Failed to save purchase of {itemType} to DB.");
+            Debug.LogWarning($"[Shop] Failed to save {itemType}.");
             return;
         }
 
         Item.Unlock(itemType);
-        Debug.Log($"[Shop] Purchased {itemType} for {cost} coins.");
         SetButtonOwned(button, true);
         UpdateCoinDisplay();
-
-        // Validate gridSystem before switching panels
-        if (gridSystem == null)
-        {
-            Debug.LogError("[Shop] GridSystem reference is null! Assign it in the Inspector.");
-            return;
-        }
-
-        // Only switch panels if placement started successfully
-        bool placementStarted = gridSystem.StartPlacement(itemType);
-        if (placementStarted)
-        {
-            shopPanel.SetActive(false);
-            HomePanel.SetActive(true);
-            HomeBottomPanel.SetActive(true);
-        }
-        else
-        {
-            Debug.LogError($"[Shop] Placement failed for {itemType}. Check GridSystem placeableItems in the Inspector.");
-        }
     }
 
     private void SetButtonOwned(Button button, bool owned)

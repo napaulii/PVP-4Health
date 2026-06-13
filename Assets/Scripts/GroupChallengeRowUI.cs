@@ -6,242 +6,199 @@ using SupabaseModels;
 
 public class GroupChallengeRowUI : MonoBehaviour
 {
-    [Header("Colors")]
-    public Color claimableColor;
-    public Color incompleteColor;
-    public Color claimedColor;
-
-    [Header("Header References")]
-    public TextMeshProUGUI descriptionText;
-    public Button claimButton;
-    public Image statusIcon;
-    public Image buttonBackgroundImage;
-
-    [Header("Expandable Area")]
-    public GameObject detailsArea;
-    public TextMeshProUGUI xpText;
+    [Header("Text")]
+    public TextMeshProUGUI titleText;
+    public TextMeshProUGUI rewardText;
     public TextMeshProUGUI coinsText;
-    public TextMeshProUGUI progressText;
 
-    [Header("Action Area")]
-    public GameObject travelerActionGroup;
-    public TextMeshProUGUI targetDestinationText;
-    public TextMeshProUGUI targetDestinationDistance;
-    public Button checkLocationButton;
-    public Button openMapButton;
+    [Header("Done Button")]
+    public Button doneButton;
+
+    [Header("Extra")]
+    public TextMeshProUGUI extraText1;
+    public TextMeshProUGUI extraText2;
+    public Button extraButton1;
+    public Button extraButton2;
+
+    [Header("Colors")]
+    public Color incompleteColor = Color.white;
+    public Color completedColor = Color.green;
+    public Color claimedColor = Color.gray;
+
+    public TextMeshProUGUI targetDestinationText => extraText1;
+    public TextMeshProUGUI targetDestinationDistance => extraText2;
+    public Button checkLocationButton => extraButton1;
 
     private GroupChallenge _data;
     private ChallengeActions _actions;
-    public GroupChallengeUIManager _uiManager;
+    public ChallengeUIManager _uiManager;
 
     private int _rewardXp = 500;
     private int _rewardCoins = 500;
 
-    public GroupChallengeUIManager uiManagerPublic => _uiManager;
+    private bool isExpanded = false;
 
-    public void Setup(GroupChallenge data, ChallengeActions actions, GroupChallengeUIManager uiManager)
+    public void Setup(GroupChallenge data, ChallengeActions actions, ChallengeUIManager uiManager)
     {
         _data = data;
         _actions = actions;
         _uiManager = uiManager;
-        descriptionText.text = data.TargetName;
-        xpText.text = $"+{_rewardXp} XP";
-        coinsText.text = $"+{_rewardCoins} Coins";
-        statusIcon.color = Color.white;
-        statusIcon.material = null;
 
-        bool isStepChallenge = data.StepTarget.HasValue && data.StepTarget.Value > 0;
+        if (titleText != null) titleText.text = data.TargetName;
+        if (rewardText != null) rewardText.text = $"+{_rewardXp}";
+        if (coinsText != null) coinsText.text = $"+{_rewardCoins}";
 
-        if (isStepChallenge)
-        {
-            progressText.text = $"{data.StepProgress} / {data.StepTarget.Value} steps";
-            if (travelerActionGroup != null) travelerActionGroup.SetActive(false);
-            progressText.gameObject.SetActive(true);
-        }
+        SetExtra(false);
+
+        bool isStep = data.StepTarget.HasValue && data.StepTarget.Value > 0;
+        string status = (data.Status ?? "active").ToLower();
+
+        if (isStep)
+            ShowExtra1($"{data.StepProgress} / {data.StepTarget.Value} steps");
         else
         {
-            progressText.text = $"{data.TravelsCompleted} / 20 locations visited";
-            progressText.gameObject.SetActive(true);
+            ShowExtra1($"{data.TravelsCompleted} / 20 locations visited");
+            if (status == "active") SetupTraveler(data);
+        }
 
-            if (travelerActionGroup != null)
+        switch (status)
+        {
+            case "claimed":
+                SetDoneButton(claimedColor, "Claimed", false);
+                
+                break;
+            case "completed":
+                SetDoneButton(completedColor, "Claim", true);
+                doneButton.onClick.RemoveAllListeners();
+                doneButton.onClick.AddListener(OnClaimRewardPressed);
+                
+                break;
+            default:
+                SetDoneButton(incompleteColor, "Done", false);
+                SetExtra(false);   // keep collapsed initially
+                break;
+        }
+    }
+
+    void SetupTraveler(GroupChallenge data)
+    {
+        ShowExtra1(string.IsNullOrEmpty(data.TargetName)
+            ? "GPS warming up..." : $"Target: {data.TargetName}");
+
+        if (extraText2 != null) extraText2.gameObject.SetActive(true);
+
+        if (extraButton1 != null)
+        {
+            extraButton1.gameObject.SetActive(true);
+            extraButton1.onClick.RemoveAllListeners();
+            extraButton1.onClick.AddListener(OnCheckLocationClicked);
+            var tmp = extraButton1.GetComponentInChildren<TextMeshProUGUI>();
+            if (tmp != null) tmp.text = string.IsNullOrEmpty(data.TargetName)
+                ? "Generate Location" : "Check Distance";
+        }
+
+        if (extraButton2 != null)
+        {
+            if (data.TargetLatitude.HasValue && data.TargetLongitude.HasValue)
             {
-                travelerActionGroup.SetActive(true);
-
-                // 1. Bind the Check Distance Button
-                if (checkLocationButton != null)
-                {
-                    checkLocationButton.onClick.RemoveAllListeners();
-                    checkLocationButton.onClick.AddListener(OnCheckLocationClicked);
-                }
-
-                // 2. Bind the Open Map Button
-                if (openMapButton != null)
-                {
-                    openMapButton.onClick.RemoveAllListeners();
-
-                    if (data.TargetLatitude.HasValue && data.TargetLongitude.HasValue)
-                    {
-                        double lat = data.TargetLatitude.Value;
-                        double lng = data.TargetLongitude.Value;
-
-                        // Pass the coordinates directly to ChallengeActions
-                        openMapButton.onClick.AddListener(() => _actions.OpenMapForTarget(lat, lng));
-                        openMapButton.interactable = true;
-                    }
-                    else
-                    {
-                        // Lock the map button if a location hasn't been generated yet
-                        openMapButton.interactable = false;
-                    }
-                }
-
-                // 3. Configure Text and Button States based on generation
-                if (!string.IsNullOrEmpty(data.TargetName) && data.TargetLatitude.HasValue && data.TargetLongitude.HasValue)
-                {
-                    targetDestinationText.text = $"Target: {data.TargetName}";
-                    if (targetDestinationDistance != null) targetDestinationDistance.text = "";
-
-                    if (checkLocationButton != null)
-                    {
-                        checkLocationButton.interactable = true;
-                        checkLocationButton.GetComponentInChildren<TextMeshProUGUI>().text = "Check Distance";
-                    }
-                }
-                else
-                {
-                    targetDestinationText.text = "GPS warming up. Tap button to search.";
-                    if (targetDestinationDistance != null) targetDestinationDistance.text = "";
-
-                    if (checkLocationButton != null)
-                    {
-                        checkLocationButton.interactable = true;
-                        checkLocationButton.GetComponentInChildren<TextMeshProUGUI>().text = "Generate Location";
-                    }
-
-                    _actions.AutoGenerateGroupTravelerLocation(data, this);
-                }
+                double lat = data.TargetLatitude.Value;
+                double lng = data.TargetLongitude.Value;
+                extraButton2.gameObject.SetActive(true);
+                extraButton2.onClick.RemoveAllListeners();
+                extraButton2.onClick.AddListener(() => _actions.OpenMapForTarget(lat, lng));
+            }
+            else
+            {
+                extraButton2.gameObject.SetActive(false);
             }
         }
 
-        // Configure Row Colors and Claim Button based on Status
-        string status = (data.Status ?? "active").ToLower();
-
-        if (status == "claimed")
-        {
-            buttonBackgroundImage.color = claimedColor;
-            claimButton.interactable = false;
-        }
-        else if (status == "completed")
-        {
-            buttonBackgroundImage.color = claimableColor;
-            claimButton.interactable = true;
-
-            // Clean up UI by hiding the traveler actions once the challenge is complete
-            if (travelerActionGroup != null) travelerActionGroup.SetActive(false);
-        }
-        else
-        {
-            buttonBackgroundImage.color = incompleteColor;
-            claimButton.interactable = false;
-        }
-
-        detailsArea.SetActive(false);
+        if (string.IsNullOrEmpty(data.TargetName))
+            _actions.AutoGenerateGroupTravelerLocation(data, this);
     }
 
-    #region Group Step Syncing & Calculations
-
-    private async Task SyncAndLoadGroupSteps(GroupChallenge data)
+    public async Task SyncAndRefreshSteps()
     {
-        progressText.text = "Syncing steps...";
+        if (extraText1 != null) extraText1.text = "Syncing steps...";
 
-        // 1. Get user's current today steps from local hardware
-        UserController userCtrl = new UserController();
-        int currentPersonalSteps = await userCtrl.GetTodayStepsAsync();
-
-        // 2. Read how many steps this user already contributed to this specific challenge ID
-        string prefsKey = "GroupStepsSynced_" + data.Id;
-        int lastSyncedSteps = PlayerPrefs.GetInt(prefsKey, 0);
-
-        // 3. Calculate how many NEW steps the user needs to contribute
-        int delta = currentPersonalSteps - lastSyncedSteps;
+        int currentSteps = await new UserController().GetTodayStepsAsync();
+        string prefsKey = "GroupStepsSynced_" + _data.Id;
+        int lastSynced = PlayerPrefs.GetInt(prefsKey, 0);
+        int delta = currentSteps - lastSynced;
 
         if (delta > 0)
         {
-            Debug.Log($"[GroupChallenge] Contributing {delta} new steps to Group Challenge {data.Id}.");
-            GroupChallengeController groupCtrl = new GroupChallengeController();
-
-            // Push delta to Supabase (adds to 'step_progress')
-            await groupCtrl.SyncStepsToGroupAsync(data.GroupId, delta);
-
-            // Save the new baseline locally
-            PlayerPrefs.SetInt(prefsKey, currentPersonalSteps);
+            await new GroupChallengeController().SyncStepsToGroupAsync(_data.GroupId, delta);
+            PlayerPrefs.SetInt(prefsKey, currentSteps);
             PlayerPrefs.Save();
         }
 
-        // 4. Fetch the updated row from Supabase to display the correct combined group total
         var response = await SupabaseManager.Instance.From<GroupChallenge>()
-            .Where(x => x.Id == data.Id)
-            .Get();
+            .Where(x => x.Id == _data.Id).Get();
 
         if (response.Models.Count > 0)
         {
             _data = response.Models[0];
-            progressText.text = $"{_data.StepProgress} / {_data.StepTarget.Value} steps";
-
-            // If group goal is met, refresh the panel to show the orange claim button
+            if (extraText1 != null)
+                extraText1.text = $"{_data.StepProgress} / {_data.StepTarget.Value} steps";
             if (_data.StepProgress >= _data.StepTarget.Value && _data.Status == "Active")
-            {
                 _uiManager.RefreshUI();
-            }
-        }
-    }
-
-    #endregion
-
-    public void ToggleExpand()
-    {
-        string status = (_data.Status ?? "active").ToLower();
-        if (status == "completed" || status == "claimed") return;
-
-        if (!detailsArea.activeSelf)
-        {
-            _uiManager.CollapseAllOtherRows(this);
-            detailsArea.SetActive(true);
-
-            // --- THE EXPAND TRIGGER ---
-            // Whenever the details panel is opened, force a fresh step sync in real-time [1.1]
-            bool isStepChallenge = _data.StepTarget.HasValue && _data.StepTarget.Value > 0;
-            if (isStepChallenge)
-            {
-                _ = SyncAndLoadGroupSteps(_data);
-            }
-        }
-        else
-        {
-            detailsArea.SetActive(false);
         }
     }
 
     public void OnCheckLocationClicked()
     {
         if (_actions != null && _data != null)
-        {
             _actions.ExecuteGroupTravelerChallenge(_data, this);
-        }
     }
 
     public async void OnClaimRewardPressed()
     {
-        claimButton.interactable = false;
-        UserController userCtrl = new UserController();
-        await userCtrl.UpdateUserAsync(_rewardCoins, _rewardXp, false);
+        doneButton.interactable = false;
+        await new UserController().UpdateUserAsync(_rewardCoins, _rewardXp, false);
         _data.Status = "claimed";
         await SupabaseManager.Instance.From<GroupChallenge>().Update(_data);
         if (CoinManager.Instance != null)
-        {
             await CoinManager.Instance.RefreshBalanceFromServer();
-        }
         _uiManager.RefreshUI();
         Object.FindFirstObjectByType<FortressUpdateScript>()?.UpdateFortressModelAsync();
+    }
+
+    public void CloseDetails() { }
+
+
+
+    void ShowExtra1(string text)
+    {
+        if (extraText1 == null) return;
+        extraText1.gameObject.SetActive(true);
+        extraText1.text = text;
+    }
+
+    void SetExtra(bool active)
+    {
+        if (extraText1 != null) extraText1.gameObject.SetActive(active);
+        if (extraText2 != null) extraText2.gameObject.SetActive(active);
+        if (extraButton1 != null) extraButton1.gameObject.SetActive(active);
+        if (extraButton2 != null) extraButton2.gameObject.SetActive(active);
+    }
+
+    void SetDoneButton(Color color, string label, bool interactable)
+    {
+        if (doneButton == null) return;
+        doneButton.interactable = interactable;
+        var img = doneButton.GetComponent<Image>();
+        if (img != null) img.color = color;
+        var tmp = doneButton.GetComponentInChildren<TextMeshProUGUI>();
+        if (tmp != null) tmp.text = label;
+    }
+
+    public void SetEmpty()
+    {
+        if (titleText != null) titleText.text = "No challenge available";
+        if (rewardText != null) rewardText.text = "";
+        if (coinsText != null) coinsText.text = "";
+        if (doneButton != null) doneButton.interactable = false;
+        SetExtra(false);
     }
 }

@@ -4,65 +4,69 @@ using UnityEngine;
 
 public class ChallengeUIManager : MonoBehaviour
 {
-    public ChallengeRowUI[] rows;
+    [Header("Personal Rows (Daily)")]
+    public ChallengeRowUI[] personalRows;
+
+    [Header("Group Rows (Weekly)")]
+    public GroupChallengeRowUI[] groupRows;
+
+    [Header("References")]
     public ChallengeActions actionManager;
 
-    // --- ADD THIS: Reference to the Group Manager ---
-    public GroupChallengeUIManager groupUIManager;
-
-    private UserChallengeController _userChallengeController = new UserChallengeController();
+    private UserChallengeController _personalCtrl = new UserChallengeController();
+    private GroupChallengeController _groupCtrl = new GroupChallengeController();
+    private UserController _userCtrl = new UserController();
 
     async void OnEnable()
     {
-        string userId = SupabaseManager.Instance.Auth.CurrentUser.Id;
-        List<UserChallenge> userChallenges = await _userChallengeController.GetAllUserChallengesAsync();
+        List<UserChallenge> personal = await _personalCtrl.GetAllUserChallengesAsync();
 
-        for (int i = 0; i < rows.Length; i++)
+        for (int i = 0; i < personalRows.Length; i++)
         {
-            if (i < userChallenges.Count)
-            {
-                rows[i].gameObject.SetActive(true);
-                rows[i].Setup(userChallenges[i], actionManager, this);
-            }
+            if (personalRows[i] == null) continue;
+            personalRows[i].gameObject.SetActive(true);
+
+            if (i < personal.Count)
+                personalRows[i].Setup(personal[i], actionManager, this);
             else
-            {
-                rows[i].gameObject.SetActive(false);
-            }
+                personalRows[i].SetEmpty();
+        }
+
+        if (groupRows == null || groupRows.Length == 0) return;
+
+        var currentUser = await _userCtrl.GetCurrentUserAsync();
+        if (currentUser == null || currentUser.GroupID <= 0)
+        {
+            foreach (var row in groupRows)
+                if (row != null) { row.gameObject.SetActive(true); row.SetEmpty(); }
+            return;
+        }
+
+        List<GroupChallenge> group = await _groupCtrl.GetGroupChallengesAsync();
+
+        for (int i = 0; i < groupRows.Length; i++)
+        {
+            if (groupRows[i] == null) continue;
+            groupRows[i].gameObject.SetActive(true);
+
+            if (i < group.Count)
+                groupRows[i].Setup(group[i], actionManager, this);
+            else
+                groupRows[i].SetEmpty();
         }
     }
 
-    public void CollapseAllOtherRows(ChallengeRowUI currentActiveRow)
+    public void CollapseAllOtherRows(ChallengeRowUI current)
     {
-        // 1. Close all other PERSONAL rows
-        foreach (var row in rows)
-        {
-            if (row != currentActiveRow && row.gameObject.activeSelf && row.detailsArea != null)
-            {
-                row.detailsArea.SetActive(false);
-            }
-        }
-
-        // 2. Tell the GROUP manager to close all its rows too
-        if (groupUIManager != null)
-        {
-            groupUIManager.CollapseAllRows();
-        }
+        foreach (var row in personalRows)
+            if (row != current && row != null) row.CloseDetails();
     }
 
-    // --- ADD THIS: A method for the Group manager to call ---
     public void CollapseAllRows()
     {
-        foreach (var row in rows)
-        {
-            if (row.gameObject.activeSelf && row.detailsArea != null)
-            {
-                row.detailsArea.SetActive(false);
-            }
-        }
+        foreach (var row in personalRows)
+            if (row != null) row.CloseDetails();
     }
 
-    public void RefreshUI()
-    {
-        OnEnable();
-    }
+    public void RefreshUI() => OnEnable();
 }

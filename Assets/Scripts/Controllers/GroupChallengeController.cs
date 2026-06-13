@@ -144,4 +144,36 @@ public class GroupChallengeController
 
         await SupabaseManager.Instance.From<GroupChallenge>().Update(activeChallenge);
     }
+
+    /// <summary>
+    /// Gets the active group challenge for the current user's group.
+    /// Returns a list for compatibility with the UI manager.
+    /// </summary>
+    public async Task<List<GroupChallenge>> GetGroupChallengesAsync()
+    {
+        try
+        {
+            // Get current user's group ID first
+            UserController userCtrl = new UserController();
+            var currentUser = await userCtrl.GetCurrentUserAsync();
+
+            if (currentUser == null || currentUser.GroupID <= 0)
+            {
+                Debug.LogWarning("[GroupChallenge] User has no group.");
+                return new List<GroupChallenge>();
+            }
+
+            GroupChallenge challenge = await GetOrCreateWeeklyGroupChallengeAsync(currentUser.GroupID.Value);
+
+            if (challenge == null)
+                return new List<GroupChallenge>();
+
+            return new List<GroupChallenge> { challenge };
+        }
+        catch (Exception e)
+        {
+            Debug.LogError($"[GroupChallenge] GetGroupChallengesAsync error: {e.Message}");
+            return new List<GroupChallenge>();
+        }
+    }
 }

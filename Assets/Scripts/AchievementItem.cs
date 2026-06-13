@@ -10,7 +10,8 @@ public class AchievementItem : MonoBehaviour
     [Header("UI")]
     [SerializeField] private TextMeshProUGUI achievText;
     [SerializeField] private Button claimButton;
-    [SerializeField] private Image backgroundImage;
+    [SerializeField] private Image VImage;
+    [SerializeField] private Image BackgroundImage;
 
     [Header("Reward Texts")]
     [SerializeField] private TextMeshProUGUI xpText;
@@ -31,6 +32,12 @@ public class AchievementItem : MonoBehaviour
     [SerializeField]
     private Color claimedTextColor = Color.white;
 
+    [Header("Unlock Material")]
+    [SerializeField] private Material unlockedMaterial;
+
+    private Material originalMaterial;
+    private Color originalBackgroundColor;
+
     private Image claimButtonImage;
 
     private AchievementDefinition definition;
@@ -49,13 +56,20 @@ public class AchievementItem : MonoBehaviour
         if (claimButton == null)
             claimButton = GetComponentInChildren<Button>();
 
-        if (backgroundImage == null)
-            backgroundImage = GetComponent<Image>();
+        if (VImage == null)
+            VImage = GetComponent<Image>();
+
+        if (BackgroundImage == null)
+            BackgroundImage = GetComponent<Image>();
 
         if (claimButton != null)
             claimButtonImage = claimButton.GetComponent<Image>();
 
+        originalBackgroundColor = BackgroundImage.color;
+        originalMaterial = BackgroundImage.material;
+
         claimButton.onClick.AddListener(OnClaim);
+
 
         // Save starting positions
         xpStartPos = xpText.rectTransform.anchoredPosition;
@@ -93,24 +107,31 @@ public class AchievementItem : MonoBehaviour
         bool unlocked = userAchievement.IsUnlocked;
         bool claimed = userAchievement.IsClaimed;
 
-        // Locked state
-        if (!unlocked)
+        if (claimed)
         {
-            claimButton.gameObject.SetActive(false);
+            // Remove material, restore original color
+            BackgroundImage.material = originalMaterial;
+            BackgroundImage.color = originalBackgroundColor;
+            ApplyClaimedVisuals();
+        }
+        else if (unlocked)
+        {
+            // Apply unlock material and white color
+            BackgroundImage.material = unlockedMaterial;
+            BackgroundImage.color = Color.white;
+            claimButtonImage.color = Color.white;
+            claimButton.interactable = true;
         }
         else
         {
-            claimButton.gameObject.SetActive(true);
+            // Locked
+            BackgroundImage.material = originalMaterial;
+            BackgroundImage.color = originalBackgroundColor;
+            claimButtonImage.color = claimedBackgroundColor;
+            claimButton.interactable = false;
         }
 
-        // Button usability
         claimButton.interactable = unlocked && !claimed;
-
-        // Claimed visuals
-        if (claimed)
-        {
-            ApplyClaimedVisuals();
-        }
     }
 
     private async void OnClaim()
@@ -204,8 +225,8 @@ public class AchievementItem : MonoBehaviour
 
     private void ApplyClaimedVisuals()
     {
-        if (backgroundImage != null)
-            backgroundImage.color = claimedBackgroundColor;
+        if (VImage != null)
+            VImage.color = claimedBackgroundColor;
 
         if (achievText != null)
             achievText.color = claimedTextColor;

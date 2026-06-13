@@ -1,0 +1,63 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b95cde86067149489d91e705797cd2e, type: 3}
+  m_Name: ObjectsData
+  m_EditorClassIdentifier: Assembly-CSharp::ObjectsDatabaseSO
+  objectsData:
+  - <Name>k__BackingField: Tree1
+    <ID>k__BackingField: 0
+    <Size>k__BackingField: {x: 1, y: 1}
+    <Prefab>k__BackingField: {fileID: 5490959842551400095, guid: 5ae73b1fe6ba001428095d6299244a06, type: 3}
+  - <Name>k__BackingField: Tree2
+    <ID>k__BackingField: 1
+    <Size>k__BackingField: {x: 1, y: 1}
+    <Prefab>k__BackingField: {fileID: 2506516549538167592, guid: 1cddaf12a15bcd345b5dc754ed791da4, type: 3}
+  - <Name>k__BackingField: Tree3
+    <ID>k__BackingField: 2
+    <Size>k__BackingField: {x: 1, y: 1}
+    <Prefab>k__BackingField: {fileID: 5330074417618424392, guid: 7e04068e34faae448b732142eb9125d8, type: 3}
+  - <Name>k__BackingField: Bush1
+    <ID>k__BackingField: 3
+    <Size>k__BackingField: {x: 1, y: 1}
+    <Prefab>k__BackingField: {fileID: 1753753136490292129, guid: 3c76bf1fab3e4934e8fafec6815d33d9, type: 3}
+  - <Name>k__BackingField: Bush2
+    <ID>k__BackingField: 4
+    <Size>k__BackingField: {x: 1, y: 1}
+    <Prefab>k__BackingField: {fileID: 5138881362577248735, guid: 7454037357307974296360dba9b038b6, type: 3}
+  - <Name>k__BackingField: Statue1
+    <ID>k__BackingField: 5
+    <Size>k__BackingField: {x: 1, y: 1}
+    <Prefab>k__BackingField: {fileID: 6335300834854852098, guid: b623e6ac9f4e6c74b80c59f957170057, type: 3}
+  - <Name>k__BackingField: Statue2
+    <ID>k__BackingField: 6
+    <Size>k__BackingField: {x: 1, y: 1}
+    <Prefab>k__BackingField: {fileID: 3962571558864707478, guid: 0bcc3e192ba1729408147bdd50837951, type: 3}
+  - <Name>k__BackingField: Fountain1
+    <ID>k__BackingField: 7
+    <Size>k__BackingField: {x: 1, y: 1}
+    <Prefab>k__BackingField: {fileID: 3251087606576889016, guid: c251ef1be322c13468c93e9ec0e91ed2, type: 3}
+  - <Name>k__BackingField: Fortress_Tent
+    <ID>k__BackingField: 100
+    <Size>k__BackingField: {x: 1, y: 1}
+    <Prefab>k__BackingField: {fileID: 405180872906554014, guid: 7ff9a95204de7a349a86857715c08136, type: 3}
+  - <Name>k__BackingField: Fortress_Cabin
+    <ID>k__BackingField: 101
+    <Size>k__BackingField: {x: 1, y: 2}
+    <Prefab>k__BackingField: {fileID: 556708991836937764, guid: ca7e32ff0b50ca24bb0d903ee6f7887a, type: 3}
+  - <Name>k__BackingField: Fortress_House
+    <ID>k__BackingField: 102
+    <Size>k__BackingField: {x: 2, y: 2}
+    <Prefab>k__BackingField: {fileID: 1077609097660040738, guid: 9c0a4ddaa92468549b52ccfa390f467d, type: 3}
+  - <Name>k__BackingField: Fortress_Castle
+    <ID>k__BackingField: 103
+    <Size>k__BackingField: {x: 3, y: 3}
+    <Prefab>k__BackingField: {fileID: 8469596771559533059, guid: 516e3c2d39d1ec242b049cf6704138c3, type: 3}

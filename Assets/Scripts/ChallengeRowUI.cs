@@ -1,44 +1,44 @@
-using UnityEngine;
 using TMPro;
+using UnityEngine;
 using UnityEngine.UI;
 using System.Threading.Tasks;
 using SupabaseModels;
 
 public class ChallengeRowUI : MonoBehaviour
 {
-    [Header("Colors")]
-    public Color claimableColor;
-    public Color incompleteColor;
-    public Color claimedColor;
-
-    [Header("Header References")]
-    public TextMeshProUGUI descriptionText;
-    public Button claimButton; // The checkmark button in the header
-    public Image statusIcon;
-    public Image buttonBackgroundImage; // The Image component ON the Button object
-
-    [Header("Expandable Area")]
-    public GameObject detailsArea; // Drag the 'DetailsArea' object here
-    public TextMeshProUGUI xpText;
+    [Header("Text")]
+    public TextMeshProUGUI titleText;
+    public TextMeshProUGUI rewardText;
     public TextMeshProUGUI coinsText;
 
-    [Header("Action Area")]
-    public GameObject photoActionGroup; // Drag 'UploadPhotoButton' here
-    public GameObject stepActionGroup;  // Drag 'ProgressText' here
+    [Header("Done Button")]
+    public Button doneButton;
 
-    [Header("Traveler Action Area")]
-    public GameObject travelerActionGroup; // Drag 'TravelerActionGroup' here
-    public TextMeshProUGUI targetDestinationText; // Drag 'TargetDestinationText' here
-    public TextMeshProUGUI targetDestinationDistance; // Drag 'TargetDestinationDistance' here
-    public Button checkLocationButton; // Drag 'CheckLocationButton' here
-    public Button openMapButton;
+    [Header("Extra (shown for meal/traveler/step details)")]
+    public TextMeshProUGUI extraText1;  // progress or destination
+    public TextMeshProUGUI extraText2;  // distance
+    public Button extraButton1;         // Take Photo / Check Distance / Generate
+    public Button extraButton2;         // Open Map
 
-    [Header("Sprites")]
-    public Sprite cameraSprite;
+    [Header("Colors")]
+    public Color incompleteColor = Color.white;
+    public Color completedColor = Color.green;
+    public Color claimedColor = Color.gray;
 
     private UserChallenge _data;
     private ChallengeActions _actions;
     private ChallengeUIManager _uiManager;
+
+    private bool isExpanded = false;
+
+    //  Properties ChallengeActions writes to 
+    public TextMeshProUGUI targetDestinationText => extraText1;
+    public TextMeshProUGUI targetDestinationDistance => extraText2;
+    public Button checkLocationButton => extraButton1;
+
+    public void CloseDetails() { }
+
+    //Setup
 
     public void Setup(UserChallenge data, ChallengeActions actions, ChallengeUIManager uiManager)
     {
@@ -46,227 +46,190 @@ public class ChallengeRowUI : MonoBehaviour
         _actions = actions;
         _uiManager = uiManager;
 
-        descriptionText.text = data.ChallengeData.Description;
-        xpText.text = $"+{data.ChallengeData.XpReward} XP";
-        coinsText.text = $"+{data.ChallengeData.BalanceReward} Coins";
+        if (titleText != null) titleText.text = data.ChallengeData.Description;
+        if (rewardText != null) rewardText.text =
+            $"+{data.ChallengeData.XpReward}";
+        if (coinsText != null) coinsText.text = $"+{data.ChallengeData.BalanceReward}";
 
-        statusIcon.color = Color.white;
-        statusIcon.material = null;
+        // Hide extras by default
+        SetExtra(false);
 
         string status = (data.Status ?? "active").ToLower();
+        string challengeType = (data.ChallengeData.Type ?? "").ToLower();
 
-        if (status == "claimed")
+        bool isMeal = challengeType.Contains("meal");
+        bool isTraveler = challengeType.Contains("traveler");
+
+        switch (status)
         {
-            buttonBackgroundImage.color = claimedColor;
-            claimButton.interactable = false;
+            case "claimed":
+                SetDoneButton(claimedColor, "Claimed", false);
+                break;
+
+            case "completed":
+                SetDoneButton(completedColor, "Claim", true);
+                doneButton.onClick.RemoveAllListeners();
+                doneButton.onClick.AddListener(OnClaimRewardPressed);
+                break;
+
+            default:
+                SetDoneButton(incompleteColor, "Done", false);
+                SetExtra(false);   // keep collapsed initially
+                break;
         }
-        else if (status == "completed")
-        {
-            buttonBackgroundImage.color = claimableColor;
-            claimButton.interactable = true;
-        }
-        else
-        {
-            buttonBackgroundImage.color = incompleteColor;
-            claimButton.interactable = false;
-
-            string challengeType = (data.ChallengeData.Type ?? "").ToLower();
-
-            bool isMeal = challengeType.Contains("meal");
-            bool isTraveler = challengeType.Contains("traveler");
-
-            photoActionGroup.SetActive(isMeal);
-            travelerActionGroup.SetActive(isTraveler);
-            stepActionGroup.SetActive(!isMeal && !isTraveler);
-
-            if (isTraveler)
-            {
-                if (openMapButton != null)
-                {
-                    openMapButton.onClick.RemoveAllListeners();
-                    if (data.TargetLatitude.HasValue && data.TargetLongitude.HasValue)
-                    {
-                        double lat = data.TargetLatitude.Value;
-                        double lng = data.TargetLongitude.Value;
-                        openMapButton.onClick.AddListener(() => _actions.OpenMapForTarget(lat, lng));
-                        openMapButton.interactable = true;
-                    }
-                    else
-                    {
-                        openMapButton.interactable = false; // Lock if no location generated yet
-                    }
-                }
-                // Programmatically bind the click
-                if (checkLocationButton != null)
-                {
-                    checkLocationButton.onClick.RemoveAllListeners();
-                    checkLocationButton.onClick.AddListener(OnCheckLocationClicked);
-                }
-
-                if (!string.IsNullOrEmpty(data.TargetName) && data.TargetLatitude.HasValue && data.TargetLongitude.HasValue)
-                {
-                    targetDestinationText.text = $"Target: {data.TargetName}";
-
-                    if (targetDestinationDistance != null) targetDestinationDistance.text = ""; // Clear on startup until checked
-
-                    checkLocationButton.interactable = true;
-                    checkLocationButton.GetComponentInChildren<TextMeshProUGUI>().text = "Check Distance";
-                }
-                else
-                {
-                    targetDestinationText.text = "GPS warming up. Tap button to search.";
-
-                    if (targetDestinationDistance != null) targetDestinationDistance.text = "";
-
-                    checkLocationButton.interactable = true;
-                    checkLocationButton.GetComponentInChildren<TextMeshProUGUI>().text = "Generate Location";
-
-                    _actions.AutoGenerateTravelerLocation(data, this);
-                }
-            }
-            else if (!isMeal && !isTraveler)
-            {
-                // This is a Step Challenge. Update the progress text.
-                UpdateStepProgress(data);
-            }
-        }
-
-        detailsArea.SetActive(false);
     }
 
-    #region Step Count Logic
+    //  Traveler 
 
-    private async void UpdateStepProgress(UserChallenge data)
+    void SetupTraveler(UserChallenge data)
     {
-        var textComp = stepActionGroup.GetComponent<TextMeshProUGUI>();
-        if (textComp == null) return;
+        ShowExtraText1(string.IsNullOrEmpty(data.TargetName)
+            ? "GPS warming up..." : $"Target: {data.TargetName}");
 
-        textComp.text = "Reading steps...";
+        if (extraText2 != null) extraText2.gameObject.SetActive(true);
 
-        UserController userCtrl = new UserController();
-        int steps = await userCtrl.GetTodayStepsAsync(); // Reads locally and calculates against database
+        string btnLabel = string.IsNullOrEmpty(data.TargetName)
+            ? "Generate Location" : "Check Distance";
+        ShowExtraButton1(btnLabel, () => _actions.ExecuteChallengeAction(_data, this));
 
-        int target = ExtractTargetFromDescription(data.ChallengeData.Description);
+        if (data.TargetLatitude.HasValue && data.TargetLongitude.HasValue)
+        {
+            double lat = data.TargetLatitude.Value;
+            double lng = data.TargetLongitude.Value;
+            ShowExtraButton2("Open Map", () => _actions.OpenMapForTarget(lat, lng));
+        }
 
-        // Re-enable the standard user-friendly step counter format
-        textComp.text = $"{steps} / {target} steps";
+        if (string.IsNullOrEmpty(data.TargetName))
+            _actions.AutoGenerateTravelerLocation(data, this);
+    }
+
+    // Step 
+
+    async void UpdateStepProgress(UserChallenge data)
+    {
+        int steps = await new UserController().GetTodayStepsAsync();
+        int target = ExtractTarget(data.ChallengeData.Description);
+
+        if (extraText1 != null) extraText1.text = $"{steps} / {target} steps";
 
         if (steps >= target && data.Status.ToLower() == "active")
-        {
-            await MarkStepChallengeAsCompleted(data);
-        }
+            await MarkStepCompleted(data);
     }
-
-    /// <summary>
-    /// Extracts all digits from the description string to determine target step count.
-    /// E.g., "Walk 5000 steps" -> 5000
-    /// </summary>
-    private int ExtractTargetFromDescription(string desc)
-    {
-        string numStr = "";
-        foreach (char c in desc)
-        {
-            if (char.IsDigit(c)) numStr += c;
-        }
-        if (int.TryParse(numStr, out int target)) return target;
-        return 5000; // Fallback default
-    }
-
-    private async Task MarkStepChallengeAsCompleted(UserChallenge data)
-    {
-        data.Status = "completed";
-        UserChallengeController ucCtrl = new UserChallengeController();
-        await ucCtrl.UpdateUserChallengeStatusAsync(data.Id, "completed");
-        _uiManager.RefreshUI();
-    }
-
-    #endregion
 
     public void ToggleExpand()
     {
-        // --- THE SAFETY CHECK ---
-        if (_data == null || _data.ChallengeData == null) return;
+        isExpanded = !isExpanded;
 
-        string status = _data.Status.ToLower();
-        if (status == "completed" || status == "claimed") return;
+        if (isExpanded)
+            ShowDetails();
+        else
+            SetExtra(false);
+    }
 
-        if (!detailsArea.activeSelf)
+    void ShowDetails()
+    {
+        string challengeType = (_data.ChallengeData.Type ?? "").ToLower();
+
+        if (challengeType.Contains("meal"))
         {
-            _uiManager.CollapseAllOtherRows(this);
-            detailsArea.SetActive(true);
-
-            // Fetch steps on expansion
-            string challengeType = (_data.ChallengeData.Type ?? "").ToLower();
-            if (!challengeType.Contains("meal") && !challengeType.Contains("traveler"))
-            {
-                UpdateStepProgress(_data);
-            }
+            ShowExtraButton1("Take Photo",
+                () => _actions.ExecuteChallengeAction(_data, this));
+        }
+        else if (challengeType.Contains("traveler"))
+        {
+            SetupTraveler(_data);
         }
         else
         {
-            detailsArea.SetActive(false);
+            ShowExtraText1("Reading steps...");
+            UpdateStepProgress(_data);
         }
     }
 
+    int ExtractTarget(string desc)
+    {
+        string n = "";
+        foreach (char c in desc) if (char.IsDigit(c)) n += c;
+        return int.TryParse(n, out int t) ? t : 5000;
+    }
+
+    async Task MarkStepCompleted(UserChallenge data)
+    {
+        data.Status = "completed";
+        await new UserChallengeController().UpdateUserChallengeStatusAsync(data.Id, "completed");
+        _uiManager.RefreshUI();
+    }
+
+    //  Claim
+
     public async void OnClaimRewardPressed()
     {
-        claimButton.interactable = false;
-
-        UserController userCtrl = new UserController();
-        await userCtrl.UpdateUserAsync(_data.ChallengeData.BalanceReward, _data.ChallengeData.XpReward, false);
-
-        UserChallengeController ucCtrl = new UserChallengeController();
-        await ucCtrl.UpdateUserChallengeStatusAsync(_data.Id, "claimed");
-
+        doneButton.interactable = false;
+        await new UserController().UpdateUserAsync(
+            _data.ChallengeData.BalanceReward,
+            _data.ChallengeData.XpReward, false);
+        await new UserChallengeController()
+            .UpdateUserChallengeStatusAsync(_data.Id, "claimed");
         _data.Status = "claimed";
         if (CoinManager.Instance != null)
-        {
             await CoinManager.Instance.RefreshBalanceFromServer();
-        }
         _uiManager.RefreshUI();
         Object.FindFirstObjectByType<FortressUpdateScript>()?.UpdateFortressModelAsync();
     }
 
-    public void CloseDetails()
+    // Helpers
+
+    void SetExtra(bool active)
     {
-        detailsArea.SetActive(false);
+        if (extraText1 != null) extraText1.gameObject.SetActive(active);
+        if (extraText2 != null) extraText2.gameObject.SetActive(active);
+        if (extraButton1 != null) extraButton1.gameObject.SetActive(active);
+        if (extraButton2 != null) extraButton2.gameObject.SetActive(active);
     }
 
-    public void OnTakePhotoClicked()
+    void SetDoneButton(Color color, string label, bool interactable)
     {
-        _actions.ExecuteChallengeAction(_data, this);
+        if (doneButton == null) return;
+        doneButton.interactable = interactable;
+        var img = doneButton.GetComponent<Image>();
+        if (img != null) img.color = color;
+        var tmp = doneButton.GetComponentInChildren<TextMeshProUGUI>();
+        if (tmp != null) tmp.text = label;
     }
 
-    public void OnCheckLocationClicked()
+    void ShowExtraText1(string text)
     {
-        // 1. Verify if Text reference is missing
-        if (targetDestinationText == null)
-        {
-            Debug.LogError("[ChallengeRowUI Error] 'targetDestinationText' reference is missing/unassigned in the Inspector!");
-        }
-
-        // 2. Verify if ChallengeActions is missing
-        if (_actions == null)
-        {
-            Debug.LogError("[ChallengeRowUI Error] '_actions' (ChallengeActions) reference is null on this row! " +
-                           "Please ensure that the 'Action Manager' slot on your ChallengeUIManager GameObject is assigned in the Inspector.");
-
-            if (targetDestinationText != null)
-            {
-                targetDestinationText.text = "Error: Action Manager Null";
-            }
-            return;
-        }
-
-        // 3. Verify if database row data is missing
-        if (_data == null)
-        {
-            Debug.LogError("[ChallengeRowUI Error] '_data' (UserChallenge row data) is null on this row!");
-            return;
-        }
-
-        // Run the action
-        _actions.ExecuteChallengeAction(_data, this);
+        if (extraText1 == null) return;
+        extraText1.gameObject.SetActive(true);
+        extraText1.text = text;
     }
 
+    void ShowExtraButton1(string label, UnityEngine.Events.UnityAction action)
+    {
+        if (extraButton1 == null) return;
+        extraButton1.gameObject.SetActive(true);
+        extraButton1.onClick.RemoveAllListeners();
+        extraButton1.onClick.AddListener(action);
+        var tmp = extraButton1.GetComponentInChildren<TextMeshProUGUI>();
+        if (tmp != null) tmp.text = label;
+    }
+
+    void ShowExtraButton2(string label, UnityEngine.Events.UnityAction action)
+    {
+        if (extraButton2 == null) return;
+        extraButton2.gameObject.SetActive(true);
+        extraButton2.onClick.RemoveAllListeners();
+        extraButton2.onClick.AddListener(action);
+        var tmp = extraButton2.GetComponentInChildren<TextMeshProUGUI>();
+        if (tmp != null) tmp.text = label;
+    }
+
+    public void SetEmpty()
+    {
+        if (titleText != null) titleText.text = "No challenge available";
+        if (rewardText != null) rewardText.text = "";
+        if (coinsText != null) coinsText.text = "";
+        if (doneButton != null) doneButton.interactable = false;
+        SetExtra(false);
+    }
 }

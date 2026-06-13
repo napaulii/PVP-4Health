@@ -1,4 +1,4 @@
-using UnityEngine;
+/*using UnityEngine;
 using SupabaseModels;
 
 public class GroupChallengeUIManager : MonoBehaviour
@@ -70,4 +70,4 @@ public class GroupChallengeUIManager : MonoBehaviour
     {
         OnEnable();
     }
-}
+}*/
