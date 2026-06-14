@@ -4,7 +4,6 @@ using UnityEngine.EventSystems;
 using TMPro;
 using System.Collections.Generic;
 using SupabaseModels;
-using static UnityEditor.Progress;
 
 public class BoughtItemsDisplay : MonoBehaviour
 {
