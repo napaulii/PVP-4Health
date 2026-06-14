@@ -437,6 +437,48 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 120537120}
   m_CullTransparentMesh: 1
+--- !u!21 &141804546
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: UI/RoundedCorners/IndependentRoundedCorners
+  m_Shader: {fileID: 4800000, guid: d3beb88e61f88ca4393acdefb005fa70, type: 3}
+  m_Parent: {fileID: 0}
+  m_ModifiedSerializedProperties: 0
+  m_ValidKeywords: []
+  m_InvalidKeywords: []
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_LockedProperties: 
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _MainTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Ints: []
+    m_Floats:
+    - _ColorMask: 15
+    - _Stencil: 0
+    - _StencilComp: 8
+    - _StencilOp: 0
+    - _StencilReadMask: 255
+    - _StencilWriteMask: 255
+    - _UseUIAlphaClip: 0
+    m_Colors:
+    - _halfSize: {r: 0.5, g: 0.5, b: 0, a: 0}
+    - _r: {r: 40, g: 40, b: 40, a: 40}
+    - _rect2props: {r: -0.0000038146973, g: 0, b: -27.577166, a: -27.577166}
+  m_BuildTextureStacks: []
+  m_AllowLocking: 1
 --- !u!1 &180385702
 GameObject:
   m_ObjectHideFlags: 0
@@ -469,10 +511,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 543152279}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: -30, y: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -48.9, y: 0}
+  m_SizeDelta: {x: 1000, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &180385704
 MonoBehaviour:
@@ -501,7 +543,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.GridLayoutGroup
   m_Padding:
-    m_Left: 0
+    m_Left: 20
     m_Right: 0
     m_Top: 0
     m_Bottom: 0
@@ -851,7 +893,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.5121039, g: 0.6775557, b: 0.7924528, a: 0.4745098}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -1056,7 +1098,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -161, y: -104}
+  m_AnchoredPosition: {x: -161, y: -200.3}
   m_SizeDelta: {x: 100, y: 110}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &401768777
@@ -1245,7 +1287,6 @@ GameObject:
   - component: {fileID: 543152279}
   - component: {fileID: 543152281}
   - component: {fileID: 543152280}
-  - component: {fileID: 543152282}
   m_Layer: 5
   m_Name: CalendarPanel
   m_TagString: Untagged
@@ -1319,29 +1360,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 543152278}
   m_CullTransparentMesh: 1
---- !u!114 &543152282
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 543152278}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7310a17cc53152a42bfdac0d890c8db8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::CalendarManager
-  prevButton: {fileID: 2094532998}
-  nextButton: {fileID: 707678317}
-  monthYearText: {fileID: 1478780166}
-  calendarGrid: {fileID: 180385703}
-  calendarDayPrefab: {fileID: 8401712760409580974, guid: 84401e2360f004446aebcb6cce2f5b2d, type: 3}
-  detailPanel: {fileID: 619322844}
-  closeButton: {fileID: 399901907}
-  dateTitle: {fileID: 708458245}
-  itemListContent: {fileID: 1086446156}
-  taskItemPrefab: {fileID: 4669257739552563735, guid: 2b950d6c555c02b41bde215f37949a38, type: 3}
-  emptyText: {fileID: 247444407}
 --- !u!1 &555848103
 GameObject:
   m_ObjectHideFlags: 0
@@ -1883,8 +1901,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 273.6}
-  m_SizeDelta: {x: 400, y: 50}
+  m_AnchoredPosition: {x: 0, y: 265.6}
+  m_SizeDelta: {x: 706.79, y: 76}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &708458245
 MonoBehaviour:
@@ -1933,7 +1951,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 41.45
+  m_fontSize: 63.05
   m_fontSizeBase: 60
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -2062,48 +2080,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 757447083}
   m_CullTransparentMesh: 1
---- !u!21 &758567294
-Material:
-  serializedVersion: 8
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: UI/RoundedCorners/IndependentRoundedCorners
-  m_Shader: {fileID: 4800000, guid: d3beb88e61f88ca4393acdefb005fa70, type: 3}
-  m_Parent: {fileID: 0}
-  m_ModifiedSerializedProperties: 0
-  m_ValidKeywords: []
-  m_InvalidKeywords: []
-  m_LightmapFlags: 4
-  m_EnableInstancingVariants: 0
-  m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
-  stringTagMap: {}
-  disabledShaderPasses: []
-  m_LockedProperties: 
-  m_SavedProperties:
-    serializedVersion: 3
-    m_TexEnvs:
-    - _MainTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    m_Ints: []
-    m_Floats:
-    - _ColorMask: 15
-    - _Stencil: 0
-    - _StencilComp: 8
-    - _StencilOp: 0
-    - _StencilReadMask: 255
-    - _StencilWriteMask: 255
-    - _UseUIAlphaClip: 0
-    m_Colors:
-    - _halfSize: {r: 0.5, g: 0.5, b: 0, a: 0}
-    - _r: {r: 40, g: 40, b: 40, a: 40}
-    - _rect2props: {r: -0.0000038146973, g: 0, b: -27.577166, a: -27.577166}
-  m_BuildTextureStacks: []
-  m_AllowLocking: 1
 --- !u!1 &877374803
 GameObject:
   m_ObjectHideFlags: 0
@@ -2151,7 +2127,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
-  m_Material: {fileID: 758567294}
+  m_Material: {fileID: 141804546}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
@@ -2640,7 +2616,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: -126, y: -474}
+  m_AnchoredPosition: {x: -126, y: -713.3}
   m_SizeDelta: {x: 400, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1478780166
@@ -2825,7 +2801,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0}
+  m_Color: {r: 0.5121039, g: 0.6775557, b: 0.7924528, a: 0}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -3602,23 +3578,40 @@ MonoBehaviour:
   skyMaterial: {fileID: 2100000, guid: 62f066bf8dc372747b65643c36484f98, type: 2}
   uiElements:
   - {fileID: 1905356316}
+  directionalLight: {fileID: 0}
   keyframes:
   - hour: 0
     skyTop: {r: 0.02, g: 0.02, b: 0.1, a: 1}
     skyBottom: {r: 0.05, g: 0.05, b: 0.18, a: 1}
     uiTint: {r: 0.54509807, g: 0.29803923, b: 0.54901963, a: 1}
+    lightIntensity: 0.05
+    lightColor: {r: 0.54254186, g: 0.54254186, b: 0.9056604, a: 1}
+    lightRotation: {x: -30, y: 180}
+    cloudOpacity: 0.1
   - hour: 6
     skyTop: {r: 0.95, g: 0.5, b: 0.2, a: 1}
     skyBottom: {r: 1, g: 0.8, b: 0.6, a: 1}
     uiTint: {r: 0, g: 0.6392157, b: 0.627451, a: 1}
+    lightIntensity: 0.6
+    lightColor: {r: 1, g: 0.7, b: 0.4, a: 1}
+    lightRotation: {x: 10, y: 90}
+    cloudOpacity: 0.5
   - hour: 12
     skyTop: {r: 0.45, g: 0.85, b: 1, a: 1}
     skyBottom: {r: 1, g: 1, b: 1, a: 1}
     uiTint: {r: 0, g: 0.6392157, b: 0.627451, a: 1}
+    lightIntensity: 1
+    lightColor: {r: 1, g: 0.98, b: 0.9, a: 1}
+    lightRotation: {x: 75, y: 170}
+    cloudOpacity: 1
   - hour: 18
     skyTop: {r: 0.6, g: 0.2, b: 0.5, a: 1}
     skyBottom: {r: 0.95, g: 0.55, b: 0.3, a: 1}
     uiTint: {r: 0.54509807, g: 0.29803923, b: 0.54901963, a: 1}
+    lightIntensity: 0.4
+    lightColor: {r: 1, g: 0.6, b: 0.3, a: 1}
+    lightRotation: {x: 10, y: 270}
+    cloudOpacity: 0.5
   updateInterval: 60
 --- !u!1 &1744418417
 GameObject:
@@ -3660,7 +3653,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: -542, y: -605}
+  m_AnchoredPosition: {x: -542, y: -920.7}
   m_SizeDelta: {x: 1054.3591, y: 100}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &1744418419
@@ -4032,7 +4025,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -310}
+  m_AnchoredPosition: {x: 0, y: -471.8}
   m_SizeDelta: {x: -100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1905356316

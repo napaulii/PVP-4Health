@@ -45,6 +45,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
+    - _CloudOpacity: 0.32586548
     - _NoiseAmpA: 0.15
     - _NoiseAmpB: 0.2
     - _NoiseAmpC: 0.12
@@ -72,7 +73,7 @@ Material:
     - _Dir1: {r: 0.0003, g: 0.0001, b: 0, a: 0}
     - _Dir2: {r: -0.002, g: 0.001, b: 0, a: 0}
     - _Dir3: {r: 0.001, g: -0.002, b: 0, a: 0}
-    - _SkyBottom: {r: 0.8349902, g: 0.48610568, b: 0.28466538, a: 1}
-    - _SkyTop: {r: 0.5258826, g: 0.17699805, b: 0.44888455, a: 1}
+    - _SkyBottom: {r: 0.11143046, g: 0.09849773, b: 0.20715874, a: 1}
+    - _SkyTop: {r: 0.080137186, g: 0.05103855, b: 0.10646637, a: 1}
   m_BuildTextureStacks: []
   m_AllowLocking: 1

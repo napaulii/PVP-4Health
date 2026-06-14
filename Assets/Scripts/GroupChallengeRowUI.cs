@@ -43,6 +43,7 @@ public class GroupChallengeRowUI : MonoBehaviour
         _data = data;
         _actions = actions;
         _uiManager = uiManager;
+        isExpanded = false;
 
         if (titleText != null) titleText.text = data.TargetName;
         if (rewardText != null) rewardText.text = $"+{_rewardXp}";
@@ -82,10 +83,19 @@ public class GroupChallengeRowUI : MonoBehaviour
 
     void SetupTraveler(GroupChallenge data)
     {
-        ShowExtra1(string.IsNullOrEmpty(data.TargetName)
-            ? "GPS warming up..." : $"Target: {data.TargetName}");
+        if (extraText1 != null)
+        {
+            extraText1.gameObject.SetActive(true);
+            extraText1.text = string.IsNullOrEmpty(data.TargetName)
+                ? "Searching for location..." : $"Target: {data.TargetName}";
+        }
 
-        if (extraText2 != null) extraText2.gameObject.SetActive(true);
+        // Set distance text or placeholder
+        if (extraText2 != null)
+        {
+            extraText2.gameObject.SetActive(true);
+            extraText2.text = data.TargetLatitude.HasValue ? "" : "No location yet";
+        }
 
         if (extraButton1 != null)
         {
@@ -99,22 +109,36 @@ public class GroupChallengeRowUI : MonoBehaviour
 
         if (extraButton2 != null)
         {
+            extraButton2.gameObject.SetActive(true);
+            extraButton2.onClick.RemoveAllListeners();
+
             if (data.TargetLatitude.HasValue && data.TargetLongitude.HasValue)
             {
                 double lat = data.TargetLatitude.Value;
                 double lng = data.TargetLongitude.Value;
-                extraButton2.gameObject.SetActive(true);
-                extraButton2.onClick.RemoveAllListeners();
                 extraButton2.onClick.AddListener(() => _actions.OpenMapForTarget(lat, lng));
+                extraButton2.interactable = true;
             }
             else
             {
-                extraButton2.gameObject.SetActive(false);
+                extraButton2.interactable = false;
             }
+
+            // Set button label
+            var tmp = extraButton2.GetComponentInChildren<TextMeshProUGUI>();
+            if (tmp != null) tmp.text = "Open Map";
         }
 
         if (string.IsNullOrEmpty(data.TargetName))
-            _actions.AutoGenerateGroupTravelerLocation(data, this);
+            _ = GenerateAndRefresh(data);
+    }
+
+    async Task GenerateAndRefresh(GroupChallenge data)
+    {
+        // Don't use Task.Run - just await directly
+        _actions.AutoGenerateGroupTravelerLocation(data, this);
+        await Task.Delay(1000); // wait for generation
+        SetupTraveler(_data);   // refresh with updated data
     }
 
     public async Task SyncAndRefreshSteps()
@@ -200,5 +224,32 @@ public class GroupChallengeRowUI : MonoBehaviour
         if (coinsText != null) coinsText.text = "";
         if (doneButton != null) doneButton.interactable = false;
         SetExtra(false);
+    }
+
+    public void ToggleExpand()
+    {
+        isExpanded = !isExpanded;
+
+        if (isExpanded)
+            ShowDetails();
+        else
+            SetExtra(false);
+    }
+
+    void ShowDetails()
+    {
+        bool isStep = _data.StepTarget.HasValue && _data.StepTarget.Value > 0;
+
+        SetExtra(false); // clear first
+
+        if (isStep)
+        {
+            ShowExtra1($"{_data.StepProgress} / {_data.StepTarget.Value} steps");
+            _ = SyncAndRefreshSteps();
+        }
+        else
+        {
+            SetupTraveler(_data);
+        }
     }
 }

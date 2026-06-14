@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using UnityEngine;
 using SupabaseModels;
+using System.Linq;
 
 public class GroupChallengeController
 {
@@ -153,7 +154,6 @@ public class GroupChallengeController
     {
         try
         {
-            // Get current user's group ID first
             UserController userCtrl = new UserController();
             var currentUser = await userCtrl.GetCurrentUserAsync();
 
@@ -163,12 +163,43 @@ public class GroupChallengeController
                 return new List<GroupChallenge>();
             }
 
-            GroupChallenge challenge = await GetOrCreateWeeklyGroupChallengeAsync(currentUser.GroupID.Value);
+            long groupId = currentUser.GroupID.Value;
+            DateTime today = DateTime.UtcNow.Date;
 
-            if (challenge == null)
-                return new List<GroupChallenge>();
+            var response = await SupabaseManager.Instance.From<GroupChallenge>()
+                .Where(x => x.GroupId == groupId)
+                .Order("date", Postgrest.Constants.Ordering.Descending)
+                .Get();
 
-            return new List<GroupChallenge> { challenge };
+            var active = response.Models
+                .Where(x => x.Status == "Active" &&
+                            today < x.Date.AddDays(x.TimeToComplete))
+                .ToList();
+
+            // Ensure one steps challenge exists
+            bool hasSteps = active.Any(x => x.StepTarget.HasValue && x.StepTarget.Value > 0);
+            if (!hasSteps)
+            {
+                var newSteps = await GenerateNewGroupChallengeAsync(groupId, today, "steps");
+                if (newSteps != null) active.Add(newSteps);
+            }
+
+            // Ensure one traveler challenge exists
+            bool hasTraveler = active.Any(x => !x.StepTarget.HasValue || x.StepTarget.Value == 0);
+            if (!hasTraveler)
+            {
+                var newTraveler = await GenerateNewGroupChallengeAsync(groupId, today, "traveler");
+                if (newTraveler != null) active.Add(newTraveler);
+            }
+
+            // Ensure a third challenge exists (steps)
+            if (active.Count < 3)
+            {
+                var third = await GenerateNewGroupChallengeAsync(groupId, today, "steps");
+                if (third != null) active.Add(third);
+            }
+
+            return active.Take(3).ToList();
         }
         catch (Exception e)
         {

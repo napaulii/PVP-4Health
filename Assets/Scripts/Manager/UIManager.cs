@@ -6,7 +6,7 @@ public class UIManager : MonoBehaviour
 {
     public GameObject homePanel;
     public GameObject homeBottomPanel;
-    public GameObject platforms;
+    
     public GameObject shopPanel;
     public GameObject achievementsPanel;
     public GameObject profilePanel;
@@ -15,6 +15,7 @@ public class UIManager : MonoBehaviour
     public GameObject BottomNavBar;
 
     [SerializeField] private PlacementSystem stp;
+    
 
     void Start()
     {
@@ -35,7 +36,7 @@ public class UIManager : MonoBehaviour
         achievementsPanel.SetActive(false);
         profilePanel.SetActive(false);
         settingsPanel.SetActive(false);
-        platforms.SetActive(true);
+        
         homePanel.SetActive(false);
         BuildModePanel.SetActive(false);
         BottomNavBar.SetActive(true);
@@ -43,11 +44,12 @@ public class UIManager : MonoBehaviour
 
     public void OpenHome()
     {
+       
         shopPanel.SetActive(false);
         achievementsPanel.SetActive(false);
         profilePanel.SetActive(false);
         settingsPanel.SetActive(false);
-        platforms.SetActive(true);
+        
         homePanel.SetActive(true);
         BuildModePanel.SetActive(false);
         BottomNavBar.SetActive(true);
@@ -65,19 +67,21 @@ public class UIManager : MonoBehaviour
         achievementsPanel.SetActive(true);
         profilePanel.SetActive(false);
         settingsPanel.SetActive(false);
-        platforms.SetActive(false);
+        
         homePanel.SetActive(false);
         BuildModePanel.SetActive(false);
         BottomNavBar.SetActive(true);
+        
     }
 
     public void OpenProfile()
     {
         homePanel.SetActive(false);
-        platforms.SetActive(false);
+        
         profilePanel.SetActive(true);
         BuildModePanel.SetActive(false);
         BottomNavBar.SetActive(false);
+        
     }
 
     public void OpenSettings()
@@ -86,19 +90,21 @@ public class UIManager : MonoBehaviour
         achievementsPanel.SetActive(false);
         profilePanel.SetActive(false);
         settingsPanel.SetActive(true);
-        platforms.SetActive(false);
+        
         homePanel.SetActive(false);
         BuildModePanel.SetActive(false);
         BottomNavBar.SetActive(true);
+       
     }
 
     public void OpenBuildMode()
     {
+        
         shopPanel.SetActive(false);
         achievementsPanel.SetActive(false);
         profilePanel.SetActive(false);
         settingsPanel.SetActive(false);
-        platforms.SetActive(true);
+        
         homePanel.SetActive(false);
         BuildModePanel.SetActive(true);
         BottomNavBar.SetActive(false);

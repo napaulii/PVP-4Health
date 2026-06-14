@@ -37,7 +37,7 @@ public class CalendarDetailPanel
     public async Task Show(DateTime date, CalendarDataLoader dataLoader)
     {
         if (dateTitle != null)
-            dateTitle.text = date.ToString("yyyy-MM-dd, dddd");
+            dateTitle.text = date.ToString("yyyy-MM-dd");
 
         await PopulateHabits(date, dataLoader);
 

@@ -14,6 +14,8 @@ Shader "Custom/CloudBackground"
 
         _Speed ("Global Speed",  Float) = 0.02
         _Scale ("Global Scale",  Float) = 0.38
+
+        _CloudOpacity ("Cloud Opacity", Range(0,1)) = 1.0
     }
 
     SubShader
@@ -44,6 +46,7 @@ Shader "Custom/CloudBackground"
                 float4 _Cloud1_ST, _Cloud2_ST, _Cloud3_ST;
                 float4 _SkyTop, _SkyBottom;
                 float  _Speed, _Scale;
+                float _CloudOpacity;
             CBUFFER_END
 
             // 2 sins per cloud = organic wander, minimal cost
@@ -89,7 +92,10 @@ Shader "Custom/CloudBackground"
                 float4 c3 = Cloud(TEXTURE2D_ARGS(_Cloud3, sampler_Cloud3),
                     uv, t, 11.47, 0.5,  1.15, _Cloud3_ST);
 
-                // Layer clouds over sky
+                c1.a *= _CloudOpacity;
+                c2.a *= _CloudOpacity;
+                c3.a *= _CloudOpacity;
+
                 col = lerp(col, c1, c1.a);
                 col = lerp(col, c2, c2.a);
                 col = lerp(col, c3, c3.a);
